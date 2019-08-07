@@ -18,7 +18,7 @@ App({
    * 全局变量
    */
   globalData: {
-    serverUrl: 'https://localhost/miniprogram/',
+    serverUrl: 'https://www.eywang.com/miniprogram/',
     uploadUrl: 'https://www.eywang.com/common/miniUpload',
     imageUrl: 'https://www.eywang.com/file/miniprogram/',
     user: {

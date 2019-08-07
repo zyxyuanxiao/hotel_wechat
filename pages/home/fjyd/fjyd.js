@@ -23,7 +23,7 @@ Page({
     xychecked: false,
     hyzk: 9,
     yhqid: 1,
-    yhqje: 20,
+    yhqje: 0,
     startDate: util.dateUtil.format(new Date(), 'Y-M-D'),
     endDate: util.dateUtil.format(util.dateUtil.nextMonth(new Date(), 3), 'Y-M-D'),
     rmbImage: '/resources/images/user/rmb.png',
@@ -392,7 +392,7 @@ Page({
         rzts: this.data.rztsNum,
         ddyj: util.parseDouble(this.data.ddyj),
         ysje: util.parseDouble(this.data.sfje),
-        sfje: 0,
+        sfje: this.data.zffs == '1' ? util.parseDouble(this.data.sfje) : 0,
         rzlx: this.data.rzlx == undefined ? '1' : this.data.rzlx,
         rzrid: this.data.rzrid,
         rzrlx: this.data.rzrlx,
@@ -414,7 +414,7 @@ Page({
       params,
       function (data) {
         // 如果支付方式为钱包支付，则直接预定成功
-        if (this.data.zffs == '1') {
+        if (that.data.zffs == '1') {
           wx.showToast({
             title: '预定成功',
             icon: 'none',
@@ -428,17 +428,17 @@ Page({
           // 发起微信支付
           var params = {};
           params['data'] = {
-            total_fee: this.data.sfje * 100,
+            total_fee: that.data.sfje * 100,
             paytype: '1',
             desc: '锦恒科技-房费',
-            vipid: this.data.vipid
+            vipid: that.data.vipid
           }
 
           let requestParam = {
             url: app.globalData.serverUrl + 'updateOrder',
             body: {
-              id: data.orderid,
-              sfje: this.data.sfje,
+              id: data,
+              sfje: that.data.sfje,
               ddzt: '2'
             }
           }
@@ -540,12 +540,13 @@ Page({
     request.doRequest(
       params,
       function (data) {
-        console.log(data);
-        that.setData({
-          couponList: data,
-          selectCouponIndex: 0,
-          yhqje: util.parseDouble(data[0].yhqje)
-        })
+        if (data.lenght > 0) {
+          that.setData({
+            couponList: data,
+            selectCouponIndex: 0,
+            yhqje: util.parseDouble(data[0].yhqje)
+          })
+        }
       },
       function (data) {
         wx.showToast({

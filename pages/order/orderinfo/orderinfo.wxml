@@ -10,7 +10,7 @@
   <image src="/resources/images/1.jpg" class="fjxx-image"></image>
   <view class="fjxx-info">
     <view class="fjxx-info-title">{{hotel.name}}-{{hotel.fjlx}}</view>
-    <view class="fjxx-info-fjdz">{{hotel.city}}{{hotel.area}}{{hotel.street}}{{hotel.address}}</view>
+    <view class="fjxx-info-fjdz">{{hotel.cityname}}{{hotel.areaname}}{{hotel.streetname}}{{hotel.address}}</view>
   </view>
 </view>
 
@@ -53,7 +53,7 @@
   </view>
   <view class="fjdz-item-100">
     <text class="fjdz-item-label">地址：</text>
-    <text class="fjdz-item-text">{{hotel.city}}{{hotel.area}}{{hotel.street}}{{hotel.address}}       </text>
+    <text class="fjdz-item-text">{{hotel.cityname}}{{hotel.areaname}}{{hotel.streetname}}{{hotel.address}}</text>
   </view>
 </view>
 <!-- 订单信息 -->

@@ -17,7 +17,7 @@
   <view class="jdmc">{{hotel.name}}</view>
   <view class="jdwz">
     <image src="{{locationImage}}" class="location-icon"></image>
-    <view class="location-text">{{hotel.province}}{{hotel.city}}{{hotel.area}}{{hotel.street}}{{hotel.address}}</view>
+    <view class="location-text">{{hotel.provincename}}{{hotel.cityname}}{{hotel.areaname}}{{hotel.streetname}}{{hotel.address}}</view>
     <view class="tencent-map-icon-box" bindtap="openTencentMap">
       <image src="{{mapImage}}" class="tencent-map-icon"></image>
     </view>

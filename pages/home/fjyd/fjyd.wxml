@@ -14,7 +14,7 @@
     <image src="/resources/images/1.jpg" class="fjxx-image"></image>
     <view class="fjxx-info">
       <view class="fjxx-info-fjmc">{{hotel.name}}-{{fjlx}}</view>
-      <view class="fjxx-info-fjdz">{{hotel.city}}{{hotel.area}}{{hotel.street}}{{hotel.address}}</view>
+      <view class="fjxx-info-fjdz">{{hotel.cityname}}{{hotel.areaname}}{{hotel.streetname}}{{hotel.address}}</view>
       <view class="fjxx-info-score">
         <image src="{{item.score >= 1 ? wjxFillingIcon : wjxIcon}}" class="fjxx-info-icon"></image>
         <image src="{{item.score >= 2 ? wjxFillingIcon : wjxIcon}}" class="fjxx-info-icon"></image>
@@ -93,7 +93,7 @@
       </view>
       <view class="input-box">
         <radio-group class="radio-group" bindchange="radioChange">
-          <label class="radio" wx:for="{{zffsRadio}}">
+          <label class="radio" wx:for="{{zffsRadio}}" wx:key="unique">
             <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
           </label>
         </radio-group>

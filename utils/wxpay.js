@@ -45,20 +45,20 @@ let payUtil = {
     let that = this;
     request.doRequest(
       params,
-      function (data) {
+      function (resData) {
         wx.requestPayment({
-          'timeStamp': data.timeStamp + '',
-          'nonceStr': data.nonceStr,
-          'package': data.package,
-          'signType': data.signType,
-          'paySign': data.paySign,
+          'timeStamp': resData.timeStamp + '',
+          'nonceStr': resData.nonceStr,
+          'package': resData.package,
+          'signType': resData.signType,
+          'paySign': resData.paySign,
           'success': function (res) { 
             // 支付成功回调
-            that.data.successFun(data.wechatpayid);
+            data.successFun(resData.wechatpayid);
           },
           'fail': function (res) {
             // 支付成功回调
-            that.data.failFun(data.wechatpayid);
+            data.failFun(resData.wechatpayid);
            },
           'complete': function (res) { }
         }) 

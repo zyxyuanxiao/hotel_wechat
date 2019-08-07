@@ -14,14 +14,16 @@
 }
 .swiper-tab-list {
   display: flex;
-  align-items: center;
   font-size: 30rpx;
   color: #666;
   border-bottom: 0rpx;
 }
-.swiper-tab-list i {
-  position: absolute;
-  bottom: 27%;
+.codition {
+  display: flex;
+  align-items: center;
+}
+.triggle {
+  margin-top: 6px;
   margin-left: 2px;
   width: 0px;
   height: 0px;
@@ -121,14 +123,14 @@
   height: 40px;
   line-height: 40px;
   color: #000;
-  padding-left: 5%;
+  margin-left: 5%;
   font-size: 30rpx;
 }
 .area-item-select {
   height: 40px;
   line-height: 40px;
   color: #f63;
-  padding-left: 5%;
+  margin-left: 5%;
   font-size: 30rpx;
 }
 .swiper-blank {
