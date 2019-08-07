@@ -1,6 +1,7 @@
 // pages/home/fjyd/fjyd.js
 const util = require('../../../utils/util.js')
 const request = require('../../../utils/request.js')
+const payUtil = require('../../../utils/wxpay.js')
 var app = getApp();
 Page({
 
@@ -390,7 +391,8 @@ Page({
         ldsj: this.data.ldsjDate + this.data.tfsj,
         rzts: this.data.rztsNum,
         ddyj: util.parseDouble(this.data.ddyj),
-        sfje: util.parseDouble(this.data.sfje),
+        ysje: util.parseDouble(this.data.sfje),
+        sfje: 0,
         rzlx: this.data.rzlx == undefined ? '1' : this.data.rzlx,
         rzrid: this.data.rzrid,
         rzrlx: this.data.rzrlx,
@@ -411,15 +413,80 @@ Page({
     request.doRequest(
       params,
       function (data) {
-        console.log(data);
-        wx.showToast({
-          title: '生成订单成功',
-          icon: 'none',
-        })
+        // 如果支付方式为钱包支付，则直接预定成功
+        if (this.data.zffs == '1') {
+          wx.showToast({
+            title: '预定成功',
+            icon: 'none',
+            success: function() {
+              wx.switchTab({
+                url: '/pages/order/order',
+              })
+            }
+          })
+        } else {
+          // 发起微信支付
+          var params = {};
+          params['data'] = {
+            total_fee: this.data.sfje * 100,
+            paytype: '1',
+            desc: '锦恒科技-房费',
+            vipid: this.data.vipid
+          }
+
+          let requestParam = {
+            url: app.globalData.serverUrl + 'updateOrder',
+            body: {
+              id: data.orderid,
+              sfje: this.data.sfje,
+              ddzt: '2'
+            }
+          }
+          // 支付成功回调函数
+          params['successFun'] = function (wechatpayid) {
+            requestParam.body['wechatpayid'] = wechatpayid;
+            request.doRequest(
+              requestParam,
+              function (data) {
+                wx.showToast({
+                  title: '预定成功',
+                  icon: 'none',
+                  success: function () {
+                    wx.switchTab({
+                      url: '/pages/order/order',
+                    })
+                  }
+                })
+              },
+              function (data) {
+                wx.showToast({
+                  title: '服务器异常',
+                  icon: 'none'
+                })
+              }
+            )
+          }
+
+          // 支付失败回调函数
+          params['failFun'] = function() {
+            wx.showModal({
+              title: '温馨提示',
+              content: '订单尚未支付，请尽快支付，否则半小时后订单将自动取消',
+              showCancel: false,
+              success: function () {
+                wx.switchTab({
+                  url: '/pages/order/order',
+                })
+              }
+            })
+          }
+
+          payUtil.payUtil.pay(params);
+        }
       },
       function (data) {
         wx.showToast({
-          title: '请求错误',
+          title: '服务器异常',
           icon: 'none'
         })
       }

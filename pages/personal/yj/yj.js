@@ -5,7 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
-    yj: 50,
+    yj: 300,
     yjImage: '/resources/images/user/yj_w.png',
     helpImage: '/resources/images/help.png'
   },

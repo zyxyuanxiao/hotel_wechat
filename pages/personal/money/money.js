@@ -1,6 +1,7 @@
 // pages/personal/money/money.js
 const util = require('../../../utils/util.js')
 const request = require('../../../utils/request.js')
+const payUtil = require('../../../utils/wxpay.js')
 var app = getApp();
 Page({
 
@@ -49,7 +50,17 @@ Page({
    * 钱包充值
    */
   qbcz: function() {
-    let params = {
+    var that = this;
+    // 发起微信支付
+    var params = {};
+    params['data'] = {
+      total_fee: this.data.currentJe * 100,
+      paytype: '1',
+      desc: '锦恒科技-钱包充值',
+      vipid: this.data.vipInfo.id
+    }
+
+    let requestParam = {
       url: app.globalData.serverUrl + 'addConsume',
       body: {
         vipid: this.data.vipInfo.id,
@@ -58,22 +69,29 @@ Page({
         xfqye: this.data.xfqye
       }
     }
-    let that = this;
-    request.doRequest(
-      params,
-      function (data) {
-        wx.showToast({
-          title: '充值成功',
-          icon: 'none'
-        })
-      },
-      function (data) {
-        wx.showToast({
-          title: '请求错误',
-          icon: 'none'
-        })
-      }
-    )
+    // 支付成功回调函数
+    params['successFun'] = function (wechatpayid) {
+      requestParam.body['wechatpayid'] = wechatpayid;
+      request.doRequest(
+        requestParam,
+        function (data) {
+          wx.showToast({
+            title: '充值成功',
+            icon: 'none'
+          })
+        },
+        function (data) {
+          wx.showToast({
+            title: '服务器异常',
+            icon: 'none'
+          })
+        }
+      )
+    }
+
+    // 支付失败回调函数
+    params['failFun'] = function () { }
+    payUtil.payUtil.pay(params);
   },
 
   /**

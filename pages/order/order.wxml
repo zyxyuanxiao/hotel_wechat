@@ -33,7 +33,7 @@
     </view>
     <!-- 操作 -->
     <view class="order-item-oper" wx:if="{{item.ddzt == 1}}">
-      <button class="order-item-oper-btn" bindtap="navigateToPay" data-orderid="{{item.orderid}}">立即支付</button>
+      <button class="order-item-oper-btn" bindtap="Pay" data-index="{{index}}">立即支付</button>
     </view>
     <!-- 操作 -->
     <view class="order-item-oper" wx:if="{{item.ddzt == 2}}">

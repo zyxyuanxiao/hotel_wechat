@@ -14,7 +14,7 @@ page {
   align-items: center;
   background-size: cover;
   background-repeat: no-repeat;
-  background-image: url('http://localhost:8080/static/images/miniprogram/upload/7.jpg');
+  background-image: url('http://www.eywang.com/static/images/miniprogram/upload/7.jpg');
 }
 
 .login-btn {

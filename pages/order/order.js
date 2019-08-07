@@ -1,6 +1,7 @@
 // pages/order/order.js
 const util = require('../../utils/util.js')
 const request = require('../../utils/request.js')
+const payUtil = require('../../utils/wxpay.js')
 var app = getApp();
 
 Page({
@@ -56,7 +57,6 @@ Page({
           that.setData({
             userid: res.data.id
           })
-          console.log(that.data.currentTab);
           // 加载全部订单
           that.loadOrders('');
         } else {
@@ -75,7 +75,8 @@ Page({
   swichNav: function(e) {
     if (e.detail.currentTab == 1) {
       this.setData({
-        tabname: ''
+        tabname: '',
+        currentTab: e.detail.currentTab
       })
     } else {
       this.setData({
@@ -152,7 +153,6 @@ Page({
     request.doRequest(
       params,
       function (data) {
-        console.log(data);
         that.setData({
           orderList: data
         })
@@ -178,9 +178,50 @@ Page({
   /**
    * 
    */
-  navigateToPay: function(e) {
-    this.setData({
-      showModal: true
-    })
+  Pay: function(e) {
+    var that = this;
+    // 发起微信支付
+    var params = {};
+    params['data'] = {
+      total_fee: this.data.orderList[e.currentTarget.dataset.index].ysje * 100,
+      paytype: '1',
+      desc: '锦恒科技-房费',
+      vipid: this.data.userid
+    }
+
+    let requestParam = {
+      url: app.globalData.serverUrl + 'updateOrder',
+      body: {
+        id: this.data.orderList[e.currentTarget.dataset.index].orderid,
+        sfje: this.data.orderList[e.currentTarget.dataset.index].ysje * 100,
+        ddzt: '2'
+      }
+    }
+    // 支付成功回调函数
+    params['successFun'] = function (wechatpayid) {
+      requestParam.body['wechatpayid'] = wechatpayid;
+      request.doRequest(
+        requestParam,
+        function (data) {
+          wx.showToast({
+            title: '支付成功',
+            icon: 'none',
+            success: function () {
+              that.loadOrders(that.data.tabList[that.data.currentTab - 1].ddzt);
+            }
+          })
+        },
+        function (data) {
+          wx.showToast({
+            title: '服务器异常',
+            icon: 'none'
+          })
+        }
+      )
+    }
+
+    // 支付失败回调函数
+    params['failFun'] = function () {}
+    payUtil.payUtil.pay(params);
   }
 })

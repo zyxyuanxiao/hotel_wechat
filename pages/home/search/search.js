@@ -120,7 +120,8 @@ Page({
     let params = {
       url: app.globalData.serverUrl + 'getHotels',
       body: {
-        conditions: e.detail.conditions
+        conditions: e.detail.conditions,
+        status: '1'
       }
     }
     let that = this;
