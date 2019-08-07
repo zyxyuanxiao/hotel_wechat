@@ -1,0 +1,74 @@
+/* pages/service/sqqj/sqqj.wxss */
+.sqqj-item {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin-top: 25px;
+}
+.sqqj-item-title {
+  font-size: 30rpx;
+  font-weight: bold;
+  margin-left: 20px;
+}
+.sqqj-item-sqnr {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.sqqj-btn {
+  width: 40%;
+  height: 40px;
+  border-top-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  background-color: #fff;
+  border: 1px solid #d9d9d9;
+  margin-top: 10px;
+  font-size: 25rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.on {
+  background-color: #ea9518;
+  color: #fff;
+}
+.fwnr {
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+}
+.fwnr-icon {
+  width: 25px;
+  height: 25px;
+}
+.fwnr-info {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.fwnr-info-title {
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.fwnr-info-desc {
+  font-size: 25rpx;
+  margin-top: 5px;
+}
+.seletIcon {
+  width: 20px;
+  height: 20px;
+}
+.tsfw {
+  height: 60px; 
+  border-bottom: 1px solid #d9d9d9;
+  width: 90%;
+  margin-left: 5%;
+}

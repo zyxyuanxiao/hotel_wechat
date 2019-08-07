@@ -1,0 +1,74 @@
+<!--pages/order/order.wxml-->
+<view class="page" style="background-color:{{pageBackgroundColor}}">
+  <!-- 顶部tab导航 -->
+  <tab tabList="{{tabList}}" bindswichNav="swichNav"></tab>
+
+  <!-- 订单列表 -->
+  <view class="order-item" wx:for="{{orderList}}" wx:key="unique">
+    <!-- 订单标题 -->
+    <view class="order-item-title" bindtap="navigateToOrderInfo" data-orderid="{{item.orderid}}">
+      <view class="order-item-title-fjmc">{{item.name}}-{{item.fjlx}}</view>
+      <view class="order-item-title-ddzt">{{item.ddztname}}</view>
+    </view>
+
+    <!-- 订单信息 -->
+    <view class="order-item-info" bindtap="navigateToOrderInfo" data-orderid="{{item.orderid}}" >
+      <view class="order-item-info-image">
+        <image src="{{imageSrc}}" class="order-item-info-image-image"></image>
+      </view>
+      <view class="order-item-info-info">
+        <view class="order-item-info-fjxx">
+          <view>{{item.rzsj}} - {{item.ldsj}}</view>
+          <view>{{item.lc}}楼 {{item.fjh}}</view>
+        </view>
+        <view class="order-item-info-fyxx">
+          <money num="{{item.sfje}}"></money>
+        </view>
+      </view>
+    </view>
+
+    <!-- 操作 -->
+    <view class="order-item-oper" wx:if="{{item.ddzt == 5 || item.ddzt == 6}}">
+      <button class="order-item-oper-btn" bindtap="navigateToOrder" data-orderid="{{item.orderid}}">再次预定</button>
+    </view>
+    <!-- 操作 -->
+    <view class="order-item-oper" wx:if="{{item.ddzt == 1}}">
+      <button class="order-item-oper-btn" bindtap="navigateToPay" data-orderid="{{item.orderid}}">立即支付</button>
+    </view>
+    <!-- 操作 -->
+    <view class="order-item-oper" wx:if="{{item.ddzt == 2}}">
+      <button class="order-item-oper-btn" bindtap="navigateToBlrz" data-orderid="{{item.orderid}}">办理入住</button>
+    </view>
+    <!-- 操作 -->
+    <view class="order-item-oper" wx:if="{{item.ddzt == 3}}">
+      <text class="order-item-oper-btn" bindtap="navigateToOrder" data-orderid="{{item.orderid}}">续住</text>
+      <text class="order-item-oper-btn" bindtap="navigateToZzfw" data-orderid="{{item.orderid}}">在住服务</text>
+    </view>
+    <!-- 操作 -->
+    <view class="order-item-oper" wx:if="{{item.ddzt == 4}}">
+      <text class="order-item-oper-btn" bindtap="navigateToOrder" data-orderid="{{item.orderid}}">再次预定</text>
+      <text class="order-item-oper-btn" bindtap="navigateToPj" data-orderid="{{item.orderid}}" data-jdid="{{item.jdid}}">立即评价</text>
+    </view>
+  </view>
+
+  <!-- 没有订单 -->
+  <view class="no-order" hidden="{{orderList.length != 0}}">
+    <image src="/resources/images/home/order_1.png" class="order-image"></image>
+    <text class="tip-text">你当前暂无{{tabname}}订单</text>
+    <button class="go-btn" bindtap="navigateToSearch">去逛逛</button>
+  </view>
+</view>
+
+<!-- 日历组件 -->
+<modalView show="{{showModal}}" clickMaskClose="{{clickMaskClose}}">
+  <view class="zffw-box">
+    <view class="zffs-title">
+      <view>X</view>
+      <view>选择付款方式</view>
+    </view>
+    <view class="zffw-item">
+      <image src="" class="zffw-item-image"></image>
+      <view>钱包支付</view>
+    </view>
+  </view>
+</modalView>

@@ -1,0 +1,21 @@
+/* pages/service/zzfw/zzfw.wxss */
+.znkm-box {
+  width: 95%;
+  margin-top: 10px;
+}
+
+.znkm-title {
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.znkm-title-text {
+  font-size: 35rpx;
+  font-weight: bold;
+}
+
+.znkm-title-tips {
+  font-size: 25rpx;
+  margin-left: 10px;
+}

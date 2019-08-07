@@ -1,0 +1,13 @@
+<!--pages/personal/cyrzr/cyrzr.wxml-->
+<button class="common-btn-nofilling" bindtap="navigateToTjrzr">添加入住人</button>
+<view class="cyrzr-list-title">常用入住人</view>
+<!-- 常用入住人列表 -->
+<view class="ryrzr-list">
+  <view class="cyrzr-list-item" wx:for="{{cyrzrList}}" wx:key="id" bindtap="select" data-index="{{index}}">
+    <!-- 选择 -->
+    <image wx:if="{{showSelect}}" src="{{selectCyrzrIndex == index ? selectedImage : circleImage}}" class="select-all-image"></image>
+    <text class="cyrzr-list-item-text">{{item.rzrxm}}   {{item.sjhm}}</text>
+  </view>
+</view>
+
+<button wx:if="{{showSelect}}" class="common-btn" style="position: absolute; bottom: 10px; left: 5%;" bindtap="selectCyrzr">确定</button>

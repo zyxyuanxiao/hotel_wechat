@@ -1,0 +1,20 @@
+<!--pages/personal/yj/yj.wxml-->
+<view class="container">
+  <view class="yj">
+    <view class="yj-image-box">
+      <image src="{{yjImage}}" class="yj-image"></image>
+    </view>
+    <view class="yj-title">押金</view>
+    <view class="yj-number">
+      <text wx:if="{{yj == 0}}">您暂未缴纳押金</text>
+      <text wx:else="{{yj == 0}}">￥{{yj}}</text>
+    </view>
+  </view>
+
+  <button class="common-btn">押金充值</button>
+
+  <view class="common-help">
+    <image src="{{helpImage}}" class="common-help-icon"></image>
+    押金说明
+  </view>
+</view>

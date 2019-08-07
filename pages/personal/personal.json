@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "gongge": "/components/gongge/gongge"
+  },
+  "navigationBarTitleText": "我的"
+}

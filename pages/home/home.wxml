@@ -1,0 +1,122 @@
+<!-- 图片轮播 -->
+<swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
+  <block wx:for="{{ImageList}}" wx:key="unique">
+    <swiper-item>
+      <image src="{{item.imageurl}}" class="slide-image" bindtap="redirectTo" data-link="{{item.link}}" />
+    </swiper-item>
+  </block>
+</swiper>
+<!-- 房源查询 -->
+<view class="search">
+  <!-- 入住类型 --> 
+  <view class="search-rzlx">
+    <view class="search-rzlx-item {{currentRzlx == 1 ? 'on' : ''}}" bindtap="selectRzlx" data-rzlx="1">
+      <image src="{{currentRzlx == 1 ? qrImage + '_1.png' : qrImage + '.png'}}" class="search-item-icon" />全日
+    </view>
+    <view class="search-rzlx-item {{currentRzlx == 2 ? 'on' : ''}}" bindtap="selectRzlx" data-rzlx="2">
+      <image src="{{currentRzlx == 2 ? dyImage + '_1.png' : dyImage + '.png'}}" class="search-item-icon" />度夜
+    </view>
+    <view class="search-rzlx-item {{currentRzlx == 3 ? 'on' : ''}}" bindtap="selectRzlx" data-rzlx="3">
+      <image src="{{currentRzlx == 3 ? zdImage + '_1.png' : zdImage + '.png'}}" class="search-item-icon" />钟点房
+    </view>
+  </view>
+
+  <!-- 定位 -->
+  <view class="search-location">
+    <view>
+      <image src="{{searchImage}}" class="search-item-icon" />
+      <address my-city="北京" data="{{city}}" binddetail="bindtap"></address>{{myLocation}}
+    </view>
+    <view bindtap="getLocation">
+      <image src="{{locationImage}}" class="search-item-icon" />我的位置
+    </view>
+  </view>
+
+  <!-- 入住时间 -->
+  <view class="search-rzsj">
+    <!-- 入住 -->
+    <view bindtap="selectRzsj" class="search-rzsj-item-sj">
+      <view class="search-rzsj-item-rz">入住</view>
+      <view class="search-rzsj-item-rq">
+        <image src="{{calendarImage}}" class="search-item-icon" />{{rzrq}}          </view>
+      <view class="search-rzsj-item-week">{{rzsjWeek}}{{rzsj}}</view>
+    </view>
+    <!-- 天数 -->
+    <view class="search-rzsj-item-ts">
+      <view class="search-rzsj-item-rz">|</view>
+      <view class="search-rzsj-item-rq">
+        {{rzts}}
+      </view>
+      <view class="search-rzsj-item-week">|</view>
+    </view>
+
+    <!-- 离店 -->
+    <view bindtap="selectRzsj" class="search-rzsj-item-sj">
+      <view class="search-rzsj-item-rz">离店</view>
+      <view class="search-rzsj-item-rq">
+        <image src="{{calendarImage}}" class="search-item-icon" />{{tfrq}}        </view>
+      <view class="search-rzsj-item-week">{{ldsjWeek}}{{tfsj}}</view>
+    </view>
+  </view>
+
+  <!-- 时间开关 -->
+  <view class="time-switch" hidden="{{currentRzlx != 2}}">
+    <view class="time-switch-item">
+      <switch bindchange="switchChange" data-sjlx="1"/>
+      <view class="time-switch-item-desc">提前至20:00入住</view>
+    </view>
+    <view class="time-switch-item">
+      <switch bindchange="switchChange" data-sjlx="2"/>
+      <view class="time-switch-item-desc">延迟至12:00退房</view>
+    </view>
+    <view class="common-help" style="font-size:20rpx; margin-top:0px;">提前一小时入住许加收17元/延迟一小时退房需加收17元</view>
+  </view>
+  
+
+  <!-- 搜索按钮 -->
+  <button class="common-btn" bindtap="searchRoom">
+    <image src="{{searchBtnImage}}" class="search-item-icon" />搜索房间
+  </button>
+</view>
+
+<!-- 推荐房源标题 -->
+<view class="tjfy-box-title">
+  <view class="tjfy-box-title-tj">推荐房源</view>
+  <view class="tjfy-box-title-lj" bindtap="searchRoom">
+    <view>查看更多房源</view>
+    <image src="{{rightArrowImage}}" class="right-arrow" />
+  </view>
+</view>
+
+<!-- 房源展示 -->
+<scroll-view class="tjfy-box" scroll-x>
+  <view class="tjfy-box-fy" wx:for="{{tjfyList}}" wx:key="unique" bindtap="navigateToFjxq" data-hotelid="{{item.id}}">
+    <!-- 房源图片 -->
+    <view class="tjfy-box-fy-image">
+      <image src="{{item.url}}" class="tjfy-box-fy-image" />
+    </view>
+    <!-- 房源描述 -->
+    <view class="tjfy-box-fy-fypf">
+      <view>{{item.star}}</view>
+      <view>评分：{{item.score}}</view>
+    </view>
+    <view class="tjfy-box-fy-fymc">{{item.name}}</view>
+    <view>
+      <text style="font-size: 25rpx; color: red;">￥{{item.fjjg}}</text>
+      <text style="font-size: 20rpx; margin-left: 5px;">起/晚</text>
+    </view>
+  </view>
+</scroll-view>
+
+<!-- 400电话 -->
+<view class='kfrx' bindtap="makePhoneCall">
+  客服热线：0719-8885855
+</view>
+
+<!-- 日历组件 -->
+<modalView show="{{showModal}}" clickMaskClose="{{clickMaskClose}}">
+  <view class="calendar">
+    <view class="calendar-cancel" bindtap="unSelectRzsj">取消</view>
+    <calendar cell-size="45" weeks-type="cn" active-type="square" binddayClick="handleSelectDate" moreDays="true" show-more-days="true" startDate="{{startDate}}" endDate="{{endDate}}" />
+  </view>
+</modalView>

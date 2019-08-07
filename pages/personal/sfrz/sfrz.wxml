@@ -1,0 +1,51 @@
+<!--pages/personal/sfrz/sfrz.wxml-->
+<view class="container" style="background-color: #fff;">
+  <!-- 证件上传 -->
+  <view class="panel-title">证件上传</view>
+  <view class="common-help">
+    请务必上传真实、有效的身份证实物照片
+  </view>
+  <view class="common-help" style="margin-top: 5px;">
+    仅用于公安部门审核，我们绝对不会泄露您的资料
+  </view>
+  <view class="zjsc-box" bindtap="selectImage" data-type="1">
+    <!-- 身份证正面 -->
+    <view class="zjsc-camera" wx:if="{{sfzzmImage == undefined}}">
+      <image src="{{cameraImage}}" class="zjsc-camera-image"></image>
+    </view>
+    <image wx:if="{{sfzzmImage != undefined}}" src="{{sfzzmImage}}" class="zjsc-image"></image>
+  </view>
+  <view class="zjsc-box" bindtap="selectImage" data-type="2">
+    <!-- 身份证反面 -->
+    <view class="zjsc-camera" wx:if="{{sfzfmImage == undefined}}">
+      <image src="{{cameraImage}}" class="zjsc-camera-image"></image>
+    </view>
+    <image wx:if="{{sfzfmImage != undefined}}" src="{{sfzfmImage}}" class="zjsc-image"></image>
+  </view>
+
+  <!-- 自拍照上传 -->
+  <view class="panel-title">自拍照上传</view>
+  <view class="common-help">
+    请上传真实自拍照的照片，用于身份证照片核验
+  </view>
+  <view class="zjsc-box" bindtap="selectImage" data-type="3">
+    <!-- 身份证反面 -->
+    <view class="zjsc-camera" wx:if="{{zpzImage == undefined}}">
+      <image src="{{cameraImage}}" class="zjsc-camera-image"></image>
+    </view>
+    <image wx:if="{{zpzImage != undefined}}" src="{{zpzImage}}" class="zjsc-image"></image>
+  </view>
+</view>
+
+<button class="common-btn" style="margin-bottom: 20px;" bindtap="showGrxx" disabled="{{rzjg == '2'}}">提交</button>
+
+<modal hidden="{{hiddenGrxx}}" title="请核对身份信息" confirm-text="确定" cancel-text="取消"   bindcancel="cancel"   bindconfirm="saveSfrzxx">
+  <view class="input-list-item">
+      <text class="input-title">姓名:</text>
+      <input class="input-box" placeholder="填写姓名" type="text" bindinput="inputXm" value="{{xm}}"></input>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">证件号码:</text>
+      <input class="input-box" placeholder="填写证件号码" type="number" bindinput="inputZjhm" value="{{sfzhm}}"></input>
+    </view>
+</modal>

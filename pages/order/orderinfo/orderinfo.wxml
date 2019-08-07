@@ -1,0 +1,80 @@
+<!--pages/order/orderinfo/orderinfo.wxml-->
+<!-- 订单详情 -->
+<view class="order-status">
+  <view class="order-status-title">订单详情</view>
+  <view class="order-status-desc">你的订单{{ddztName}}</view>
+</view>
+
+<!-- 房间信息 -->
+<view class="fjxx-box">
+  <image src="/resources/images/1.jpg" class="fjxx-image"></image>
+  <view class="fjxx-info">
+    <view class="fjxx-info-title">{{hotel.name}}-{{hotel.fjlx}}</view>
+    <view class="fjxx-info-fjdz">{{hotel.city}}{{hotel.area}}{{hotel.street}}{{hotel.address}}</view>
+  </view>
+</view>
+
+<!-- 入住时间 -->
+<view class="search-rzsj">
+  <!-- 入住 -->
+  <view class="search-rzsj-item-sj">
+    <view class="search-rzsj-item-rz">入住</view>
+    <view class="search-rzsj-item-rq">
+      <image src="{{calendarImage}}" class="search-item-icon" />{{rzrq}}</view>
+    <view class="search-rzsj-item-week">{{rzrqWeek}} {{rzsj}}</view>
+  </view>
+  <!-- 天数 -->
+  <view class="search-rzsj-item-ts">
+    <view class="search-rzsj-item-rz">|</view>
+    <view class="search-rzsj-item-rq">
+      {{rzts}}
+    </view>
+    <view class="search-rzsj-item-week">|</view>
+  </view>
+  <!-- 离店 -->
+  <view class="search-rzsj-item-sj">
+    <view class="search-rzsj-item-rz">离店</view>
+    <view class="search-rzsj-item-rq">
+      <image src="{{calendarImage}}" class="search-item-icon" />{{ldrq}}</view>
+    <view class="search-rzsj-item-week">{{ldrqWeek}} {{ldsj}}</view>
+  </view>
+</view>
+<!-- 房间地址 --->
+<view class="fjdz-box">
+  <view class="fjdz-box" wx:for="{{roomList}}" wx:key="id">
+    <view class="fjdz-item-50">
+      <text class="fjdz-item-label">楼层：</text>
+      <text class="fjdz-item-text">{{item.lc}}</text>
+    </view>
+    <view class="fjdz-item-50">
+      <text class="fjdz-item-label">房号：</text>
+      <text class="fjdz-item-text">{{item.fjh}}</text>
+    </view>
+  </view>
+  <view class="fjdz-item-100">
+    <text class="fjdz-item-label">地址：</text>
+    <text class="fjdz-item-text">{{hotel.city}}{{hotel.area}}{{hotel.street}}{{hotel.address}}       </text>
+  </view>
+</view>
+<!-- 订单信息 -->
+<view class="fjdz-box" style="margin-top: 10px;">
+  <view class="fjdz-item-100">
+    <text class="fjdz-item-label">订单号：</text>
+    <text class="fjdz-item-text">{{orderInfo.ddh}}</text>
+  </view>
+  <view class="fjdz-item-100">
+    <text class="fjdz-item-label">实付金额：</text>
+    <text class="fjdz-item-text">￥{{sfje}}</text>
+  </view>
+</view>
+
+<!-- 400电话 -->
+<view class='kfrx' bindtap="makePhoneCall">
+  客服热线：0719-8885855
+</view>
+<!-- 在线客服 -->
+<view class="zxkf-box">
+  <button class="button-btn">在线咨询</button>
+  <button class="button-btn" hidden="{{}}">再次预定</button>
+  <button class="button-btn" hidden="{{}}">办理入住</button>
+</view>

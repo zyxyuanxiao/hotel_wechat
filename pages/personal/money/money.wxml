@@ -1,0 +1,57 @@
+<!--pages/personal/money/money.wxml-->
+<view class="container">
+  <!-- 钱包余额 -->
+  <view class="money-ye-box">
+    <view class="money-ye">
+      <view class="money-ye-image-box">
+        <image src="{{czImage}}" class="money-ye-image" />
+      </view>
+      <view class="money-ye-info">
+        <view class="money-ye-info-text">我的余额</view>
+        <view class="money-ye-info-number">￥ {{vipInfo.qbye}}</view>
+      </view>
+    </view>
+
+    <view class="money-ye-btns">
+      <view><button class="money-ye-btn">充值须知</button></view>
+      <view><button class="money-ye-btn">钱包明细</button></view>
+    </view>
+  </view>
+
+  <!-- 充值金额 --> 
+  <view class="czje-box">
+    <view class="czje {{currentJe==500 ? 'on' : ''}}" bindtap="selectJe" data-number="500">
+      <view class="czje-number">￥500</view>
+      <view class="czje-icon">
+        <image src="{{currentJe==500 ? successImage : circleImage}}" class="czje-icon-image"></image>
+      </view>
+    </view>
+    <view class="czje {{currentJe==1000 ? 'on' : ''}}" bindtap="selectJe" data-number="1000">
+      <view class="czje-number">￥1000</view>
+      <view class="czje-icon">
+        <image src="{{currentJe==1000 ? successImage : circleImage}}" class="czje-icon-image"></image>
+      </view>
+    </view>
+    <view class="czje {{currentJe==2000 ? 'on' : ''}}" bindtap="selectJe" data-number="2000">
+      <view class="czje-number">￥2000</view>
+      <view class="czje-icon">
+        <image src="{{currentJe==2000 ? successImage : circleImage}}" class="czje-icon-image"></image>
+      </view>
+    </view>
+    <view class="czje {{currentJe==5000 ? 'on' : ''}}" bindtap="selectJe" data-number="5000">
+      <view class="czje-number">￥5000</view>
+      <view class="czje-icon">
+        <image src="{{currentJe==5000 ? successImage : circleImage}}" class="czje-icon-image"></image>
+      </view>
+    </view>
+    <view class="czje czje-input">
+      <input placeholder="输入自定义金额(元)" type="digit" ></input>
+    </view>
+  </view>
+
+  <!-- 充值按钮 -->
+  <view class="cz-btn-box">
+    <button class="cz-btn" bindtap="qbcz">立即充值</button>
+  </view>
+</view>
+

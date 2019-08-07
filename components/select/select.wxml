@@ -1,0 +1,71 @@
+<!--components/select/select.wxml-->
+<view id="swiper-tab">
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==-1 ? 'on' : ''}}" data-current="-1" bindtap="tabNav">
+      <view>{{date}}</view>
+      <view>
+        <i></i>
+      </view>
+    </view>
+    <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="tabNav">
+      <view>{{areaName}}</view>
+      <view>
+        <i></i>
+      </view>
+    </view>
+    <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="tabNav">
+      <view>{{orderName}}</view>
+      <view>
+        <i></i>
+      </view>
+    </view>
+    <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="tabNav">
+      <view>{{roomType}}</view>
+      <view>
+        <i></i>
+      </view>
+    </view>
+    <!-- <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="tabNav">
+      <view>更多</view>
+      <view><i></i></view>
+    </view> -->
+  </view>
+
+  <swiper current="{{currentTab}}" duration="0" class="swiper-item" style='display:{{displays}}; height: {{swiperHeight}}rpx;'>
+    <swiper-item>
+      <view>
+        <view>
+          <view class="nav-left">
+            <view class="{{areaType == '1' ? 'nav-left-select':'nav-left-default'}}" bindtap="selectAreaType" data-type="1">区县</view>
+            <view class="{{areaType == '2' ? 'nav-left-select':'nav-left-default'}}" bindtap="selectAreaType" data-type="2">商圈</view>
+          </view>
+          <view id="rights">
+            <view class="{{areaType == '1' ?'show':'hidden'}}">
+              <view class="{{area == '0' ? 'area-item-select':'area-item'}}" data-area="0" bindtap="selectArea" data-name="区域">不限</view>
+              <view wx:for="{{areaList}}" wx:key="id" class="{{area == index + 1 ? 'area-item-select':'area-item'}}" data-area="{{index + 1}}" bindtap="selectArea" data-name="{{item.name}}">{{item.name}}</view>
+
+            </view>
+          </view>
+        </view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="location_bottom" hidden="">
+        <view class="{{type == 1 && value == 1 ? 'contition-item-select':'contition-item'}}" data-type="1" data-value="1" bindtap="selectCondition" data-name="推荐排序">推荐排序</view>
+        <view class="{{type == 1 && value == 2 ? 'contition-item-select':'contition-item'}}" data-type="1" data-value="2" bindtap="selectCondition" data-name="距离排序">距离排序</view>
+        <view class="{{type == 1 && value == 3 ? 'contition-item-select':'contition-item'}}" data-type="1" data-value="3" bindtap="selectCondition" data-name="价格高低">价格高-低</view>
+        <view class="{{type == 1 && value == 4 ? 'contition-item-select':'contition-item'}}" data-type="1" data-value="4" bindtap="selectCondition" data-name="价格低高">价格低-高</view>
+      </view>
+    </swiper-item>
+    <swiper-item>
+      <view class="location_bottom" hidden="">
+        <view class="{{type == 2 && value == 1 ? 'contition-item-select':'contition-item'}}" data-type="2" data-value="1" bindtap="selectCondition" data-name="房型">不限</view>
+        <view class="{{type == 2 && value == 2 ? 'contition-item-select':'contition-item'}}" data-type="2" data-value="2" bindtap="selectCondition" data-name="大床房">大床房</view>
+        <view class="{{type == 2 && value == 3 ? 'contition-item-select':'contition-item'}}" data-type="2" data-value="3" bindtap="selectCondition" data-name="双床房">双床房</view>
+        <view class="{{type == 2 && value == 4 ? 'contition-item-select':'contition-item'}}" data-type="2" data-value="4" bindtap="selectCondition" data-name="三床房">三床房</view>
+        <view class="{{type == 2 && value == 5 ? 'contition-item-select':'contition-item'}}" data-type="2" data-value="5" bindtap="selectCondition" data-name="四床房">四床房</view>
+      </view>
+    </swiper-item>
+  </swiper>
+</view>
+<view class="swiper-blank" bindtap="hideNav" style='display:{{displays}}'></view>

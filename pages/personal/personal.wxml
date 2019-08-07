@@ -1,0 +1,85 @@
+<!--pages/personal/personal.wxml-->
+<!-- 用户信息 -->
+<view class="userinfo">
+  <view wx:if="{{!userInfo.avatarUrl}}">
+    <button open-type="getUserInfo" class="login-btn" bindgetuserinfo="login">登录</button>
+  </view>
+  <block wx:else>
+    <image class="userinfo-avatar" src="{{vipInfo.tx}}" mode="cover"></image>
+    <view class="userinfo-nickname">{{vipInfo.xm}}</view>
+  </block>
+</view>
+
+<!-- 会员信息 -->
+<view class="user-center">
+  <view class="vip-info">
+    <view class="vip-info-item">
+      <view>
+        <image src="{{vipImg}}" class="vip-info-item-image" />
+      </view>
+      <view class="vip-info-item-title">智慧会员</view>
+      <view class="vip-info-item-desc">（9折）</view>
+    </view>
+    <view class="vip-info-item">
+      <view>
+        <image src="{{cardImg}}" class="vip-info-item-image" />
+      </view>
+      <view class="vip-info-item-title">领取品智卡</view>
+      <view class="vip-info-item-desc">联盟数0个</view>
+    </view>
+    <view class="vip-info-item">
+      <view>
+        <image src="{{scoreImg}}" class="vip-info-item-image" />
+      </view>
+      <view class="vip-info-item-title">我的积分</view>
+      <view class="vip-info-item-desc">0.00</view>
+    </view>
+  </view>
+  <view class="myroom-btn-box">
+    <button class="common-btn" bindtap="navigateToZzfw">我的房间</button>
+  </view>
+</view>
+
+<!-- 我的财富 -->
+<view class="my-fortune">
+  <view class="my-fortune-title">我的财富</view>
+  <view class="my-fortune-list">
+    <view class="my-fortune-item-left" bindtap="navigateToMoney">
+      <!-- 钱包 -->
+      <view class="my-fortune-item-link">
+        <view>
+          <image src="{{moneyImg}}" class="my-fortune-item-link-image" />
+        </view>
+        <view class="my-fortune-item-link-text">钱包</view>
+        <view>
+          <image src="{{rightArrowImage}}" class="right-arrow" />
+        </view>
+      </view>
+      <view class="my-fortune-item-number">
+        <text wx:if="{{vipInfo != undefined}}" class="my-fortune-item-number-text">{{vipInfo.qbye}}</text>
+        <text wx:if="{{vipInfo == undefined}}" class="my-fortune-item-number-text">0.00</text>
+        <text class="my-fortune-item-number-sub">元</text>
+      </view>
+    </view>
+    <!-- 优惠券 -->
+    <view class="my-fortune-item-right" bindtap="navigateToCoupon">
+      <view class="my-fortune-item-link">
+        <view>
+          <image src="{{couponImg}}" class="my-fortune-item-link-image" />
+        </view>
+        <view class="my-fortune-item-link-text">优惠券</view>
+        <view>
+          <image src="{{rightArrowImage}}" class="right-arrow" />
+        </view>
+      </view>
+      <view class="my-fortune-item-number">
+        <text wx:if="{{vipInfo != undefined}}" class="my-fortune-item-number-text">{{vipInfo.coupons}}</text>
+        <text wx:if="{{vipInfo == undefined}}" class="my-fortune-item-number-text">0</text>
+        <text class="my-fortune-item-number-sub">张</text>
+      </view>
+    </view>
+  </view>
+</view>
+
+<!-- 九宫格 -->
+<gongge routers="{{routers}}" bindclickItem="navigateService"></gongge>

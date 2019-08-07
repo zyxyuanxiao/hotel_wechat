@@ -1,0 +1,103 @@
+/* pages/personal/login/login.wxss */
+Page {
+  background-color: #2c2c2c;
+}
+.box {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width:100%;
+  height:100%;
+  position:  absolute
+}
+.login-box {
+  width: 95%;
+  background-color: #fff;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-title {
+  font-size: 35rpx;
+  font-weight: bold;
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-type {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.login-btn {
+  width: 95%;
+  height: 40px;
+  font-size: 40rpx;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.bg-wx {
+  background-color: #219220;
+}
+.bg-phone {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  background-color: #ea9518;
+}
+.input-item {
+  height: 40px;
+  width: 95%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #dbdbdb;
+  margin-top: 10px;
+}
+.input-item-icon {
+  width: 20%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.input-item-icon image {
+  width: 25px;
+  height: 30px;
+}
+.input-item-phone {
+  width: 80%;
+  font-size: 35rpx;
+}
+.input-item-code {
+  width: 40%;
+  font-size: 35rpx;
+}
+.code-btn {
+  width: 40%;
+  height: 40px;
+  color: #ea9518;
+  border-left: 1px solid #bfbfbf;
+  border-radius: 0;
+  background-color: #dbdbdb;
+  font-size: 35rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.bg-login {
+  margin-top: 10px;
+  background-color: #1296db;
+}
+.bg-back {
+  margin-top: 10px;
+  background-color: #e6e6e6;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,12 @@
+<!--pages/personal/fp/fp.wxml-->
+<tab tabList="{{tabList}}" bindswichNav="swichNav"></tab>
+
+<!-- 底部全选 -->
+<view class="bottom-oper" wx:if="{{currentTab == 1}}">
+  <view class="select-all" bindtap="selectAll">
+    <image src="{{isSelectedAll ? selectedImage : circleImage}}" class="select-all-image"></image>
+    <view class="select-all-title">全选</view>
+  </view>
+  <!-- 下一步 -->
+  <view class="next">下一步</view>
+</view>

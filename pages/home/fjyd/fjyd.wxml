@@ -1,0 +1,181 @@
+<!--pages/home/fjyd/fjyd.wxml-->
+<!-- 立即预定 -->
+<view class="order-box">
+  <view class="price">
+    <text style="font-size: 40rpx; font-weight: bold">￥{{ddyj}}</text>
+    <text style="font-size: 30rpx;">起/晚</text>
+  </view>
+  <button class="button-btn" bindtap="orderRoom">提交订单</button>
+</view>
+
+<view class="container" style="margin-bottom: 60px;">
+  <!-- 房间信息 -->
+  <view class="fjxx-box">
+    <image src="/resources/images/1.jpg" class="fjxx-image"></image>
+    <view class="fjxx-info">
+      <view class="fjxx-info-fjmc">{{hotel.name}}-{{fjlx}}</view>
+      <view class="fjxx-info-fjdz">{{hotel.city}}{{hotel.area}}{{hotel.street}}{{hotel.address}}</view>
+      <view class="fjxx-info-score">
+        <image src="{{item.score >= 1 ? wjxFillingIcon : wjxIcon}}" class="fjxx-info-icon"></image>
+        <image src="{{item.score >= 2 ? wjxFillingIcon : wjxIcon}}" class="fjxx-info-icon"></image>
+        <image src="{{item.score >= 3 ? wjxFillingIcon : wjxIcon}}" class="fjxx-info-icon"></image>
+        <image src="{{item.score >= 4 ? wjxFillingIcon : wjxIcon}}" class="fjxx-info-icon"></image>
+        <image src="{{item.score >= 5 ? wjxFillingIcon : wjxIcon}}" class="fjxx-info-icon"></image>
+      </view>
+    </view>
+  </view>
+
+  <!-- 入住时间 -->
+  <view class="search-rzsj">
+    <!-- 入住 -->
+    <view bindtap="selectRzsj" class="search-rzsj-item-sj">
+      <view class="search-rzsj-item-rz">入住</view>
+      <view class="search-rzsj-item-rq">
+        <image src="{{calendarImage}}" class="search-item-icon" />{{rzrq}}</view>
+      <view class="search-rzsj-item-week">{{rzsjWeek}}{{rzsj}}</view>
+    </view>
+    <!-- 天数 -->
+    <view class="search-rzsj-item-ts">
+      <view class="search-rzsj-item-rz">|</view>
+      <view class="search-rzsj-item-rq">
+        {{rzts}}
+      </view>
+      <view class="search-rzsj-item-week">|</view>
+    </view>
+    <!-- 离店 -->
+    <view bindtap="selectRzsj" class="search-rzsj-item-sj">
+      <view class="search-rzsj-item-rz">离店</view>
+      <view class="search-rzsj-item-rq">
+        <image src="{{calendarImage}}" class="search-item-icon" />{{tfrq}}</view>
+      <view class="search-rzsj-item-week">{{ldsjWeek}}{{tfsj}}</view>
+    </view>
+  </view>
+  <!-- 入住信息 -->
+  <view class="rzxx-box">
+    <view class="input-list-item">
+      <view class="input-list-item-title">
+        <image src="/resources/images/home/order-home.png" class="input-title-icon"></image>
+        <text class="input-title">房间数</text>
+        <text style="margin-left:5px; font-size: 20rpx;">剩余{{freeRomms}}间</text>
+      </view>
+      <view style="margin-right: 10px;">
+        <minu num="{{fjs}}" bindMinus="bindFjslChange" bindManual="bindFjslChange" bindPlus="bindFjslChange" maxNum="{{freeRomms}}"></minu>
+      </view>
+    </view>
+    <view class="input-list-item">
+      <view class="input-list-item-title">
+        <image src="/resources/images/home/order-user.png" class="input-title-icon"></image>
+        <text class="input-title">入住人</text>
+        <button class="brrz-btn" bindtap="brrz">本人入住</button>
+      </view>
+      <input class="input-box" placeholder="入住人姓名" type="text" value="{{rzrxm}}"></input>
+      <image src="{{user_plus}}" class="user-plus" bindtap="selectRzr"></image>
+    </view>
+    <view class="input-list-item">
+      <view class="input-list-item-title">
+        <image src="/resources/images/home/order-telephone.png" class="input-title-icon"></image>
+        <text class="input-title">手机号</text>
+      </view>
+      <input class="input-box" placeholder="输入真实手机号" type="text" value="{{rzrsjhm}}" bindinput="inputSjhm"></input>
+    </view>
+    <view class="input-list-item" bindtap="showSelectCoupon">
+      <view class="input-list-item-title">
+        <image src="/resources/images/home/yhq.png" class="input-title-icon"></image>
+        <text class="input-title">优惠券</text>
+      </view>
+      <text class="input-box" style="width: 65%; !important">-￥{{yhqje}}</text>
+      <image src="/resources/images/right-arr.png" class="user-plus" bindtap="selectRzr"></image>
+    </view>
+    <view class="input-list-item">
+      <view class="input-list-item-title">
+        <image src="/resources/images/home/order-pay.png" class="input-title-icon"></image>
+        <text class="input-title">支付方式</text>
+      </view>
+      <view class="input-box">
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio" wx:for="{{zffsRadio}}">
+            <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+          </label>
+        </radio-group>
+      </view>
+    </view>
+    <view class="input-list-item" style="margin-top: 10px;">
+      <view class="input-list-item-title">
+        <image src="/resources/images/home/order-money.png" class="input-title-icon"></image>
+        <text class="input-title">钱包余额</text>
+      </view>
+      <text class="input-box">￥{{qbye}}</text>
+    </view>
+    <view class="input-list-item" style="margin-top: 10px;">
+      <text class="input-title" style="font-size: 25rpx; width: 60%;">{{rzsjDate}} 至 {{ldsjDate}}</text>
+      <text class="input-box">￥{{ddyj}}</text>
+    </view>
+    <view class="input-list-item" style="margin-top: 10px;">
+      <text class="input-title">房费</text>
+      <text class="input-box">￥{{ddyj}}</text>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">会员折扣</text>
+      <text class="input-box">{{hyzk}}折</text>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">优惠券抵扣</text>
+      <text class="input-box">-￥{{yhqje}}</text>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">订单总额</text>
+      <text class="input-box">￥{{sfje}}</text>
+    </view>
+    <view class="input-list-item" style="margin-top: 10px;">
+      <text class="input-title">备注</text>
+      <input class="input-box" placeholder="请输入您的特需物品或服务" type="text" bindinput="inputMemo"></input>
+    </view>
+  </view>
+  <!-- 提示信息 -->
+  <view class="common-help">尊敬的客人，入住前请实名认证和提交押金，谢谢您的配合！</view>
+  <!-- 同意协议 -->
+  <view class="tyxy">
+    <checkbox-group bindchange="checked">
+      <checkbox>本人已获悉并同意《租赁协议》</checkbox>
+    </checkbox-group>
+  </view>
+</view>
+
+<!-- 日历组件 -->
+<modalView show="{{showModal}}" clickMaskClose="{{clickMaskClose}}">
+  <view class="calendar">
+    <view class="calendar-cancel" bindtap="unSelectRzsj">取消</view>
+    <calendar cell-size="45" weeks-type="cn" active-type="square" binddayClick="handleSelectDate" moreDays="true" show-more-days="true" startDate="{{startDate}}" endDate="{{endDate}}" />
+  </view>
+</modalView>
+
+<!-- 优惠券 -->
+<modalView show="{{showYhqModal}}" clickMaskClose="{{clickMaskClose}}">
+  <view class="coupon-box">
+    <view class="calendar-cancel" bindtap="unSelectCoupon">取消</view>
+    <view class="coupon-item" wx:for="{{couponList}}" wx:key="unique" bindtap="selectCoupon" data-index="{{index}}">
+      <!-- 左侧优惠券信息 -->
+      <view class="coupon-item-info-box">
+        <view class="coupon-item-info-box-child">
+          <view class="coupon-icon-box">
+            <image src="{{rmbImage}}" class="coupon-icon-image"></image>
+          </view>
+          <view class="coupon-item-info">
+            <view class="coupon-item-info-title">{{item.yhqmc}}【￥{{item.yhqje}}】</view>
+            <view class="coupon-item-info-text">有效期：至{{item.yxqz}}</view>
+            <view class="coupon-item-info-text">{{item.yhqsm}}</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 右侧优惠券面值 -->
+      <view class="coupon-item-price">
+        <view class="price">{{item.yhqje}}</view>
+        <view class="yuan">元</view>
+      </view>
+
+      <!-- 选择 -->
+      <image src="{{selectCouponIndex == index ? selectedImage : circleImage}}" class="select-all-image"></image>
+    </view>
+  </view>
+</modalView>

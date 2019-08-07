@@ -1,0 +1,29 @@
+<!--pages/personal/login/login.wxml-->
+<view class="box">
+  <view class="login-box">
+    <view class="login-title">登录方式</view>
+    <!-- 登录方式选择 -->
+    <view class="login-type" hidden="{{isPhoneLogin}}">
+      <button open-type="getPhoneNumber" class="login-btn bg-wx" bindgetphonenumber="getPhoneNumber">微信快捷登录</button>
+      <button class="login-btn bg-phone" bindtap="showPhoneLogin">手机验证登录</button>
+    </view>
+    <!-- 手机验证登录 -->
+    <view class="login-type" hidden="{{!isPhoneLogin}}">
+      <view class="input-item">
+        <view class="input-item-icon">
+          <image src="/resources/images/user/phone.png"></image>
+        </view>
+        <input class="input-item-phone" type="number" placeholder="请输入手机号" bindinput="inputPhoneNum" maxlength="11"></input>
+      </view>
+      <view class="input-item">
+        <view class="input-item-icon">
+          <image src="/resources/images/user/code.png"></image>
+        </view>
+        <input class="input-item-code" placeholder="验证码"></input>
+        <button class="code-btn" bindtap="getCode" disabled="{{code_btn_disabled}}">{{code_btn}}</button>
+      </view>
+      <button class="login-btn bg-login" bindtap="login" bindtap="login">登录</button>
+      <button class="login-btn bg-back" bindtap="hidePhoneLogin">返回</button>
+    </view>
+  </view>
+</view>

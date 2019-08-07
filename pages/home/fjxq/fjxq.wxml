@@ -1,0 +1,196 @@
+<!--pages/home/fjxq/fjxq.wxml-->
+<view class="swiperContainer">
+  <!-- 房间图片展示 -->
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true" bindchange="swiperChange">
+    <block wx:for="{{imgArr}}" wx:key="unique">
+      <swiper-item>
+        <image src="{{item}}" bindtap="previewImg" data-index="{{index}}" mode="aspectFill" />
+      </swiper-item>
+    </block>
+  </swiper>
+  <view class="imageCount">{{current}} / {{imgArr.length}}</view>
+  <image class="collect" src="{{isCollected ? collectedImage : collectImage}}" bindtap="collect"></image>
+</view>
+
+<!-- 房间详情介绍 -->
+<view class="container">
+  <view class="jdmc">{{hotel.name}}</view>
+  <view class="jdwz">
+    <image src="{{locationImage}}" class="location-icon"></image>
+    <view class="location-text">{{hotel.province}}{{hotel.city}}{{hotel.area}}{{hotel.street}}{{hotel.address}}</view>
+    <view class="tencent-map-icon-box" bindtap="openTencentMap">
+      <image src="{{mapImage}}" class="tencent-map-icon"></image>
+    </view>
+  </view>
+</view>
+<tab tabList="{{tabList}}" bindswichNav="swichNav"></tab>
+<!-- 房型选择 -->
+<view class="tab-container" hidden="{{currentTab != 1}}">
+  <view class="fxxz-item" wx:for="{{fxList}}" wx:key="unique">
+    <view class="fxxz-info" bindtap="ckfjxx" data-typeid="{{item.id}}">
+      <image src="{{item.imageUrl}}" class="fxxz-item-image"></image>
+      <view class="fxxz-desc">
+        <view class="fxxz-fjlx">{{item.fjlx}}</view>
+        <view class="fxxz-fjxx">共 {{item.fjsl}} 间
+        </view>
+        <view class="fxxz-fjjg">￥{{item.fjjg}}</view>
+      </view>
+    </view>
+    <view class="fxxz-btns">
+      <button class="order-btn" bindtap="navigateToFjyd" data-typeid="{{item.id}}">预定</button>
+    </view>
+  </view>
+</view>
+
+<modalView show="{{showModal}}">
+  <view class="fjxxck-box">
+    <!-- 房间类型 -->
+    <view class="fjxxck-fjlx">商务标间</view>
+    <image src="/resources/images/1.jpg" class="fjxxck-image"></image>
+    <view class="ssjs-box">
+      <view class="ssjs-item">
+        <image src="{{yzrsIcon}}" class="ssjs-item-icon"></image>
+        <view class="ssjs-item-desc">宜住2人</view>
+      </view>
+      <view class="ssjs-item">
+        <image src="{{bedIcon}}" class="ssjs-item-icon"></image>
+        <view class="ssjs-item-desc">1张床</view>
+      </view>
+      <view class="ssjs-item">
+        <image src="{{sizeIcon}}" class="ssjs-item-icon"></image>
+        <view class="ssjs-item-desc">35m
+          <sup>2</sup>
+        </view>
+      </view>
+      <view class="ssjs-item">
+        <image src="{{doorIcon}}" class="ssjs-item-icon"></image>
+        <view class="ssjs-item-desc">1厅1室1卫</view>
+      </view>
+    </view>
+    <view class="fxjs-box">
+      <view class="fxjs-item">
+        <text class="fxjs-item-label">房屋结构：</text>
+        <text class="fxjs-item-text">标准平层</text>
+      </view>
+      <view class="fxjs-item">
+        <text class="fxjs-item-label">装修风格：</text>
+        <text class="fxjs-item-text">简欧风格</text>
+      </view>
+      <view class="fxjs-item">
+        <text class="fxjs-item-label">床型：</text>
+        <text class="fxjs-item-text">1.8米*2米</text>
+      </view>
+      <view class="fxjs-item">
+        <text class="fxjs-item-label">楼层：</text>
+        <text class="fxjs-item-text">3楼</text>
+      </view>
+      <view class="fxjs-item">
+        <text class="fxjs-item-label">外宾：</text>
+        <text class="fxjs-item-text">不接待外宾</text>
+      </view>
+    </view>
+
+    <view class="ssjs-box" style="margin-top: 25px;">
+      <view class="fyjs-title" style="margin-bottom: 10px;">设施服务</view>
+      <view class="ssjs-item" wx:for="{{fjssList}}" wx:key="unique">
+        <image src="{{item.icon}}" class="ssjs-item-icon"></image>
+        <view class="ssjs-item-desc">{{item.name}}</view>
+      </view>
+    </view>
+
+    <!-- 房源介绍 -->
+    <view class="fxjs-box">
+      <view class="fyjs-title">房源介绍</view>
+      <view class="fxjs-item-text" style="margin-top: 10px;">
+        小区位置，眼界开阔，空气清新。楼下有农业、建设、工商、中行、邮政等多家银行，24保安值班，有停车场，安全、环境方面自然没得说，附近就是商业街、麦当劳、超市、农贸市场，离公交、超市很近。非常适合在附近上班的人。
+      </view>
+    </view>
+
+    <!-- 入住须知 -->
+    <view class="fxjs-box" style="margin-bottom: 60px;">
+      <view class="fyjs-title">入住须知</view>
+      <view class="fxjs-item-text" style="margin-top: 10px;">
+        入住时间：最早14:00，且不早于订单开始时间
+      </view>
+      <view class="fxjs-item-text" style="margin-top: 10px;">
+        退房时间：最晚14:00，且且不晚于订单结束时间
+      </view>
+      <view class="fxjs-item-text" style="margin-top: 10px;">
+        入住规则：预定成功后，查看小程序订单详情，办理入住
+      </view>
+    </view>
+    <!-- 立即预定 -->
+    <view class="order-box">
+      <view class="price">
+        <text style="font-size: 40rpx; font-weight: bold">￥{{fjlx.fjjg}}</text>
+        <text style="font-size: 30rpx;">起/晚</text>
+      </view>
+      <button class="button-btn" bindtap="navigateToFjyd" data-typeid="{{fjlx.id}}">预定</button>
+    </view>
+  </view>
+</modalView>
+<!-- 房间评价 -->
+<view class="tab-container" hidden="{{currentTab != 2}}">
+  <view class="fjpj-fjpf">
+    <view class="fjpj-fjpf-zhpf">
+      <view class="fjpj-fjpf-zhpf-fs">{{zhpf}}</view>
+      <view class="fjpj-fjpf-zhpf-pjrs">({{yhpjList.length}}条评价)</view>
+    </view>
+    <view class="fjpj-fjpf-xjpf">
+      <view class="fjpj-fjpf-xjpf-item">
+        <view class="fjpj-fjpf-xjpf-item-title">设施评分</view>
+        <star star="{{sspf}}" enable="{{starEnable}}" showDesc="{{starSowDesc}}" starClass="star-item-icon-small"></star>
+        <view class="fjpj-fjpf-xjpf-item-fs">{{sspf}}</view>
+      </view>
+      <view class="fjpj-fjpf-xjpf-item">
+        <view class="fjpj-fjpf-xjpf-item-title">卫生评分</view>
+        <star star="{{wspf}}" enable="{{starEnable}}" showDesc="{{starSowDesc}}" starClass="star-item-icon-small"></star>
+        <view class="fjpj-fjpf-xjpf-item-fs">{{wspf}}</view>
+      </view>
+      <view class="fjpj-fjpf-xjpf-item">
+        <view class="fjpj-fjpf-xjpf-item-title">安全感</view>
+        <star star="{{aqg}}" enable="{{starEnable}}" showDesc="{{starSowDesc}}" starClass="star-item-icon-small"></star>
+        <view class="fjpj-fjpf-xjpf-item-fs">{{aqg}}</view>
+      </view>
+    </view>
+  </view>
+  <!-- 用户评价 -->
+  <view class="yhpj-box">
+    <view class="yhpj-title">共有{{yhpjList.length}}条评价</view>
+    <view class="yhpj-item" wx:for="{{yhpjList}}" wx:key="unique">
+      <view class="yhpj-yhxx-box">
+        <view class="yhpj-yhxx">
+          <image src="{{item.avator}}" class="yhpj-yhxx-avator"></image>
+          <view class="yhpj-yhxx-info">
+            <view class="yhpj-yhxx-info-name">{{item.username}}</view>
+            <view class="yhpj-yhxx-info-score">
+              <star star="{{item.score}}" enable="{{starEnable}}" showDesc="{{starSowDesc}}" starClass="star-item-icon-small" star="{{item.zhpf}}"></star>
+              <text style="font-size: 20rpx; margin-left: 5px;">{{item.zhpf}}分</text>
+            </view>
+          </view>
+        </view>
+        <view class="yhpj-pjsj">{{item.pjsj}}</view>
+      </view>
+      <view class="yhpj-pjnr">{{item.pjnr}}</view>
+    </view>
+  </view>
+</view>
+<!-- 附近房源 -->
+<scroll-view class="fjfy-box" scroll-y hidden="{{currentTab != 3}}">
+  <view class="fjfy-box-fy" wx:for="{{fjfyList}}" wx:key="unique" bindtap="navigateToFjxq" data-hotelid="item.id">
+    <!-- 房源图片 -->
+    <view class="fjfy-box-fy-image">
+      <image src="{{item.url}}" class="fjfy-box-fy-image" />
+    </view>
+    <!-- 房源描述 -->
+    <view class="fjfy-box-fy-fypf">
+      <view>{{item.star}}</view>
+      <view>评分：{{item.score}}</view>
+    </view>
+    <view class="fjfy-box-fy-fymc">{{item.name}}</view>
+    <view>
+      <text style="font-size: 25rpx; color: red;">￥{{item.fjjg}}</text>
+      <text style="font-size: 20rpx; margin-left: 5px;">起/晚</text>
+    </view>
+  </view>
+</scroll-view>

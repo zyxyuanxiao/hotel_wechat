@@ -1,0 +1,2 @@
+<!--components/money/money.wxml-->
+￥{{num}}

@@ -1,0 +1,144 @@
+/* pages/personal/money/money.wxss */
+Page{
+  background-color: #f5f5f5;
+}
+
+.money-ye-box {
+  margin-top: 5px;
+  width: 95%;
+  height: 140px;
+  background-color: #ea9518;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.money-ye {
+  width: 60%;
+  height: 90px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.money-ye-image-box {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background-color: #dc7825;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.money-ye-image {
+  width: 30px;
+  height: 30px;
+}
+
+.money-ye-info {
+  margin-left: 10px;
+  display: flex;
+  flex-direction: column;
+  height: 50px;
+  justify-content: space-between;
+  color: #f5f5f5;
+}
+
+.money-ye-info-text {
+  font-size: 35rpx;
+}
+
+.money-ye-info-number {
+  font-size: 40rpx;
+}
+
+.money-ye-btns {
+  width: 95%;
+  height: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.money-ye-btn {
+  font-size: 25rpx;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #ea9518;
+  background-color: #fff;
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 10px;
+  border-bottom-right-radius: 10px;
+}
+
+.czje-box {
+  width: 95%;
+  margin-top: 10px;
+}
+
+.czje {
+  width: 100%;
+  height: 40px;
+  background-color: #fff;
+  color: red;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 10px;
+}
+
+.on {
+  background-color: #ea9518;
+  color: #fff;
+}
+
+.czje-number {
+  display: flex;
+  align-items: center;
+  font-size: 35rpx;
+  margin-left: 10px;
+}
+
+.czje-icon {
+  display: flex;
+  align-items: center;
+  margin-right: 10px;
+}
+
+.czje-icon-image {
+  width: 15px;
+  height: 15px;
+}
+
+.czje-input {
+  color: #000;
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  padding-left: 10px;
+}
+
+.cz-btn-box {
+  width: 95%;
+}
+
+.cz-btn {
+  margin-top: 20px;
+  width: 100%;
+  height: 40px;
+  background-color: #ea9518;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #fff;
+  font-size: 35rpx;
+}

@@ -1,0 +1,38 @@
+/* components/tab/tab.wxss */
+.swiper-tab-box {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  background-color: #fff;
+  border-bottom: 1rpx solid #e6e6e6;
+}
+.swiper-tab {
+  width: 95%;
+  text-align: center;
+  line-height: 80rpx;
+  display: flex;
+  justify-content: space-between;
+}
+
+.swiper-tab-list {
+  font-size: 30rpx;
+  display: inline-block;
+  border-bottom: 2rpx solid #fff;
+  color: #000;
+}
+
+.on {
+  color: #ea9518;
+  border-bottom: 5rpx solid #ea9518;
+}
+
+.swiper-box {
+  display: block;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+
+.swiper-box view {
+  text-align: center;
+}

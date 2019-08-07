@@ -1,0 +1,5 @@
+<!--components/star/star.wxml-->
+<view class="star-item">
+  <image src="{{item.score <= star ? wjxFillingIcon : wjxIcon}}" class="{{starClass}}" bindtap="Click" data-star="{{index}}" wx:for="{{stars}}" wx:key="unique"></image>
+  <view class="star-item-desc">{{desc}}</view>
+</view>

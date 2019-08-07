@@ -1,0 +1,15 @@
+<!--pages/personal/cyrzr/tjrzr/tjrzr.wxml-->
+<view class="container" style="background-color: #fff;">
+  <view class="input-list">
+    <view class="input-list-item">
+      <text class="input-title">姓名</text>
+      <input class="input-box" placeholder="填写姓名" type="text" bindinput="inputCyrzrxm"></input>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">手机</text>
+      <input class="input-box" placeholder="填写手机号" type="number" bindinput="inputCyrzrSjhm"></input>
+    </view>
+  </view>
+
+  <button class="common-btn" bindtap="addCyrzr">确认</button>
+</view>

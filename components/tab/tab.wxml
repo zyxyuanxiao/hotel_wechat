@@ -1,0 +1,6 @@
+<!--components/tab/tab.wxml-->
+<view class="swiper-tab-box">
+  <view class="swiper-tab">
+    <view class="swiper-tab-list {{currentTab==item.index ? 'on' : ''}}" data-current="{{item.index}}" bindtap="swichNav" wx:for="{{tabList}}" wx:key="unique" style="width: {{width}}">{{item.name}}</view>
+  </view>
+</view>

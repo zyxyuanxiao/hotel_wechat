@@ -1,0 +1,19 @@
+<!--pages/service/zzfw/zzfw.wxml-->
+<view class="container">
+  <!-- 智能开门 -->
+  <view class="znkm-box">
+    <view class="znkm-title">
+      <view class="znkm-title-text">智能开门</view>
+      <view class="znkm-title-tips">您尚未办理入住，入住后可使用智能开门</view>
+    </view>
+    <gongge routers="{{znkmRoutes}}" columns="4"></gongge>
+  </view>
+
+  <!-- 在住服务 -->
+  <view class="znkm-box">
+    <view class="znkm-title">
+      <view class="znkm-title-text">在住服务</view>
+    </view>
+    <gongge routers="{{zzfwRouters}}" columns="3" bindclickItem="clickZzfwItem"></gongge>
+  </view>
+</view>

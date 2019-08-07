@@ -1,0 +1,50 @@
+<!--pages/service/sqqj/sqqj.wxml-->
+<view class="container">
+  <view class="sqqj-item">
+    <view class="sqqj-item-title">清洁日期</view>
+    <view class="sqqj-item-sqnr">
+      <button bindtap="selectQjrq" data-qjrq="today" class="sqqj-btn {{qjrq == 'today' ? 'on' : ''}}">今天（6月29日）</button>
+      <button bindtap="selectQjrq" data-qjrq="tomorrow" class="sqqj-btn {{qjrq == 'tomorrow' ? 'on' : ''}}">明天（6月30日）</button>
+    </view>
+  </view>
+  <view class="sqqj-item">
+    <view class="sqqj-item-title">管家到达时间</view>
+    <view class="sqqj-item-sqnr">
+      <button class="sqqj-btn {{gjddsjIndex == index ? 'on' : ''}}" wx:for="{{gjddsjList}}" bindtap="selectDdsj" data-index="{{index}}">{{item}}</button>
+    </view>
+  </view>
+  <view class="sqqj-item">
+    <view class="sqqj-item-title">附加服务</view>
+    <view class="sqqj-item-sqnr tsfw" bindtap="selectFjfw" data-fjfw="1">
+      <view class="fwnr">
+        <image src="/resources/images/service/xsyp.png" class="fwnr-icon"></image>
+        <view class="fwnr-info">
+          <view class="fwnr-info-title">补充易耗品</view>
+          <view class="fwnr-info-desc">洗漱用品、拖鞋等</view>
+        </view>
+      </view>
+      <image src="{{selectFwnr1 ? selectedIcon : unselectedIcon}}" class="seletIcon"></image>
+    </view>
+    <view class="sqqj-item-sqnr tsfw" bindtap="selectFjfw" data-fjfw="2">
+      <view class="fwnr">
+        <image src="/resources/images/service/maojin.png" class="fwnr-icon"></image>
+        <view class="fwnr-info">
+          <view class="fwnr-info-title">更换毛巾</view>
+          <view class="fwnr-info-desc">浴巾、面巾、地巾等</view>
+        </view>
+      </view>
+      <image src="{{selectFwnr2 ? selectedIcon : unselectedIcon}}" class="seletIcon"></image>
+    </view>
+    <view class="sqqj-item-sqnr tsfw" bindtap="selectFjfw" data-fjfw="3">
+      <view class="fwnr">
+        <image src="/resources/images/home/bed.png" class="fwnr-icon"></image>
+        <view class="fwnr-info">
+          <view class="fwnr-info-title">更换床品</view>
+          <view class="fwnr-info-desc">床单、被套、枕套等</view>
+        </view>
+      </view>
+      <image src="{{selectFwnr3 ? selectedIcon : unselectedIcon}}" class="seletIcon"></image>
+    </view>
+  </view>
+  <button class="common-btn">提交</button>
+</view>

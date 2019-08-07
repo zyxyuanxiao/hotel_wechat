@@ -1,0 +1,144 @@
+/* components/select/select.wxss */
+#swiper-tab {
+  width: 100%;
+  position: relative;
+}
+.swiper-tab {
+  width: 100%;
+  height: 40px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  border-bottom: 1px solid #d9d9d9;
+}
+.swiper-tab-list {
+  display: flex;
+  align-items: center;
+  font-size: 30rpx;
+  color: #666;
+  border-bottom: 0rpx;
+}
+.swiper-tab-list i {
+  position: absolute;
+  bottom: 27%;
+  margin-left: 2px;
+  width: 0px;
+  height: 0px;
+  border: 5px solid #4e4e4e;
+  border-top-color: #4e4e4e;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.on {
+  color: #f63;
+}
+.on i {
+  border: 5px solid #f63;
+  border-top-color: #f63;
+  border-bottom-color: transparent;
+  border-left-color: transparent;
+  border-right-color: transparent;
+}
+.swiper-item {
+  background: #fff;
+  width: 100%;
+  display: none;
+  position: absolute;
+  z-index: 333333;
+  left: 0;
+}
+@keyframes displays {
+  from {
+    height: 0px;
+  }
+ 
+  to {
+    height: 600rpx;
+  }
+}
+.nav-left {
+  width: 20%;
+  height: 600rpx;
+  background-color: #e6e6e6;
+  float: left;
+  flex-direction: row;
+}
+.nav-left-default {
+  width: 100%;
+  line-height: 100rpx;
+  text-align: center;
+  color: #000;
+  font-size: 30rpx;
+  overflow: hidden;
+}
+.nav-left-select {
+  width: 100%;
+  float: right;
+  line-height: 100rpx;
+  text-align: center;
+  font-weight: bold;
+  font-size: 28rpx;
+  background-color: #fff;
+}
+#rights {
+  width: 79%;
+  float: right;
+  font-size: 15px;
+  max-height: 600rpx;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+.show {
+  display: block;
+  line-height: 200rpx;
+}
+.hidden {
+  display: none;
+  text-align: center;
+  line-height: 200px;
+}
+.contition-item-select {
+  padding-left: 5%;
+  height: 40px;
+  line-height: 40px;
+  font-size: 30rpx;
+  border-bottom: 1rpx solid #e6e6e6;
+  color: #f63;
+}
+.contition-item {
+  width: 90%;
+  display: block;
+  height: 40px;
+  line-height: 40px;
+  color: #000;
+  padding-left: 5%;
+  font-size: 30rpx;
+  border-bottom: 1px solid #e6e6e6;
+}
+.area-item {
+  height: 40px;
+  line-height: 40px;
+  color: #000;
+  padding-left: 5%;
+  font-size: 30rpx;
+}
+.area-item-select {
+  height: 40px;
+  line-height: 40px;
+  color: #f63;
+  padding-left: 5%;
+  font-size: 30rpx;
+}
+.swiper-blank {
+  position: absolute;
+  background: #000;
+  left: 0;
+  right: 0;
+  top: 300rpx;
+  display: none;
+  bottom: 0;
+  opacity: 0.5;
+  z-index: 999;
+}

@@ -1,0 +1,36 @@
+<!--pages/order/comment/comment.wxml-->
+<view class="container">
+  <!-- 综合评分 -->
+  <view class="zhpf-box">
+    <view class="zhpf-title">综合评分</view>
+    <star bindPf="zhpf"></star>
+  </view>
+  <textarea placeholder="分享一下吧" class="text-input" bindinput="inputComment"></textarea>
+  <view class="plxs-box" bindtap="select">
+    <view class="image-desc">
+      <image src="{{isSelected ? selectedImage : circleImage}}" class="select-image"></image>匿名
+    </view>
+    <view class="plxs-desc">{{plxsDesc}}</view>
+  </view>
+
+  <!-- 分割线 -->
+  <view class="fgx-box"></view>
+
+  <!-- 评分信息 -->
+  <view class="pf-box">
+    <view class="title">酒店评价</view>
+    <view class="pf-item">
+      <view class="pf-item-title">设施评分</view>
+      <star bindPf="sspf"></star>
+    </view>
+    <view class="pf-item">
+      <view class="pf-item-title">卫生评分</view>
+      <star bindPf="wspf"></star>
+    </view>
+    <view class="pf-item">
+      <view class="pf-item-title">安全感</view>
+      <star bindPf="aqg"></star>
+    </view>
+  </view>
+  <button class="common-btn" style="position: absolute; bottom: 20px;" bindtap="fbpj">发布评价</button>
+</view>

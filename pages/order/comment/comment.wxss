@@ -1,0 +1,67 @@
+/* pages/order/comment/comment.wxss */
+.zhpf-box {
+  width: 100%;
+  display: flex;
+  height: 50px;
+  align-items: center;
+  border-bottom: 1px solid #bfbfbf;
+}
+.zhpf-title {
+  font-size: 30rpx;
+  margin-left: 20px;
+  margin-right: 20px;
+}
+.text-input {
+  width: 95%;
+  font-size: 30rpx;
+  border-bottom: 1px solid #bfbfbf;
+  padding-top: 20rpx;
+}
+.plxs-box {
+  width: 95%;
+  height: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.select-image {
+  width: 15px;
+  height: 15px;
+  margin-right: 15px;
+}
+.image-desc {
+  font-size: 30rpx;
+}
+.plxs-desc {
+  font-size: 25rpx;
+  color: #bfbfbf;
+}
+.fgx-box {
+  width: 100%;
+  height: 5px;
+  background-color: #bfbfbf;
+}
+.pf-box {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.title {
+  width: 50px;
+  text-align: right;
+  margin-top: 10px;
+  font-size: 30rpx;
+  margin-bottom: 10px;
+}
+.pf-item {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+}
+.pf-item-title {
+  width: 50px;
+  text-align: right;
+  font-size: 30rpx;
+  margin-right: 10px;
+}

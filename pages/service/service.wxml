@@ -1,0 +1,67 @@
+<!--pages/service/service.wxml-->
+<!-- 无可入住房间 -->
+<view class="container">
+  <view class="no-room" hidden="{{drzList.length != 0 || rzzList.length != 0}}">
+    <view class="top-line">
+      <!-- 全部订单 -->
+      <view class="all-orders" bindtap="navigateToOrder">
+        <view>
+          <image class="order-image" src="{{orderImg}}"></image>
+        </view>
+        <view class="all-orders-text">全部订单</view>
+      </view>
+    </view>
+
+    <!-- 暂无可入住信息 -->
+    <view class="no-adviced-room">今天暂无可入住房间，快去预定吧</view>
+
+    <!-- 预定房间 -->
+    <button class="advince-room" bindtap="navigateToSearch">
+      去订房
+    </button>
+  </view>
+
+  <view class="no-room" wx:for="{{drzList}}" wx:key="unique">
+    <view class="top-line">
+      <!-- 全部订单 -->
+      <view class="all-orders" bindtap="navigateToOrder">
+        <view>
+          <image class="order-image" src="{{orderImg}}"></image>
+        </view>
+        <view class="all-orders-text">全部订单</view>
+      </view>
+    </view>
+
+    <!-- 暂无可入住信息 -->
+    <view class="no-adviced-room">您即将入住</view>
+    <view class="no-adviced-room">{{item.name}}-{{item.fjlx}}（原价{{item.ddyj}}元）</view>
+    <view class="no-adviced-room" style="font-size: 20rpx;">入离时间：{{item.rzsj}}-{{item.ldsj}}</view>
+
+    <!-- 预定房间 -->
+    <button class="advince-room" bindtap="navigateToBlrz" data-orderid="{{item.orderid}}">
+      办理入住
+    </button>
+  </view>
+
+  <view class="no-room" wx:for="{{rzzList}}" wx:key="unique">
+    <view class="top-line">
+      <!-- 全部订单 -->
+      <view class="all-orders" bindtap="navigateToOrder">
+        <view>
+          <image class="order-image" src="{{orderImg}}"></image>
+        </view>
+        <view class="all-orders-text">全部订单</view>
+      </view>
+    </view>
+
+    <!-- 暂无可入住信息 -->
+    <view class="no-adviced-room">您已入住</view>
+    <view class="no-adviced-room">{{item.name}}-{{item.fjlx}}（原价{{item.ddyj}}元）</view>
+    <view class="no-adviced-room" style="font-size: 20rpx;">入离时间：{{item.rzsj}}-{{item.ldsj}}</view>
+
+    <!-- 预定房间 -->
+    <button class="advince-room" bindtap="navigateToZzfw" data-orderid="{{item.orderid}}">
+      在住服务
+    </button>
+  </view>
+</view>

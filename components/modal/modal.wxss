@@ -1,0 +1,28 @@
+/* components/modal/modal.wxss */
+/* components/modal/modal.wxss */
+/*遮罩层*/
+.modal-mask{
+  display: flex;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background-color: rgba(0,0,0,0.5);
+  z-index: 999;
+}
+/*遮罩内容*/
+.modal-content{
+  display: flex;
+  position: absolute;
+  flex-direction: column;
+  width: 100%;
+  background-color: #fff;
+}
+/*中间内容*/
+.main-content{
+  flex: 1;
+  height: 100%;
+  overflow-y: hidden; 
+  max-height: 80vh; /* 内容高度最高80vh 以免内容太多溢出*/
+}

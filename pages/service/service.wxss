@@ -1,0 +1,59 @@
+/* pages/service/service.wxss */
+.no-room {
+  width: 95%;
+  background-color: #ea9518;
+  padding-bottom: 30px;
+  margin-top: 10px;
+}
+
+.top-line {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  height: 40px;
+  align-items: center;
+}
+
+.all-orders {
+  height: 25px;
+  background-color: #e76e09;
+  color: #fff;
+  width: 80px;
+  border-bottom-left-radius: 10px;
+  border-top-left-radius: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.order-image {
+  margin-left: 10px;
+  height: 12px;
+  width: 12px;
+}
+
+.all-orders-text {
+  margin-left: 5px;
+  font-size: 25rpx;
+}
+
+.no-adviced-room {
+  font-size: 35rpx;
+  color: #fff;
+  margin-left: 15px;
+  margin-top: 5px;
+}
+
+.advince-room {
+  background-color: #e76e09;
+  margin-left: 15px;
+  margin-top: 20px;
+  width: 100px;
+  height: 30px;
+  color: #fff;
+  font-size: 30rpx;
+  border-radius: 2px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

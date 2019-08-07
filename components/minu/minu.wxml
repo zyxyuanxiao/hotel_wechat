@@ -1,0 +1,10 @@
+<!--components/minu/minu.wxml-->
+<!-- 主容器 -->
+<view class="stepper">
+	<!-- 减号 -->
+	<view class="{{minusStatus}}" bindtap="Minus">-</view>
+	<!-- 数值 -->
+	<input type="number" bindchange="Manual" value="{{num}}" />
+	<!-- 加号 -->
+	<view class="{{plusStatus}}" bindtap="Plus">+</view>
+</view>

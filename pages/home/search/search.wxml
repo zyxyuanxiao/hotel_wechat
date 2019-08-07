@@ -1,0 +1,54 @@
+<!--pages/home/search/search.wxml-->
+<!-- 顶部tab导航 -->
+<tab tabList="{{tabList}}" bindswichNav="swichNav"></tab>
+
+<!-- 搜索框 -->
+<view class="search">
+  <view class="searchbox">
+    <view class="search-box-add" bindtap="showCity">{{cityName}}</view>
+    <view class="triangle-down"></view>
+    <view class="search-box-splid"> | </view>
+    <image src="{{searchImage}}" class="search-icon"></image>
+    <view class="search-placeholder">酒店/位置/关键字</view>
+  </view>
+</view>
+
+<!-- 筛选条件 -->
+<select bindDate="selectRzsj" date="{{rzrq}}-{{tfrq}}" bindSelect="loadSxfy"
+ areaList="{{areaList}}"></select>
+
+<!-- 房间列表 -->
+<view class="room-list">
+  <!-- 左侧筛选条件 -->
+  <!-- <view class="room-list-left">
+    <view class="room-list-left-item">门店选房</view>
+    <view class="room-list-left-item">房型筛选</view>
+    <view class="room-list-left-item">更多条件</view>
+  </view> -->
+
+  <!-- 右侧房间列表 -->
+  <view class="room-lis-right" style="height: {{roomListHeight}}px;">
+    <scroll-view class="tjfy-box" scroll-y>
+      <view class="tjfy-box-fy" wx:for="{{sxfyList}}" wx:key="unique" bindtap="navigateToFjxq" data-hotelid="{{item.id}}">
+        <!-- 房源图片 -->
+        <view class="tjfy-box-fy-image"><image src="{{item.url}}" class="tjfy-box-fy-image"/></view>
+        <!-- 房源描述 -->
+        <view class="tjfy-box-fy-fypf">
+          <view>{{item.star}}</view>
+          <view>评分：{{item.score}}</view>
+        </view>
+        <view class="tjfy-box-fy-fymc">{{item.name}}</view>
+        <view><text style="font-size: 25rpx; color: red;">￥{{item.fjjg}}</text>
+          <text style="font-size: 20rpx; margin-left: 5px;">起/晚</text></view>
+      </view>
+    </scroll-view>
+  </view>
+</view>
+
+<!-- 日历组件 -->
+<modalView show="{{showModal}}" clickMaskClose="{{clickMaskClose}}">
+  <view class="calendar">
+    <view class="calendar-cancel" bindtap="unSelectRzsj">取消</view>
+    <calendar cell-size="45" weeks-type="cn" active-type="square" binddayClick="handleSelectDate" moreDays="true" show-more-days="true" startDate="{{startDate}}" endDate="{{endDate}}" />
+  </view>
+</modalView>
