@@ -84,7 +84,7 @@
   align-items: center;
 }
 .fxxz-item-image {
-  width: 140px;
+  width: 120px;
   height: 100px;
 }
 .fxxz-desc {
@@ -104,6 +104,22 @@
 .fxxz-fjjg {
   font-size: 35rpx;
   color: red;
+}
+.fxxz-activity {
+  display: flex;
+  align-items: center;
+}
+.fxxz-activity-items {
+  height: 20px;
+  background-color: red;
+  color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 20rpx;
+  margin-right: 5px;
+  padding: 0 5px;
+  border-radius: 5px;
 }
 .fxxz-btns {
   width: 20%;
@@ -315,6 +331,10 @@
 .fjfy-box-fy-fymc {
   font-size: 30rpx;
 }
+.fjfy-box-fy-price {
+  display: flex;
+}
+
 /* pages/home/fjyd/fjyd.wxss */
 .order-box {
   position: fixed;

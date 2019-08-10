@@ -58,7 +58,6 @@ Component({
      * 设置星星css
      */
     _setStarClass: function(newData, oldData) {
-      console.log(newData);
       this.setData({
         starClass: newData
       })

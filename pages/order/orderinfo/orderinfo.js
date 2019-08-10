@@ -46,11 +46,11 @@ Page({
     request.doRequest(
       params,
       function (data) {
-        console.log(data);
         that.setData({
           hotel: data.hotel,
           orderInfo: data.orderInfo,
           rzts: util.dateUtil.convertToChinaNum(data.orderInfo.rzts) + '天',
+          ysje: util.parseDouble(data.orderInfo.ysje),
           sfje: util.parseDouble(data.orderInfo.sfje),
           rzrq: util.dateUtil.formatTime(data.orderInfo.rzsj, 'M月D日'),
           rzsj: util.dateUtil.formatTime(data.orderInfo.rzsj, 'H:F'),
@@ -84,7 +84,6 @@ Page({
     request.doRequest(
       params,
       function (data) {
-        console.log(data);
         that.setData({
           roomList: data
         })

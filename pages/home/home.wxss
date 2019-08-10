@@ -182,6 +182,9 @@
 .tjfy-box-fy-fymc {
   font-size: 30rpx;
 }
+.tjfy-box-fy-price {
+  display: flex;
+}
 
 .kfrx {
   width: 50%;

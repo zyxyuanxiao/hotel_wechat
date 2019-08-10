@@ -41,19 +41,19 @@
 </view>
 <!-- 房间地址 --->
 <view class="fjdz-box">
-  <view class="fjdz-box" wx:for="{{roomList}}" wx:key="id">
+  <view class="fjdz-box">
     <view class="fjdz-item-50">
       <text class="fjdz-item-label">楼层：</text>
-      <text class="fjdz-item-text">{{item.lc}}</text>
+      <text class="fjdz-item-text">{{hotel.lc}}</text>
     </view>
     <view class="fjdz-item-50">
       <text class="fjdz-item-label">房号：</text>
-      <text class="fjdz-item-text">{{item.fjh}}</text>
+      <text class="fjdz-item-text">{{hotel.fjh}}</text>
     </view>
   </view>
   <view class="fjdz-item-100">
     <text class="fjdz-item-label">地址：</text>
-    <text class="fjdz-item-text">{{hotel.cityname}}{{hotel.areaname}}{{hotel.streetname}}{{hotel.address}}</text>
+    <text class="fjdz-item-text">{{hotel.cityname}}{{hotel.areaname}}{{hotel.streetname}}{{hotel.address}}       </text>
   </view>
 </view>
 <!-- 订单信息 -->
@@ -63,6 +63,8 @@
     <text class="fjdz-item-text">{{orderInfo.ddh}}</text>
   </view>
   <view class="fjdz-item-100">
+    <text class="fjdz-item-label">应收金额：</text>
+    <text class="fjdz-item-text">￥{{ysje}}</text>
     <text class="fjdz-item-label">实付金额：</text>
     <text class="fjdz-item-text">￥{{sfje}}</text>
   </view>

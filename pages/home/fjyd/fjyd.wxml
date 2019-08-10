@@ -14,7 +14,7 @@
     <image src="/resources/images/1.jpg" class="fjxx-image"></image>
     <view class="fjxx-info">
       <view class="fjxx-info-fjmc">{{hotel.name}}-{{fjlx}}</view>
-      <view class="fjxx-info-fjdz">{{hotel.cityname}}{{hotel.areaname}}{{hotel.streetname}}{{hotel.address}}</view>
+      <view class="fjxx-info-fjdz">{{hotel.cityname}}{{hotel.areaname}}{{hotel.streetname}}{{hotel.addressname}}</view>
       <view class="fjxx-info-score">
         <image src="{{item.score >= 1 ? wjxFillingIcon : wjxIcon}}" class="fjxx-info-icon"></image>
         <image src="{{item.score >= 2 ? wjxFillingIcon : wjxIcon}}" class="fjxx-info-icon"></image>
@@ -59,7 +59,8 @@
         <text style="margin-left:5px; font-size: 20rpx;">剩余{{freeRomms}}间</text>
       </view>
       <view style="margin-right: 10px;">
-        <minu num="{{fjs}}" bindMinus="bindFjslChange" bindManual="bindFjslChange" bindPlus="bindFjslChange" maxNum="{{freeRomms}}"></minu>
+        <!-- <minu num="{{fjs}}" bindMinus="bindFjslChange" bindManual="bindFjslChange" bindPlus="bindFjslChange" maxNum="{{freeRomms}}"></minu> -->
+        {{fjs}}
       </view>
     </view>
     <view class="input-list-item">
@@ -68,7 +69,7 @@
         <text class="input-title">入住人</text>
         <button class="brrz-btn" bindtap="brrz">本人入住</button>
       </view>
-      <input class="input-box" placeholder="入住人姓名" type="text" value="{{rzrxm}}"></input>
+      <input class="input-box" placeholder="入住人姓名" type="text" value="{{rzrxm1}}  {{rzrxm2}}"></input>
       <image src="{{user_plus}}" class="user-plus" bindtap="selectRzr"></image>
     </view>
     <view class="input-list-item">
@@ -76,14 +77,14 @@
         <image src="/resources/images/home/order-telephone.png" class="input-title-icon"></image>
         <text class="input-title">手机号</text>
       </view>
-      <input class="input-box" placeholder="输入真实手机号" type="text" value="{{rzrsjhm}}" bindinput="inputSjhm"></input>
+      <input class="input-box" placeholder="输入真实手机号" type="text" value="{{rzrsjhm1}}" bindinput="inputSjhm"></input>
     </view>
     <view class="input-list-item" bindtap="showSelectCoupon">
       <view class="input-list-item-title">
         <image src="/resources/images/home/yhq.png" class="input-title-icon"></image>
         <text class="input-title">优惠券</text>
       </view>
-      <text class="input-box" style="width: 65%; !important">-￥{{yhqje}}</text>
+      <view class="input-box" style="width: 65%; !important">-<money num="{{yhqje}}"></money></view>
       <image src="/resources/images/right-arr.png" class="user-plus" bindtap="selectRzr"></image>
     </view>
     <view class="input-list-item">
@@ -93,7 +94,7 @@
       </view>
       <view class="input-box">
         <radio-group class="radio-group" bindchange="radioChange">
-          <label class="radio" wx:for="{{zffsRadio}}" wx:key="unique">
+          <label class="radio" wx:for="{{zffsRadio}}">
             <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
           </label>
         </radio-group>
@@ -104,27 +105,27 @@
         <image src="/resources/images/home/order-money.png" class="input-title-icon"></image>
         <text class="input-title">钱包余额</text>
       </view>
-      <text class="input-box">￥{{qbye}}</text>
+      <view class="input-box"><money num="{{qbye}}"></money></view>
     </view>
     <view class="input-list-item" style="margin-top: 10px;">
       <text class="input-title" style="font-size: 25rpx; width: 60%;">{{rzsjDate}} 至 {{ldsjDate}}</text>
-      <text class="input-box">￥{{ddyj}}</text>
+      <view class="input-box"><money num="{{ddyj}}"></money></view>
     </view>
     <view class="input-list-item" style="margin-top: 10px;">
-      <text class="input-title">房费</text>
-      <text class="input-box">￥{{ddyj}}</text>
-    </view>
-    <view class="input-list-item">
-      <text class="input-title">会员折扣</text>
-      <text class="input-box">{{hyzk}}折</text>
+      <text class="input-title">房间价格</text>
+      <view class="input-box"><money num="{{fjjg}}"></money></view>
     </view>
     <view class="input-list-item">
       <text class="input-title">优惠券抵扣</text>
-      <text class="input-box">-￥{{yhqje}}</text>
+      <view class="input-box">-<money num="{{yhqje}}"></money></view>
     </view>
     <view class="input-list-item">
       <text class="input-title">订单总额</text>
-      <text class="input-box">￥{{sfje}}</text>
+      <view class="input-box"><money num="{{ddyj}}"></money></view>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">应付金额</text>
+      <view class="input-box"><money num="{{yfje}}"></money></view>
     </view>
     <view class="input-list-item" style="margin-top: 10px;">
       <text class="input-title">备注</text>

@@ -111,7 +111,6 @@ Page({
       tfsj: this.data.tfsj,
       rztsNum: this.data.rztsNum
     }
-    console.log(params);
     util.navigateTo('/pages/home/search/search?ydsj=' + JSON.stringify(params), true);
   },
 

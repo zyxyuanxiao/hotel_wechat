@@ -3,6 +3,7 @@
     "tab": "/components/tab/tab",
     "calendar": "/components/calendar/calendar",
     "modalView": "/components/modal/modal",
-    "select": "/components/select/select"
+    "select": "/components/select/select",
+    "money": "/components/money/money"
   }
 }

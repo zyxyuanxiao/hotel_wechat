@@ -1,6 +1,7 @@
 {
   "usingComponents": {
     "calendar": "/components/calendar/calendar",
-    "modalView": "/components/modal/modal"
+    "modalView": "/components/modal/modal",
+    "money": "/components/money/money"
   }
 }

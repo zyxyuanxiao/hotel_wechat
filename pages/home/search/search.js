@@ -40,7 +40,6 @@ Page({
       this.setData({
         ydsj: JSON.parse(options.ydsj)
       });
-      console.log(this.data.ydsj);
       this.setData({
         rzrq: this.data.ydsj.rzrq,
         tfrq: this.data.ydsj.tfrq,

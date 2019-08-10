@@ -294,7 +294,6 @@ Component({
      * 设置起始日期
      */
     _setStartDate: function(newDate, oldDate) {
-      console.log(newDate.length + ',' + newDate.indexOf('-'));
       if (newDate.length <= 10 && newDate.indexOf('-') == 4) {
         const year = parseInt(newDate.split('-')[0]);
         const month = parseInt(newDate.split('-')[1]);

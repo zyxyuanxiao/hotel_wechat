@@ -101,9 +101,9 @@
       <view>评分：{{item.score}}</view>
     </view>
     <view class="tjfy-box-fy-fymc">{{item.name}}</view>
-    <view>
-      <text style="font-size: 25rpx; color: red;">￥{{item.fjjg}}</text>
-      <text style="font-size: 20rpx; margin-left: 5px;">起/晚</text>
+    <view class="tjfy-box-fy-price">
+      <view style="font-size: 25rpx; color: red;"><money num="{{item.fjjg}}"></money></view>
+      <view style="font-size: 20rpx; margin-left: 5px;">起/晚</view>
     </view>
   </view>
 </scroll-view>

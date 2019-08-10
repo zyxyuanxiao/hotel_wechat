@@ -90,7 +90,7 @@ Page({
     }
 
     // 支付失败回调函数
-    params['failFun'] = function () { }
+    params['failFun'] = function () {}
     payUtil.payUtil.pay(params);
   },
 

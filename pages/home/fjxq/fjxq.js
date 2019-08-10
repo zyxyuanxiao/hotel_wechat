@@ -82,7 +82,6 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    console.log(options);
     this.setData({
       hotelid: options.hotelid
     })
@@ -91,8 +90,20 @@ Page({
         ydsj: JSON.parse(options.ydsj)
       });
     }
-    //加载酒店信息
-    this.loadHotelInfo();
+    // 获取vip信息
+    var that = this;
+    wx.getStorage({
+      key: 'vipInfo',
+      success: function (res) {
+        that.setData({
+          vipid: res.data.id,
+          hydj: res.data.hydj
+        });
+        //加载酒店信息
+        that.loadHotelInfo();
+      },
+    });
+    
   },
 
   /**
@@ -220,7 +231,10 @@ Page({
     let params = {
       url: app.globalData.serverUrl + 'getHotel',
       body: {
-        jdid: this.data.hotelid
+        jdid: this.data.hotelid,
+        status: '1',
+        city: app.globalData.user.address.city,
+        pricetype: this.data.hydj == '1' ? 'A' : 'B'
       }
     }
     let that = this;
@@ -233,7 +247,6 @@ Page({
           fjfyList: data.fjfyList,
           imgArr: data.imgArr
         });
-
         that.setYhpj(data.yhpjList);
       },
       function (data) {

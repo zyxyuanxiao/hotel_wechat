@@ -22,7 +22,10 @@
           <view>{{item.lc}}楼 {{item.fjh}}</view>
         </view>
         <view class="order-item-info-fyxx">
-          <money num="{{item.sfje}}"></money>
+          应付金额：<money num="{{item.ysje}}"></money>
+        </view>
+        <view class="order-item-info-fyxx">
+          实付金额：<money num="{{item.sfje}}"></money>
         </view>
       </view>
     </view>
@@ -37,6 +40,7 @@
     </view>
     <!-- 操作 -->
     <view class="order-item-oper" wx:if="{{item.ddzt == 2}}">
+      <button class="order-item-oper-btn" bindtap="navigateToOrder" data-orderid="{{item.orderid}}">再次预定</button>
       <button class="order-item-oper-btn" bindtap="navigateToBlrz" data-orderid="{{item.orderid}}">办理入住</button>
     </view>
     <!-- 操作 -->

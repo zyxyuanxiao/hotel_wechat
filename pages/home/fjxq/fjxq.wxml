@@ -26,14 +26,18 @@
 <tab tabList="{{tabList}}" bindswichNav="swichNav"></tab>
 <!-- 房型选择 -->
 <view class="tab-container" hidden="{{currentTab != 1}}">
-  <view class="fxxz-item" wx:for="{{fxList}}" wx:key="unique">
+  <view class="fxxz-item" wx:for="{{fxList}}" wx:key="index">
     <view class="fxxz-info" bindtap="ckfjxx" data-typeid="{{item.id}}">
       <image src="{{item.imageUrl}}" class="fxxz-item-image"></image>
       <view class="fxxz-desc">
         <view class="fxxz-fjlx">{{item.fjlx}}</view>
-        <view class="fxxz-fjxx">共 {{item.fjsl}} 间
+        <view class="fxxz-fjxx">共 {{item.fjsl}} 间</view>
+        <view class="fxxz-fjjg"><money num="{{item.fjjg}}"></money></view>
+        <view class="fxxz-activity">
+          <view class="fxxz-activity-items" wx:for="{{item.activities}}" wx:for-item="activity" wx:key="index">
+             {{activity.hdmc}}
+          </view>
         </view>
-        <view class="fxxz-fjjg">￥{{item.fjjg}}</view>
       </view>
     </view>
     <view class="fxxz-btns">
@@ -188,9 +192,9 @@
       <view>评分：{{item.score}}</view>
     </view>
     <view class="fjfy-box-fy-fymc">{{item.name}}</view>
-    <view>
-      <text style="font-size: 25rpx; color: red;">￥{{item.fjjg}}</text>
-      <text style="font-size: 20rpx; margin-left: 5px;">起/晚</text>
+    <view class="fjfy-box-fy-price">
+      <view style="font-size: 25rpx; color: red;"><money num="{{item.fjjg}}"></money></view>
+      <view style="font-size: 20rpx; margin-left: 5px;">起/晚</view>
     </view>
   </view>
 </scroll-view>

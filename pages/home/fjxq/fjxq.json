@@ -2,6 +2,7 @@
   "usingComponents": {
     "tab": "/components/tab/tab",
     "modalView": "/components/modal/modal",
-    "star": "/components/star/star"
+    "star": "/components/star/star",
+    "money": "/components/money/money"
   }
 }

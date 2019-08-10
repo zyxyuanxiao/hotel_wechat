@@ -136,6 +136,10 @@ page{
 .tjfy-box-fy-fymc {
   font-size: 30rpx;
 }
+.tjfy-box-fy-price {
+  display: flex;
+}
+
 .calendar {
   background-color: #ffffff;
   width: 100%;

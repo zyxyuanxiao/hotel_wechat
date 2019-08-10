@@ -37,28 +37,28 @@ let payUtil = {
   /**
    * 获取签名
    */
-  getSign: function (data) {
+  getSign: function (requestParam) {
     let params = {
       url: app.globalData.serverUrl + 'getSign',
-      body: data.data
+      body: requestParam.data
     }
     let that = this;
     request.doRequest(
       params,
-      function (resData) {
+      function (data) {
         wx.requestPayment({
-          'timeStamp': resData.timeStamp + '',
-          'nonceStr': resData.nonceStr,
-          'package': resData.package,
-          'signType': resData.signType,
-          'paySign': resData.paySign,
+          'timeStamp': data.timeStamp + '',
+          'nonceStr': data.nonceStr,
+          'package': data.package,
+          'signType': data.signType,
+          'paySign': data.paySign,
           'success': function (res) { 
             // 支付成功回调
-            data.successFun(resData.wechatpayid);
+            that.requestParam.successFun(data.wechatpayid);
           },
           'fail': function (res) {
             // 支付成功回调
-            data.failFun(resData.wechatpayid);
+            that.requestParam.failFun(data.wechatpayid);
            },
           'complete': function (res) { }
         }) 

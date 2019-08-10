@@ -2,20 +2,28 @@
 <view id="swiper-tab">
   <view class="swiper-tab">
     <view class="swiper-tab-list {{currentTab==-1 ? 'on' : ''}}" data-current="-1" bindtap="tabNav">
-      <view class="codition">{{date}}</view>
-      <view class="triggle"></view>
+      <view>{{date}}</view>
+      <view>
+        <i></i>
+      </view>
     </view>
     <view class="swiper-tab-list {{currentTab==0 ? 'on' : ''}}" data-current="0" bindtap="tabNav">
       <view>{{areaName}}</view>
-      <view class="triggle"></view>
+      <view>
+        <i></i>
+      </view>
     </view>
     <view class="swiper-tab-list {{currentTab==1 ? 'on' : ''}}" data-current="1" bindtap="tabNav">
       <view>{{orderName}}</view>
-      <view class="triggle"></view>
+      <view>
+        <i></i>
+      </view>
     </view>
     <view class="swiper-tab-list {{currentTab==2 ? 'on' : ''}}" data-current="2" bindtap="tabNav">
       <view>{{roomType}}</view>
-      <view class="triggle"></view>
+      <view>
+        <i></i>
+      </view>
     </view>
     <!-- <view class="swiper-tab-list {{currentTab==3 ? 'on' : ''}}" data-current="3" bindtap="tabNav">
       <view>更多</view>
