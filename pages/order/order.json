@@ -1,7 +1,8 @@
 {
   "usingComponents": {
     "tab": "/components/tab/tab",
-    "money": "/components/money/money"
+    "money": "/components/money/money",
+    "nav-bar": "/components/navbar/index"
   },
   "navigationBarTitleText": "订单"
 }

@@ -1,3 +1,6 @@
 {
-  "usingComponents": {"gongge": "/components/gongge/gongge"}
+  "usingComponents": {
+    "gongge": "/components/gongge/gongge",
+    "nav-bar": "/components/navbar/index"
+  }
 }

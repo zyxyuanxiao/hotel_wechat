@@ -17,13 +17,11 @@ Page({
     userInfo: {},
     routers: [{
         name: '发票',
-        url: '/pages/personal/fp/fp',
         icon: '/resources/images/user/fp.png',
         index: '0'
       },
       {
         name: '押金',
-        url: '/pages/personal/yj/yj',
         icon: '/resources/images/user/yj.png',
         index: '1'
       },
@@ -64,7 +62,11 @@ Page({
         icon: '/resources/images/user/settings.png',
         index: '8'
       }
-    ]
+    ],
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '我的', //导航栏 中间的标题
+    },
   },
 
   onLoad: function() {
@@ -131,7 +133,7 @@ Page({
     if (index == 6) {
       // 联系客服
       wx.makePhoneCall({
-        phoneNumber: '0719-8885855',
+        phoneNumber: app.globalData.servicePhone,
       })
     } else if (!this.data.routers[index].url) {
       wx.showToast({

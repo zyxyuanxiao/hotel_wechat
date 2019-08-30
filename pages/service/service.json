@@ -1,6 +1,6 @@
 {
   "usingComponents": {
-    
+    "nav-bar": "/components/navbar/index"
   },
   "navigationBarTitleText": "在住服务"
 }

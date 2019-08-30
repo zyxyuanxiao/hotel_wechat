@@ -15,13 +15,21 @@ Page({
     rlkmImage: '/resources/images/service/rlsb.png',
     sfzkmImage: '/resources/images/service/sfz.png',
     drzList:[],
-    rzzList:[]
+    rzzList:[],
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '在住服务', //导航栏 中间的标题
+    },
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
+    
+  },
+
+  onShow: function() {
     var that = this;
     wx.getStorage({
       key: 'vipInfo',

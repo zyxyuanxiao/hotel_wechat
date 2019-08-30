@@ -1,2 +1,2 @@
 <!--pages/service/blrz/blrz.wxml-->
-<text>pages/service/blrz/blrz.wxml</text>
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>

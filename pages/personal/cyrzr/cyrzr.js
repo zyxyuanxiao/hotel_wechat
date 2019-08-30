@@ -13,6 +13,11 @@ Page({
     selectCyrzrIndex: -1,
     circleImage: '/resources/images/circle.png',
     selectedImage: '/resources/images/success-filling.png',
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '常用入住人', //导航栏 中间的标题
+      back: true
+    },
   },
 
   /**

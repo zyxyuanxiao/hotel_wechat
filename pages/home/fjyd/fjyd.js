@@ -33,6 +33,11 @@ Page({
     rzrsjhm1: '',
     rzrxm2: '',
     rzrsjhm2: '',
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '预定', //导航栏 中间的标题
+      back: true
+    },
   },
 
   /**
@@ -80,7 +85,8 @@ Page({
         that.setData({
           qbye: res.data.qbye,
           vipid: res.data.id,
-          hydj: res.data.hydj
+          hydj: res.data.hydj,
+          xm: res.data.xm
         });
         // 加载优惠券列表
         that.loadCoupon();
@@ -396,7 +402,11 @@ Page({
         yhqid: this.data.yhqid,
         yhqje: this.data.yhqje,
         yhje: 0,
-        ddly: '1'
+        ddly: '1',
+        fjyj: this.data.fjjg,
+        sjjg: this.data.fjjg,
+        xdrxm: this.data.xm,
+        pricetype: this.data.hydj == '1' ? 'A' : 'B'
       }
     }
     let that = this;
@@ -432,7 +442,7 @@ Page({
           let requestParam = {
             url: app.globalData.serverUrl + 'updateOrder',
             body: {
-              id: data.orderid,
+              id: data,
               sfje: that.data.yfje,
               ddzt: '2'
             }
@@ -621,6 +631,7 @@ Page({
       params,
       function (data) {
         that.setData({
+          pricetype: data.o_pricetype,
           fjjg: data.o_price,
           ddyj: data.o_ddjg,
           yfje: data.o_ddjg - that.data.yhqje

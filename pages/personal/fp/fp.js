@@ -15,7 +15,12 @@ Page({
     currentTab: 1,
     circleImage: '/resources/images/circle.png',
     selectedImage: '/resources/images/success-filling.png',
-    isSelectedAll: false   //是否全选
+    isSelectedAll: false,   //是否全选
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '发票', //导航栏 中间的标题
+      back: true
+    },
   },
 
   /**

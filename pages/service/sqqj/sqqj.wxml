@@ -1,4 +1,11 @@
 <!--pages/service/sqqj/sqqj.wxml-->
+<view class='nav-wrap'>
+  <view bindtap='_navback' wx:if='{{nvabarData.back}}'>
+    <image src='/resources/images/left_arr.png' mode='aspectFill' class='back-pre'></image>
+  </view>
+  <view class='nav-title'>{{nvabarData.title}}</view>
+</view>
+
 <view class="container">
   <view class="sqqj-item">
     <view class="sqqj-item-title">清洁日期</view>

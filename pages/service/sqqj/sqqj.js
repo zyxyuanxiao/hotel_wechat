@@ -14,7 +14,12 @@ Page({
     unselectedIcon: '/resources/images/circle.png',
     selectFwnr1: false,
     selectFwnr2: false,
-    selectFwnr3: false
+    selectFwnr3: false,
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '申请清洁', //导航栏 中间的标题
+      back: true
+    },
   },
 
   /**
@@ -22,6 +27,10 @@ Page({
    */
   onLoad: function(options) {
     
+  },
+
+  _navback: function() {
+    wx.navigateBack()
   },
 
   /**

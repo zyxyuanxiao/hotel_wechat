@@ -1,4 +1,11 @@
 /**app.wxss**/
+page {
+  position: relative;
+  z-index: 9999998;
+  background: #fff;
+  margin-top: 70px;
+}
+/**app.wxss**/
 .container {
   height: 100%;
   display: flex;

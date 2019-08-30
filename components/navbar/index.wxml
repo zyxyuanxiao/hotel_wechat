@@ -1,0 +1,7 @@
+<!--components/navbar/index.wxml-->
+<view class='nav-wrap'>
+  <view bindtap='_navback' wx:if='{{navbarData.back}}'>
+    <image src='/resources/images/left_arr.png' mode='aspectFill' class='back-pre'></image>
+  </view>
+  <view class='nav-title'>{{navbarData.title}}</view>
+</view>

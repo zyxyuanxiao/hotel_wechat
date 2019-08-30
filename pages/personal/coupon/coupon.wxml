@@ -1,4 +1,5 @@
 <!--pages/personal/coupon/coupon.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <tab tabList="{{tabList}}" bindswichNav="swichNav"></tab>
 
 <!-- 优惠券列表 -->

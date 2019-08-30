@@ -45,6 +45,7 @@ Component({
      * 切换tab页
      */
     swichNav: function (event) {
+      console.log(11);
       let selectedTab = event.currentTarget.dataset.current;
       
       if (this.data.currentTab === selectedTab) {

@@ -25,6 +25,11 @@ Page({
     ],
     startDate: util.dateUtil.format(new Date(), 'Y-M-D'),
     endDate: util.dateUtil.format(util.dateUtil.nextMonth(new Date(), 3), 'Y-M-D'),
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '搜索', //导航栏 中间的标题
+      back: true
+    },
   },
 
   /**
@@ -75,6 +80,10 @@ Page({
     });
     // 加载城市信息
     this.loadArea();
+  },
+
+  _navback: function () {
+    wx.navigateBack()
   },
 
   /**

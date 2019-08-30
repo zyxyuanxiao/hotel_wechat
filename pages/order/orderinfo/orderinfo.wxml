@@ -1,4 +1,5 @@
 <!--pages/order/orderinfo/orderinfo.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <!-- 订单详情 -->
 <view class="order-status">
   <view class="order-status-title">订单详情</view>

@@ -1,4 +1,5 @@
 <!--pages/service/zzfw/zzfw.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class="container">
   <!-- 智能开门 -->
   <view class="znkm-box">

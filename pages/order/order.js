@@ -42,7 +42,11 @@ Page({
     orderList: [],
     // 自定义page对象CSS样式对象
     pageBackgroundColor: '#f5f5f5',
-    showModal: false
+    showModal: false,
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '订单', //导航栏 中间的标题
+    },
   },
 
   /**

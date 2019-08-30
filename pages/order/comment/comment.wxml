@@ -1,3 +1,4 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <!--pages/order/comment/comment.wxml-->
 <view class="container">
   <!-- 综合评分 -->

@@ -29,7 +29,11 @@ Page({
     startDate: util.dateUtil.format(new Date(), 'Y-M-D'),
     endDate: util.dateUtil.format(util.dateUtil.nextMonth(new Date(), 3), 'Y-M-D'),
     rzsj: ' 14:00:00',   // 入住时间
-    tfsj: ' 12:00:00'    // 退房时间
+    tfsj: ' 12:00:00',    // 退房时间
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '首页', //导航栏 中间的标题
+    },
   },
 
   /**
@@ -161,7 +165,7 @@ Page({
    */
   makePhoneCall: function() {
     wx.makePhoneCall({
-      phoneNumber: '0719-8885855',
+      phoneNumber: app.globalData.servicePhone,
     })
   },
 

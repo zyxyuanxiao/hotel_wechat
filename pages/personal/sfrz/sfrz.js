@@ -9,7 +9,12 @@ Page({
    */
   data: {
     cameraImage: '/resources/images/user/camera.png',
-    hiddenGrxx: true
+    hiddenGrxx: true,
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '身份认证', //导航栏 中间的标题
+      back: true
+    },
   },
 
   /**

@@ -1,4 +1,5 @@
 <!--pages/service/service.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <!-- 无可入住房间 -->
 <view class="container">
   <view class="no-room" hidden="{{drzList.length != 0 || rzzList.length != 0}}">

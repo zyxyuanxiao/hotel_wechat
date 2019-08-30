@@ -2,6 +2,8 @@
   "usingComponents": {
     "calendar": "/components/calendar/calendar",
     "modalView": "/components/modal/modal",
-    "money": "/components/money/money"
-  }
+    "money": "/components/money/money",
+    "nav-bar": "/components/navbar/index"
+  },
+  "navigationBarTitleText": " 订单"
 }

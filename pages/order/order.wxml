@@ -1,3 +1,4 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <!--pages/order/order.wxml-->
 <view class="page" style="background-color:{{pageBackgroundColor}}">
   <!-- 顶部tab导航 -->

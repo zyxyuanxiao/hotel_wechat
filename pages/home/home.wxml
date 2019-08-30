@@ -1,3 +1,4 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <!-- 图片轮播 -->
 <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="true">
   <block wx:for="{{ImageList}}" wx:key="unique">
@@ -110,7 +111,7 @@
 
 <!-- 400电话 -->
 <view class='kfrx' bindtap="makePhoneCall">
-  客服热线：0719-8885855
+  客服热线：400 0719 828
 </view>
 
 <!-- 日历组件 -->

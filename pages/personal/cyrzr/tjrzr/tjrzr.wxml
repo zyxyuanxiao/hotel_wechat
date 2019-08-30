@@ -1,4 +1,5 @@
 <!--pages/personal/cyrzr/tjrzr/tjrzr.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class="container" style="background-color: #fff;">
   <view class="input-list">
     <view class="input-list-item">

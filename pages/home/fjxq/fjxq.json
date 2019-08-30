@@ -3,6 +3,7 @@
     "tab": "/components/tab/tab",
     "modalView": "/components/modal/modal",
     "star": "/components/star/star",
-    "money": "/components/money/money"
+    "money": "/components/money/money",
+    "nav-bar": "/components/navbar/index"
   }
 }

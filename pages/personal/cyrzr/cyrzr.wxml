@@ -1,3 +1,4 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <!--pages/personal/cyrzr/cyrzr.wxml-->
 <button class="common-btn-nofilling" bindtap="navigateToTjrzr">添加入住人</button>
 <view class="cyrzr-list-title">常用入住人</view>

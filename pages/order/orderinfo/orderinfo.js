@@ -9,7 +9,12 @@ Page({
    */
   data: {
     calendarImage: '/resources/images/home/calendar.png',
-    ddzt: ['待支付', '待入住', '入住中', '待评价', '已完成', '已取消']
+    ddzt: ['待支付', '待入住', '入住中', '待评价', '已完成', '已取消'],
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '详情', //导航栏 中间的标题
+      back: true
+    },
   },
 
   /**

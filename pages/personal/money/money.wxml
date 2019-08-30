@@ -1,4 +1,5 @@
 <!--pages/personal/money/money.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class="container">
   <!-- 钱包余额 -->
   <view class="money-ye-box">

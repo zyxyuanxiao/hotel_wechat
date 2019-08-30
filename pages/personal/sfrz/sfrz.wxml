@@ -1,4 +1,5 @@
 <!--pages/personal/sfrz/sfrz.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class="container" style="background-color: #fff;">
   <!-- 证件上传 -->
   <view class="panel-title">证件上传</view>

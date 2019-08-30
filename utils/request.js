@@ -7,6 +7,9 @@
  *    responseType: 返回数据类型
  */
 var doRequest=function(param, successFun, failFun) {
+  wx.showLoading({
+    title: '加载中',
+  })
   if (!param.url) {
     console.error("请传入请求地址")
     return;
@@ -23,6 +26,7 @@ var doRequest=function(param, successFun, failFun) {
     method: param.method ? param.method : 'GET',
     dataType: "json",
     success: function(res) {
+      wx.hideLoading();
       if (!res.data) {
         wx.showToast({
           title: '请求错误',

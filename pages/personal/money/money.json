@@ -1,4 +1,6 @@
 {
-  "usingComponents": {},
+  "usingComponents": {
+    "nav-bar": "/components/navbar/index"
+  },
   "navigationBarTitleText": "钱包充值"
 }

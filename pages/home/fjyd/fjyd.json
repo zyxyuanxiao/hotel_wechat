@@ -3,6 +3,7 @@
     "modalView": "/components/modal/modal",
     "calendar": "/components/calendar/calendar",
     "minu": "/components/minu/minu",
-    "money": "/components/money/money"
+    "money": "/components/money/money",
+    "nav-bar": "/components/navbar/index"
   }
 }

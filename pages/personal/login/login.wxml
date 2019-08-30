@@ -1,4 +1,5 @@
 <!--pages/personal/login/login.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <view class="box">
   <view class="login-box">
     <view class="login-title">登录方式</view>

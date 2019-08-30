@@ -1,4 +1,5 @@
 <!--pages/home/fjyd/fjyd.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <!-- 立即预定 -->
 <view class="order-box">
   <view class="price">

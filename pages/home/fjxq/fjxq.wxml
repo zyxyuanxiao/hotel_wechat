@@ -1,3 +1,4 @@
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
 <!--pages/home/fjxq/fjxq.wxml-->
 <view class="swiperContainer">
   <!-- 房间图片展示 -->
