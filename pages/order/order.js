@@ -73,6 +73,27 @@ Page({
     })
   },
 
+  onShow: function() {
+    var that = this;
+    wx.getStorage({
+      key: 'vipInfo',
+      success: function (res) {
+        if (res.data) {
+          that.setData({
+            userid: res.data.id
+          })
+          // 加载全部订单
+          that.loadOrders('');
+        } else {
+          wx.showToast({
+            title: '请先登录',
+            icon: 'none'
+          })
+        }
+      },
+    })
+  },
+
   /**
    * 切换tab页
    */

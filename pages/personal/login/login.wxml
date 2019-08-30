@@ -20,7 +20,7 @@
         <view class="input-item-icon">
           <image src="/resources/images/user/code.png"></image>
         </view>
-        <input class="input-item-code" placeholder="验证码"></input>
+        <input class="input-item-code" placeholder="验证码" bindinput="inputCode"></input>
         <button class="code-btn" bindtap="getCode" disabled="{{code_btn_disabled}}">{{code_btn}}</button>
       </view>
       <button class="login-btn bg-login" bindtap="login" bindtap="login">登录</button>

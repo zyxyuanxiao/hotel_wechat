@@ -32,9 +32,9 @@ App({
    * 全局变量
    */
   globalData: {
-    serverUrl: 'https://localhost/miniprogram/',
-    uploadUrl: 'https://localhost/common/miniUpload',
-    imageUrl: 'https://localhost/file/miniprogram/',
+    serverUrl: 'https://192.168.0.103/miniprogram/',
+    uploadUrl: 'https://192.168.0.103/common/miniUpload',
+    imageUrl: 'https://192.168.0.103/file/miniprogram/',
     user: {
       address: {}
     },

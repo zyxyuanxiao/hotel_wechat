@@ -21,6 +21,7 @@ let payUtil = {
           params,
           function (data) {
             wx.setStorageSync('openId', data.openid); //存在小程序缓存中
+            wx.setStorageSync('sessionKey', data.session_key);
             successFun();
           },
           function (data) {
