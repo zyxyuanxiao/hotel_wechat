@@ -1,1 +1,71 @@
 /* pages/service/blrz/blrz.wxss */
+page {
+  background-color: #f5f5f5;
+}
+.blrz-box {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #fff;
+}
+.blrz-wxts {
+  width: 100%;
+  height: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+}
+.blrz-con {
+  width: 95%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-top: 1px solid #f5f5f5;
+}
+.rzts {
+  width: 100%;
+  height: 30px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: red;
+  font-size: 25rpx;
+}
+.rzts-box {
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+.rzts-box-item {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.rzts-image {
+  width: 50px;
+  height: 50px;
+}
+.rzts-btn {
+  width: 80px;
+  height: 25px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+}
+.rzts-btn-yb {
+  background-color: #fff;
+  border: 1px solid #f5f5f5;
+  border-radius: 2px;
+}
+.rzts-btn-wb {
+  background-color: #ea9518;
+  border: 1px solid #fff;
+  border-radius: 2px;
+}

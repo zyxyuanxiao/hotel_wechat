@@ -1,2 +1,21 @@
 <!--pages/service/blrz/blrz.wxml-->
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class='blrz-box'>
+  <view class='blrz-wxts'>温馨提示</view>
+  <view class='blrz-con'>
+    <view class='rzts'>尊敬的客人，入住前请实名认证和提交押金，谢谢您的配合！</view>
+    <view class='rzts-box'>
+      <!-- 实名认证 -->
+      <view class='rzts-box-item'>
+        <image src='/resources/images/user/sfrz.png' class='rzts-image'></image>
+        <button class="rzts-btn {{smrzClass}}" bindtap='tjsmrz'>实名认证</button>
+      </view>
+      <!-- 提交押金 -->
+      <view class='rzts-box-item'>
+        <image src='/resources/images/user/yj.png' class='rzts-image'></image>
+        <button class="rzts-btn {{tjyjClass}}" bindtap='payYj'>提交押金</button>
+      </view>
+    </view>
+  </view>
+</view>
+  <button class="common-btn" bindtap='blrz'>入住</button>

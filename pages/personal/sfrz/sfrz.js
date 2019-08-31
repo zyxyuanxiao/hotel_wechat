@@ -76,11 +76,11 @@ Page({
             })
           } else if (type == '2') {
             that.setData({
-              sfzfmImage: response.data.data[0]
+              sfzfmImage: response.data[0]
             })
           } else if (type == '3') {
             that.setData({
-              zpzImage: response.data.data[0]
+              zpzImage: response.data[0]
             })
           }
         } else {

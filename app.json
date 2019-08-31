@@ -12,7 +12,6 @@
     "pages/personal/sfrz/sfrz",
     "pages/personal/cyrzr/cyrzr",
     "pages/personal/cyrzr/tjrzr/tjrzr",
-    "pages/service/blrz/blrz",
     "pages/home/fjxq/fjxq",
     "pages/home/fjyd/fjyd",
     "pages/order/orderinfo/orderinfo",
@@ -21,6 +20,7 @@
     "pages/home/webview/webview",
     "pages/personal/login/login",
     "pages/service/zzfw/zzfw",
+    "pages/service/blrz/blrz",
     "pages/order/comment/comment",
     "pages/home/selectcity/selectcity"
   ],

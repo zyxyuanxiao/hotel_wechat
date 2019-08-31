@@ -55,11 +55,11 @@ let payUtil = {
           'paySign': data.paySign,
           'success': function (res) { 
             // 支付成功回调
-            that.requestParam.successFun(data.wechatpayid);
+            requestParam.successFun(data.wechatpayid);
           },
           'fail': function (res) {
             // 支付成功回调
-            that.requestParam.failFun(data.wechatpayid);
+            requestParam.failFun(data.wechatpayid);
            },
           'complete': function (res) { }
         }) 

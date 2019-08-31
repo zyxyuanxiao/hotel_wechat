@@ -655,7 +655,7 @@ Page({
     let params = {
       url: app.globalData.serverUrl + 'getVipInfo',
       body: {
-        id: this.data.vipInfo.id
+        id: this.data.vipid
       }
     }
 

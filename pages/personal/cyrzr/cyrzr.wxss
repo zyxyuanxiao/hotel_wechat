@@ -1,6 +1,7 @@
 /* pages/personal/cyrzr/cyrzr.wxss */
 Page {
   background-color: #f5f5f5;
+  padding-top: 20px;
 }
 
 .cyrzr-list-title {

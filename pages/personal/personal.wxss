@@ -51,6 +51,7 @@ page {
   width: 95%;
   margin-left: 2.5%;
   background-color: #fff;
+  margin-top: -20px;
   z-index: 2;
   height: 145px;
   border-radius: 5px;

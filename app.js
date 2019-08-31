@@ -32,9 +32,9 @@ App({
    * 全局变量
    */
   globalData: {
-    serverUrl: 'https://192.168.0.103/miniprogram/',
-    uploadUrl: 'https://192.168.0.103/common/miniUpload',
-    imageUrl: 'https://192.168.0.103/file/miniprogram/',
+    serverUrl: 'https://www.eywang.com/miniprogram/',
+    uploadUrl: 'https://www.eywang.com/common/miniUpload',
+    imageUrl: 'https://www.eywang.com/file/miniprogram/',
     user: {
       address: {}
     },
