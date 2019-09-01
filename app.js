@@ -33,8 +33,8 @@ App({
    */
   globalData: {
     serverUrl: 'https://www.eywang.com/miniprogram/',
-    uploadUrl: 'https://www.eywang.com/common/miniUpload',
-    imageUrl: 'https://www.eywang.com/file/miniprogram/',
+    uploadUrl: 'https://localhost/common/miniUpload',
+    imageUrl: 'https://localhost/file/miniprogram/',
     user: {
       address: {}
     },

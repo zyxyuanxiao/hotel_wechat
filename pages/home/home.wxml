@@ -121,3 +121,26 @@
     <calendar cell-size="45" weeks-type="cn" active-type="square" binddayClick="handleSelectDate" moreDays="true" show-more-days="true" startDate="{{startDate}}" endDate="{{endDate}}" />
   </view>
 </modalView>
+
+<!-- 中点房时间选择 -->
+<modalView show="{{showTimeModal}}" clickMaskClose="{{clickMaskClose}}">
+  <view class="calendar">
+    <view class="calendar-cancel" bindtap="unSelectRzsj">取消</view>
+    <view class="time-title">{{currentDay}}</view>
+    <view class="time-content">
+      <view class="time-content-item {{item.selected}} {{index < timeIndex1 ? 'disabled' : ''}}" 
+      wx:for="{{timeList}}" wx:key="unique" bindtap="selectTime" data-index="{{index}}" hidden="{{item.day != currentDay}}">
+        {{item.time}}
+      </view>
+    </view>
+    <view wx:if="{{currentDay != nextDay}}">
+      <view class="time-title">{{nextDay}}</view>
+      <view class="time-content">
+        <view class="time-content-item {{item.selected}} {{index < timeIndex1 ? 'disabled' : ''}}" 
+        wx:for="{{timeList}}" wx:key="unique" bindtap="selectTime" data-index="{{index}}"  hidden="{{item.day != nextDay}}">
+          {{item.time}}
+        </view>
+      </view>
+    </view>
+  </view>
+</modalView>

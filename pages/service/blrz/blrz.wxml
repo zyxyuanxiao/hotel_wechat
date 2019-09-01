@@ -18,4 +18,4 @@
     </view>
   </view>
 </view>
-  <button class="common-btn" bindtap='blrz'>入住</button>
+  <button class="common-btn" bindtap='blrz' disabled="{{smrz == '1' && sftjyj == 1}}">入住</button>

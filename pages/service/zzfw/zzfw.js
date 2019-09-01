@@ -1,11 +1,15 @@
 // pages/service/zzfw/zzfw.js
+const util = require('../../../utils/util.js')
+const request = require('../../../utils/request.js')
+var app = getApp();
+
 Page({
 
   /**
    * 页面的初始数据
    */
-  data: {
-    znkmRoutes: [{
+  data: { 
+    znsbRoutes: [{
       name: '智能开门',
       icon: '/resources/images/service/click.png',
       index: '0'
@@ -18,7 +22,7 @@ Page({
       icon: '/resources/images/service/rlsb.png',
       index: '2'
     }, {
-      name: '身份证开门',
+      name: '其他设备',
       icon: '/resources/images/service/sfz.png',
       index: '3'
     },],
@@ -35,13 +39,11 @@ Page({
     },
     {
       name: '办理退房',
-      url: '/pages/personal/sfrz/sfrz',
       icon: '/resources/images/service/bltf.png',
       index: '2'
     },
     {
       name: '办理续住',
-      url: '/pages/home/fjyd/fjyd',
       icon: '/resources/images/service/blxz.png',
       index: '3'
     },
@@ -77,13 +79,20 @@ Page({
       title: '服务', //导航栏 中间的标题
       back: true
     },
+    clickMaskClose: false,
+    hideContinue: true,
+    showCalendarModal: false,
+    showTimeModal: false
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-
+    this.setData({
+      orderid: options.orderid
+    })
+    this.loadOrder();
   },
 
   /**
@@ -96,15 +105,247 @@ Page({
       wx.makePhoneCall({
         phoneNumber: '0719-8885855',
       })
-    } else if (index == 1) {
+    } else if (index == 1) { // 邀请入住
       wx.showToast({
-        title: '邀请入住',
+        title: '暂未开通',
         icon: 'none'
+      })
+    } else if (index == 2) {  // 退房
+      this.checkOut();
+    } else if (index == 3) { // 续住
+      this.setData({
+        hideContinue: false
       })
     } else if (this.data.zzfwRouters[index].url) {
       wx.navigateTo({
         url: this.data.zzfwRouters[index].url,
       })
+    } else {
+      wx.showToast({
+        title: '暂未开通',
+        icon: 'none'
+      })
     }
   },
+
+  /**
+   * 点击智能开门
+   */
+  clcikZnkm: function(e) {
+    let index = e.detail.index;
+    if (index == 0) {
+      console.log('智能开门');
+    } else if (index == 1) {
+      console.log('密码开门');
+    } else if (index == 3) {
+      util.navigateTo('/pages/service/kksb/kksb', true);
+    } else {
+      wx.showToast({
+        title: '暂未开通',
+        icon: 'none'
+      })
+    }
+  },
+
+  /**
+   * 取下续住
+   */
+  cancelContinue: function() {
+    this.setData({
+      hideContinue: true
+    })
+  },
+
+  selectLdrq: function() {
+    if (this.data.orderInfo.rzlx == '3') {
+      this.setData({
+        showTimeModal: true
+      })
+    } else {
+      this.setData({
+        showCalendarModal: true
+      })
+    }
+  },
+
+  unSelectRzsj: function() {
+    if (this.data.orderInfo.rzlx == '3') {
+      this.setData({
+        showTimeModal: false
+      })
+    } else {
+      this.setData({
+        showCalendarModal: false
+      })
+    }
+  },
+
+  /**
+   * 处理选择日期
+   */
+  handleSelectDate: function(e) {
+    console.log(e.detail)
+    this.setData({
+      showCalendarModal: false,
+      ldrq: this.formaDate(e.detail) + ' 12:00:00',
+      rzts: util.dateUtil.dateDiff(this.data.orderInfo.ldsj, this.formaDate(e.detail) + ' 12:00:00')
+    });
+    this.validateContinue();
+  },
+
+  formaDate: function (date) {
+    return util.dateUtil.formatNum(date.year) + '-' + util.dateUtil.formatNum(date.month) + '-' + util.dateUtil.formatNum(date.day)
+  },
+
+  /**
+   * 加载订单信息
+   */
+  loadOrder: function() {
+    let params = {
+      url: app.globalData.serverUrl + 'getOrder',
+      body: {
+        orderid: this.data.orderid
+      }
+    }
+    let that = this;
+    request.doRequest(
+      params,
+      function (data) {
+        that.setData({
+          orderInfo: data.orderInfo,
+        })
+        that.initTimeList();
+      },
+      function (data) {
+        wx.showToast({
+          title: '请求错误',
+          icon: 'none'
+        })
+      }
+    )
+  },
+
+  /**
+   * 选择时间
+   */
+  selectTime: function (e) {
+    let index = e.currentTarget.dataset.index;
+    this.setData({
+      showTimeModal: false,
+      ldrq: this.data.timeList[index].date + ' ' + this.data.timeList[index].time + ':00',
+      rzxs: Number(this.data.timeList[index].time) - Number(this.data.orderInfo.ldsj.substring(12, 14))
+    })
+    this.validateContinue();
+  },
+
+  // 初始化时间列表
+  initTimeList: function () {
+    var currentHour = util.dateUtil.format(new Date(this.data.orderInfo.ldsj), 'h');
+    var currentday = util.dateUtil.format(new Date(this.data.orderInfo.ldsj), 'M月D日');
+    var date = new Date(this.data.orderInfo.ldsj);
+    var times = [];
+    for (var i = 0; i < 12; i++) {
+      // 如果时间超过24小时，增加一天，时间重置为1
+      if (currentHour > 24) {
+        currentday = util.dateUtil.format(util.dateUtil.nextDay(new Date(this.data.orderInfo.ldsj)), 'M月D日');
+        date = util.dateUtil.nextDay(new Date(this.data.orderInfo.ldsj));
+        currentHour = 1;
+      }
+      times[i] = {
+        time: util.dateUtil.formatNum(currentHour) + ':00',
+        day: currentday,
+        date: util.dateUtil.format(date, 'Y-M-D'),
+      }
+      currentHour++;
+    }
+    this.setData({
+      timeList: times,
+      currentDay: util.dateUtil.format(new Date(this.data.orderInfo.ldsj), 'M月D日'),
+      nextDay: currentday
+    })
+  },
+
+  /**
+   * 校验是否可以办理续住
+   */
+  validateContinue: function() {
+    let params = {
+      url: app.globalData.serverUrl + 'validateContinue',
+      body: {
+        orderid: this.data.orderid,
+        rzsj: this.data.orderInfo.ldsj,
+        ldsj: this.data.ldrq,
+        rzts: this.data.rzts,
+        rzxs: this.data.rzxs
+      }
+    }
+    let that = this;
+    request.doRequest(
+      params,
+      function (data) {
+        if (data.code != '1') {
+          wx.showModal({
+            title: '温馨提示',
+            content: data.message,
+            confirmText: "确定", //默认是“确定”
+            showCancel: false,//是否显示取消按钮
+            confirmColor: 'skyblue',//确定文字的颜色
+            success: function (res) {
+              that.setData({
+                hideContinue: true
+              })
+            }
+          })
+        } else {
+          that.setData({
+            fjjg: data.o_price,
+            ddyj: data.o_ddjg,
+            yfje: data.o_ddjg - that.data.yhqje
+          })
+        }
+      },
+      function (data) {
+        wx.showToast({
+          title: '请求错误',
+          icon: 'none'
+        })
+      }
+    )
+  },
+
+  /**
+   * 保存续住信息
+   */
+  saveContinue: function() {
+    let params = {
+      url: app.globalData.serverUrl + 'saveContinue',
+      body: {
+        orderid: this.data.orderid,
+        rzsj: this.data.orderInfo.ldsj,
+        ldsj: this.data.ldrq,
+        fjjg: this.data.fjjg,
+        ddyj: this.data.ddyj,
+        yfje: this.data.yfje
+      }
+    }
+    let that = this;
+    request.doRequest(
+      params,
+      function (data) {
+        wx.showToast({
+          title: '续住成功',
+          icon: 'none'
+        })
+        that.setData({
+          hideContinue: true
+        })
+      },
+      function (data) {
+        wx.showToast({
+          title: '请求错误',
+          icon: 'none'
+        })
+      }
+    )
+  }
 })

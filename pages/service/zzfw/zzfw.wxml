@@ -4,10 +4,9 @@
   <!-- 智能开门 -->
   <view class="znkm-box">
     <view class="znkm-title">
-      <view class="znkm-title-text">智能开门</view>
-      <view class="znkm-title-tips">您尚未办理入住，入住后可使用智能开门</view>
+      <view class="znkm-title-text">智能设备</view>
     </view>
-    <gongge routers="{{znkmRoutes}}" columns="4"></gongge>
+    <gongge routers="{{znsbRoutes}}" columns="4" bindclickItem="clcikZnkm"></gongge>
   </view>
 
   <!-- 在住服务 -->
@@ -18,3 +17,45 @@
     <gongge routers="{{zzfwRouters}}" columns="3" bindclickItem="clickZzfwItem"></gongge>
   </view>
 </view>
+
+<!-- 续住弹出层 -->
+<modal hidden="{{hideContinue}}" title="续住" confirm-text="确定" cancel-text="取消"   bindcancel="cancelContinue"   bindconfirm="saveContinue">
+  <view class="input-list-item">
+      <text class="input-title">续住开始时间:</text>
+      <input class="input-box" value="{{xm}}" disabled="true" value="{{orderInfo.ldsj}}"></input>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">离店时间:</text>
+      <input class="input-box" placeholder="选择离店日期" value="{{ldrq}}" bindfocus="selectLdrq"></input>
+    </view>
+</modal>
+
+<modalView show="{{showCalendarModal}}" clickMaskClose="{{clickMaskClose}}">
+  <view class="calendar">
+    <view class="calendar-cancel" bindtap="unSelectRzsj">取消</view>
+    <calendar cell-size="45" weeks-type="cn" active-type="square" binddayClick="handleSelectDate"/>
+  </view>
+</modalView>
+
+<!-- 中点房时间选择 -->
+<modalView show="{{showTimeModal}}" clickMaskClose="{{clickMaskClose}}">
+  <view class="calendar">
+    <view class="calendar-cancel" bindtap="unSelectRzsj">取消</view>
+    <view class="time-title">{{currentDay}}</view>
+    <view class="time-content">
+      <view class="time-content-item {{index < timeIndex1 ? 'disabled' : ''}}" 
+      wx:for="{{timeList}}" wx:key="unique" bindtap="selectTime" data-index="{{index}}" hidden="{{item.day != currentDay}}">
+        {{item.time}}
+      </view>
+    </view>
+    <view wx:if="{{currentDay != nextDay}}">
+      <view class="time-title">{{nextDay}}</view>
+      <view class="time-content">
+        <view class="time-content-item {{index < timeIndex1 ? 'disabled' : ''}}" 
+        wx:for="{{timeList}}" wx:key="unique" bindtap="selectTime" data-index="{{index}}"  hidden="{{item.day != nextDay}}">
+          {{item.time}}
+        </view>
+      </view>
+    </view>
+  </view>
+</modalView>

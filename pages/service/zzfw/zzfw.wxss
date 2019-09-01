@@ -3,19 +3,80 @@
   width: 95%;
   margin-top: 10px;
 }
-
 .znkm-title {
   width: 100%;
   display: flex;
   align-items: center;
 }
-
 .znkm-title-text {
   font-size: 35rpx;
   font-weight: bold;
 }
-
 .znkm-title-tips {
   font-size: 25rpx;
   margin-left: 10px;
+}
+.continue-box {
+  width: 80%;
+  height: 150px;
+}
+.input-list {
+  width: 100%;
+}
+.input-list-item {
+  width: 100%;
+  height: 40px;
+  font-size: 30rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #d9d9d9;
+}
+.input-title {
+  margin-left: 10px;
+  color: #000;
+}
+.input-box {
+  margin-right: 10px;
+  text-align: right;
+}
+.calendar {
+  background-color: #ffffff;
+  width: 100%;
+  height: 364px;
+}
+.calendar-cancel {
+  display: flex;
+  width: 100%;
+  height: 40px;
+  padding-left: 10px;
+  margin-bottom: 10px;
+  border-bottom: 1px solid #d9d9d9;
+  font-size: 30rpx;
+  align-items: center;
+}
+.time-title {
+  display: flex;
+  justify-content: center;
+  height: 30px;
+  font-size: 30rpx;
+}
+.time-content {
+  display: flex;
+  flex-wrap: wrap;
+}
+.time-content-item {
+  width: 20%;
+  height: 40px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 30rpx;
+}
+.time-selected {
+  background-color: #ea9518;
+  color: #ffffff;
+}
+.disabled {
+  color: #A6A4A2;
 }

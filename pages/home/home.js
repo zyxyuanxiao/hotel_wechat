@@ -34,6 +34,11 @@ Page({
       showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
       title: '首页', //导航栏 中间的标题
     },
+    timeIndex1: -1,
+    timeInex2: -1,
+    timeList:[],
+    showTimeModal: false,
+    rzxs: 0
   },
 
   /**
@@ -54,25 +59,41 @@ Page({
       rztsNum: 1,
       rzsjDate: util.dateUtil.format(new Date(), 'Y-M-D'),
       ldsjDate: util.dateUtil.format(util.dateUtil.nextDay(), 'Y-M-D'),
-    })
+    });
+
+    this.initTimeList();
   },
 
   /**
    * 用户选择入住时间
    */
   selectRzsj: function() {
-    this.setData({
-      showModal: true
-    })
+    if (this.data.currentRzlx == '3') {
+      this.setData({
+        showTimeModal: true,
+        timeIndex1: -1,
+        timeIndex2: -1
+      })
+    } else {
+      this.setData({
+        showModal: true
+      })
+    }
   },
 
   /**
    * 取消选择入住时间
    */
   unSelectRzsj: function() {
-    this.setData({
-      showModal: false
-    })
+    if (this.data.currentRzlx == '3') {
+      this.setData({
+        showTimeModal: false
+      })
+    } else {
+      this.setData({
+        showModal: false
+      })
+    }
   },
 
   // 处理日期选择事件
@@ -113,7 +134,8 @@ Page({
       rzlx: this.data.currentRzlx,
       rzsj: this.data.rzsj,
       tfsj: this.data.tfsj,
-      rztsNum: this.data.rztsNum
+      rztsNum: this.data.rztsNum,
+      rzxs: this.data.rzxs
     }
     util.navigateTo('/pages/home/search/search?ydsj=' + JSON.stringify(params), true);
   },
@@ -129,6 +151,8 @@ Page({
       })
     } else if (e.currentTarget.dataset.rzlx == 2) {
       this.setData({
+        startDate: util.dateUtil.format(new Date(), 'Y-M-D'),
+        endDate: util.dateUtil.format(util.dateUtil.nextDay(new Date()), 'Y-M-D'),
         rzsj: ' 22:00:00',
         tfsj: ' 10:00:00'
       })
@@ -256,5 +280,100 @@ Page({
         })
       }
     )
+  },
+
+  /**
+   * 选择时间
+   */
+  selectTime: function(e) {
+    let index = e.currentTarget.dataset.index;
+    if (index < this.data.timeIndex1) {
+      return;
+    }
+    if (index == this.data.timeIndex1) {
+      var times = this.data.timeList;
+      times[this.data.timeIndex1].selected = '';
+      this.setData({
+        timeIndex1: -1,
+        timeList: times
+      })
+      return;
+    }
+    if (this.data.timeIndex1 == -1) {
+      this.setData({
+        timeIndex1: index
+      })
+    } else {
+      this.setData({
+        timeIndex2: index
+      })
+    }
+    var times = this.data.timeList;
+    if (this.data.timeIndex2 == -1) {
+      for (var i = 0; i < times.length; i++) {
+        if (i == this.data.timeIndex1) {
+          times[i].selected = 'time-selected';
+        } else {
+          times[i].selected = '';
+        }
+      }
+    } else {
+      for (var i = 0; i < times.length; i++) {
+        if (i >= this.data.timeIndex1 && i <= this.data.timeIndex2) {
+          times[i].selected = 'time-selected';
+        } else {
+          times[i].selected = '';
+        }
+      }
+    }
+    this.setData({
+      timeList: times,
+    })
+    if (this.data.timeIndex2 != -1) {
+      // 睡眠3秒
+      let start = new Date().getTime();
+      while (true) if (new Date().getTime() - start > 1000) break;
+      this.setData({
+        showTimeModal: false,
+        rzsj: ' ' + this.data.timeList[this.data.timeIndex1].time + ':00',
+        tfsj: ' ' + this.data.timeList[this.data.timeIndex2].time + ':00',
+        rzrq: this.data.timeList[this.data.timeIndex1].day,
+        tfrq: this.data.timeList[this.data.timeIndex2].day,
+        rzsjDate: this.data.timeList[this.data.timeIndex1].date,
+        ldsjDate: this.data.timeList[this.data.timeIndex2].date,
+        rzsjWeek: this.data.timeList[this.data.timeIndex1].dateWeek,
+        ldsjWeek: this.data.timeList[this.data.timeIndex2].dateWeek,
+        rzxs: this.data.timeIndex2 - this.data.timeIndex1
+      })
+    }
+  },
+
+  // 初始化时间列表
+  initTimeList: function() {
+    var currentHour = util.dateUtil.format(new Date(), 'h');
+    var currentday = util.dateUtil.format(new Date(), 'M月D日');
+    var date = new Date();
+    var times = [];
+    for (var i = 0; i < 12; i++) {
+      // 如果时间超过24小时，增加一天，时间重置为1
+      if (currentHour > 24) {
+        currentday = util.dateUtil.format(util.dateUtil.nextDay(new Date()), 'M月D日');
+        date = util.dateUtil.nextDay(new Date());
+        currentHour = 1;
+      }
+      times[i] = {
+        time: util.dateUtil.formatNum(currentHour) + ':00',
+        day: currentday,
+        selected: '',
+        date: util.dateUtil.format(date, 'Y-M-D'),
+        dateWeek: util.dateUtil.getDetail(date).weekday
+      }
+      currentHour++;
+    }
+    this.setData({
+      timeList: times,
+      currentDay: util.dateUtil.format(new Date(), 'M月D日'),
+      nextDay: currentday
+    })
   }
 })

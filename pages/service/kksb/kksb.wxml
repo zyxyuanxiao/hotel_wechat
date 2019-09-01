@@ -1,0 +1,27 @@
+<!--pages/service/czmm/czmm.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<tab tabList="{{tabList}}" bindswichNav="swichNav"></tab>
+<!-- 开关 -->
+<view class="tab-container" hidden="{{currentTab != 1}}">
+开关
+</view>
+
+<!-- 电视 -->
+<view class="tab-container" hidden="{{currentTab != 2}}">
+电视
+</view>
+
+<!-- 空调 -->
+<view class="tab-container" hidden="{{currentTab != 3}}">
+空调
+</view>
+
+<!-- 窗帘 -->
+<view class="tab-container" hidden="{{currentTab != 4}}">
+窗帘
+</view>
+
+<!-- 情景模式 -->
+<view class="tab-container" hidden="{{currentTab != 5}}">
+情景模式
+</view>

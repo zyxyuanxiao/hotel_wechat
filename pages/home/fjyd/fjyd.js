@@ -33,6 +33,7 @@ Page({
     rzrsjhm1: '',
     rzrxm2: '',
     rzrsjhm2: '',
+    rzxs: 0,
     nvabarData: {
       showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
       title: '预定', //导航栏 中间的标题
@@ -60,7 +61,8 @@ Page({
         rzlx: this.data.ydsj.rzlx,
         rzsj: this.data.ydsj.rzsj,
         tfsj: this.data.ydsj.tfsj,
-        rztsNum: this.data.ydsj.rztsNum
+        rztsNum: this.data.ydsj.rztsNum,
+        rzxs: this.data.ydsj.rzxs
       })
     } else {
       this.setData({
@@ -112,6 +114,9 @@ Page({
    * 用户选择入住时间
    */
   selectRzsj: function () {
+    if (this.data.rzlx != '1') {
+      return;
+    }
     this.setData({
       showModal: true
     })
@@ -322,6 +327,9 @@ Page({
    * 提交订单
    */
   orderRoom: function() {
+    if (this.data.ddyj == 0) {
+      return;
+    }
     wx.showLoading({
       title: '加载中',
     })
@@ -406,7 +414,8 @@ Page({
         fjyj: this.data.fjjg,
         sjjg: this.data.fjjg,
         xdrxm: this.data.xm,
-        pricetype: this.data.hydj == '1' ? 'A' : 'B'
+        pricetype: this.data.hydj == '1' ? 'A' : 'B',
+        rzxs: this.data.rzxs
       }
     }
     let that = this;
@@ -623,13 +632,20 @@ Page({
         i_rzsj: this.data.rzsjDate + this.data.rzsj,
         i_ldsj: this.data.ldsjDate + this.data.tfsj,
         i_rzts: this.data.rztsNum,
-        i_rzhour: 0
+        i_rzhour: this.data.rzxs
       }
     }
     let that = this;
     request.doRequest(
       params,
       function (data) {
+        if (data.o_price == undefined || data.o_price == '') {
+          wx.showModal({
+            title: '温馨提示',
+            content: '未设置房间价格，请联系酒店管理员',
+            showCancel: false,
+          })
+        }
         that.setData({
           pricetype: data.o_pricetype,
           fjjg: data.o_price,

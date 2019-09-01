@@ -1,6 +1,8 @@
 {
   "usingComponents": {
     "gongge": "/components/gongge/gongge",
-    "nav-bar": "/components/navbar/index"
+    "nav-bar": "/components/navbar/index",
+    "modalView": "/components/modal/modal",
+    "calendar": "/components/calendar/calendar"
   }
 }

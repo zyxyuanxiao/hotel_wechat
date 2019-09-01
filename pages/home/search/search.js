@@ -56,7 +56,8 @@ Page({
         rzlx: this.data.ydsj.rzlx,
         rzsj: this.data.ydsj.rzsj,
         tfsj: this.data.ydsj.tfsj,
-        rztsNum: this.data.ydsj.rztsNum
+        rztsNum: this.data.ydsj.rztsNum,
+        rzxs: this.data.ydsj.rzxs
       })
     } else {
       this.setData({
@@ -114,7 +115,8 @@ Page({
       rzlx: this.data.rzlx,
       rzsj: this.data.rzsj,
       tfsj: this.data.tfsj,
-      rztsNum: this.data.rztsNum
+      rztsNum: this.data.rztsNum,
+      rzxs: this.data.rzxs
     }
     wx.navigateTo({
       url: '/pages/home/fjxq/fjxq?ydsj=' + JSON.stringify(params) + '&hotelid=' + e.currentTarget.dataset.hotelid,

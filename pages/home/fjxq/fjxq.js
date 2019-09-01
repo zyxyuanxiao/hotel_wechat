@@ -239,7 +239,8 @@ Page({
         jdid: this.data.hotelid,
         status: '1',
         city: app.globalData.user.address.city,
-        pricetype: this.data.hydj == '1' ? 'A' : 'B'
+        pricetype: this.data.hydj == '1' ? 'A' : 'B',
+        rzlx: this.data.rzlx
       }
     }
     let that = this;
