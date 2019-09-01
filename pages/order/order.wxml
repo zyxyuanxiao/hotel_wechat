@@ -18,9 +18,17 @@
         <image src="{{imageSrc}}" class="order-item-info-image-image"></image>
       </view>
       <view class="order-item-info-info">
-        <view class="order-item-info-fjxx">
-          <view>{{item.rzsj}} - {{item.ldsj}}</view>
-          <view>{{item.lc}}楼 {{item.fjh}}</view>
+        <view class="order-item-info-fyxx">
+          入住时间： {{item.rzsj}}
+        </view>
+        <view class="order-item-info-fyxx">
+          离店时间： {{item.ldsj}}
+        </view>
+        <view class="order-item-info-fyxx">
+          下单时间： {{item.ddkssj}}
+        </view>
+        <view class="order-item-info-fyxx">
+          入住房间： {{item.lc}}楼 {{item.fjh}}
         </view>
         <view class="order-item-info-fyxx">
           应付金额：<money num="{{item.ysje}}"></money>
