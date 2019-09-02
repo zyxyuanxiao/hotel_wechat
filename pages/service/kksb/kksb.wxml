@@ -3,7 +3,6 @@
 <tab tabList="{{tabList}}" bindswichNav="swichNav"></tab>
 <!-- 开关 -->
 <view class="tab-container" hidden="{{currentTab != 1}}">
-开关
 </view>
 
 <!-- 电视 -->

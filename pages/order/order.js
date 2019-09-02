@@ -125,7 +125,7 @@ Page({
    */
   navigateToOrder: function(e) {
     wx.navigateTo({
-      url: '/pages/home/fjyd/fjyd?orderid=' + e.currentTarget.dataset.orderid,
+      url: '/pages/service/zzfw/zzfw?orderid=' + e.currentTarget.dataset.orderid,
     })
   },
 

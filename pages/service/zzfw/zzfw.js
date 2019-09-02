@@ -82,7 +82,12 @@ Page({
     clickMaskClose: false,
     hideContinue: true,
     showCalendarModal: false,
-    showTimeModal: false
+    showTimeModal: false,
+    rzts: 0,
+    rzxs: 0, zffsRadio: [
+      { value: '1', name: '钱包支付' },
+      { value: '2', name: '微信支付' }
+    ],
   },
 
   /**
@@ -92,6 +97,17 @@ Page({
     this.setData({
       orderid: options.orderid
     })
+    // 获取vip信息
+    var that = this;
+    wx.getStorage({
+      key: 'vipInfo',
+      success: function (res) {
+        that.setData({
+          qbye: res.data.qbye,
+          vipid: res.data.id
+        });
+      },
+    });
     this.loadOrder();
   },
 
@@ -148,7 +164,16 @@ Page({
   },
 
   /**
-   * 取下续住
+   * 选择支付方式
+   */
+  radioChange: function (e) {
+    this.setData({
+      zffs: e.detail.value
+    })
+  },
+
+  /**
+   * 取消续住
    */
   cancelContinue: function() {
     this.setData({
@@ -188,7 +213,7 @@ Page({
     this.setData({
       showCalendarModal: false,
       ldrq: this.formaDate(e.detail) + ' 12:00:00',
-      rzts: util.dateUtil.dateDiff(this.data.orderInfo.ldsj, this.formaDate(e.detail) + ' 12:00:00')
+      rzts: util.dateUtil.dateDiff(this.formaDate(e.detail) + ' 12:00:00', this.data.orderInfo.ldsj)
     });
     this.validateContinue();
   },
@@ -233,7 +258,8 @@ Page({
     this.setData({
       showTimeModal: false,
       ldrq: this.data.timeList[index].date + ' ' + this.data.timeList[index].time + ':00',
-      rzxs: Number(this.data.timeList[index].time) - Number(this.data.orderInfo.ldsj.substring(12, 14))
+      rzxs: Number(this.data.timeList[index].time.substring(0, 2)) - 
+        Number(this.data.orderInfo.ldsj.substring(11, 13))
     })
     this.validateContinue();
   },
@@ -283,6 +309,7 @@ Page({
     request.doRequest(
       params,
       function (data) {
+        console.log(data)
         if (data.code != '1') {
           wx.showModal({
             title: '温馨提示',
@@ -292,7 +319,8 @@ Page({
             confirmColor: 'skyblue',//确定文字的颜色
             success: function (res) {
               that.setData({
-                hideContinue: true
+                hideContinue: true,
+                ldrq: ''
               })
             }
           })
@@ -300,7 +328,7 @@ Page({
           that.setData({
             fjjg: data.o_price,
             ddyj: data.o_ddjg,
-            yfje: data.o_ddjg - that.data.yhqje
+            yfje: data.o_ddjg
           })
         }
       },
@@ -317,6 +345,21 @@ Page({
    * 保存续住信息
    */
   saveContinue: function() {
+    if (!this.data.zffs) {
+      wx.showToast({
+        title: '请选择支付方式',
+        icon: 'none'
+      })
+      return;
+    }
+    if (this.data.zffs == '1' && this.data.qbye < this.data.yfje) {
+      wx.showToast({
+        title: '钱包余额不足',
+        icon: 'none'
+      })
+      return;
+    }
+
     let params = {
       url: app.globalData.serverUrl + 'saveContinue',
       body: {
@@ -325,20 +368,79 @@ Page({
         ldsj: this.data.ldrq,
         fjjg: this.data.fjjg,
         ddyj: this.data.ddyj,
-        yfje: this.data.yfje
+        yfje: this.data.yfje,
+        rzts: this.data.rzts,
+        rzxs: this.data.rzxs,
+        zffs: this.data.zffs
       }
     }
     let that = this;
     request.doRequest(
       params,
       function (data) {
-        wx.showToast({
-          title: '续住成功',
-          icon: 'none'
-        })
-        that.setData({
-          hideContinue: true
-        })
+         if (that.zffs == '2') {
+           // 发起微信支付
+           var params = {};
+           params['data'] = {
+             total_fee: that.data.yfje * 100,
+             paytype: '1',
+             desc: '锦恒科技-房费',
+             vipid: that.data.vipid
+           }
+
+           let requestParam = {
+             url: app.globalData.serverUrl + 'updateOrder',
+             body: {
+               id: data,
+               sfje: that.data.yfje,
+               ddzt: '3'
+             }
+           }
+           // 支付成功回调函数
+           params['successFun'] = function (wechatpayid) {
+             requestParam.body['wechatpayid'] = wechatpayid;
+             request.doRequest(
+               requestParam,
+               function (data) {
+                 wx.showToast({
+                   title: '续住成功',
+                   icon: 'none',
+                 })
+                 this.setData({
+                   hideContinue: true
+                 })
+               },
+               function (data) {
+                 wx.showToast({
+                   title: '服务器异常',
+                   icon: 'none'
+                 })
+               }
+             )
+           }
+           // 支付失败回调函数
+           params['failFun'] = function () {
+             wx.showModal({
+               title: '温馨提示',
+               content: '订单尚未支付，请尽快支付',
+               showCancel: false,
+               success: function () {
+                 this.setData({
+                   hideContinue: true
+                 })
+               }
+             })
+           }
+           payUtil.payUtil.pay(params);
+         } else {
+           wx.showToast({
+             title: '续住成功',
+             icon: 'none'
+           })
+           this.setData({
+             hideContinue: true
+           })
+         }
       },
       function (data) {
         wx.showToast({
@@ -347,5 +449,12 @@ Page({
         })
       }
     )
+  },
+
+  /**
+   * 退房
+   */
+  checkOut: function() {
+    
   }
 })

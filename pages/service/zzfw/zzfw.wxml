@@ -28,6 +28,40 @@
       <text class="input-title">离店时间:</text>
       <input class="input-box" placeholder="选择离店日期" value="{{ldrq}}" bindfocus="selectLdrq"></input>
     </view>
+    <view class="input-list-item">
+      <text class="input-title">房间价格:</text>
+      <view class="input-box">
+        <money num="{{fjjg}}"></money>
+      </view>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">续住价格:</text>
+      <view class="input-box">
+        <money num="{{ddyj}}"></money>
+      </view>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">应付金额:</text>
+      <view class="input-box">
+        <money num="{{yfje}}"></money>
+      </view>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">钱包余额:</text>
+      <view class="input-box">
+        <money num="{{qbye}}"></money>
+      </view>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">支付方式:</text>
+      <view class="input-box">
+        <radio-group class="radio-group" bindchange="radioChange">
+          <label class="radio" wx:for="{{zffsRadio}}">
+            <radio value="{{item.value}}" checked="{{item.checked}}" />{{item.name}}
+          </label>
+        </radio-group>
+      </view>
+    </view>
 </modal>
 
 <modalView show="{{showCalendarModal}}" clickMaskClose="{{clickMaskClose}}">

@@ -47,5 +47,5 @@ Page({
     this.setData({
       currentTab: index
     });
-  },
+  }, 
 })
