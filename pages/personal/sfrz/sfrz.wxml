@@ -9,17 +9,17 @@
   <view class="common-help" style="margin-top: 5px;">
     仅用于公安部门审核，我们绝对不会泄露您的资料
   </view>
-  <view class="zjsc-box" bindtap="selectImage" data-type="1">
+  <view class="zjsc-box-sfz" bindtap="takePhoto" data-type="1">
     <!-- 身份证正面 -->
     <view class="zjsc-camera" wx:if="{{sfzzmImage == undefined}}">
-      <image src="{{cameraImage}}" class="zjsc-camera-image"></image>
+      <image wx:if='{{!sfzzmPhoto}}' src="{{cameraImage}}" class="zjsc-camera-image"></image>
     </view>
     <image wx:if="{{sfzzmImage != undefined}}" src="{{sfzzmImage}}" class="zjsc-image"></image>
   </view>
-  <view class="zjsc-box" bindtap="selectImage" data-type="2">
+  <view class="zjsc-box-sfz" bindtap="takePhoto" data-type="2">
     <!-- 身份证反面 -->
     <view class="zjsc-camera" wx:if="{{sfzfmImage == undefined}}">
-      <image src="{{cameraImage}}" class="zjsc-camera-image"></image>
+      <image wx:if='{{!sfzfmPhoto}}' src="{{cameraImage}}" class="zjsc-camera-image"></image>
     </view>
     <image wx:if="{{sfzfmImage != undefined}}" src="{{sfzfmImage}}" class="zjsc-image"></image>
   </view>
@@ -29,10 +29,10 @@
   <view class="common-help">
     请上传真实自拍照的照片，用于身份证照片核验
   </view>
-  <view class="zjsc-box" bindtap="selectImage" data-type="3">
+  <view class="zjsc-box-zpz" bindtap="takePhoto" data-type="3">
     <!-- 身份证反面 -->
     <view class="zjsc-camera" wx:if="{{zpzImage == undefined}}">
-      <image src="{{cameraImage}}" class="zjsc-camera-image"></image>
+      <image wx:if='{{!zpzPhoto}}' src="{{cameraImage}}" class="zjsc-camera-image"></image>
     </view>
     <image wx:if="{{zpzImage != undefined}}" src="{{zpzImage}}" class="zjsc-image"></image>
   </view>
@@ -47,6 +47,12 @@
     </view>
     <view class="input-list-item">
       <text class="input-title">证件号码:</text>
-      <input class="input-box" placeholder="填写证件号码" type="number" bindinput="inputZjhm" value="{{sfzhm}}"></input>
+      <input class="input-box" placeholder="填写证件号码" type="idcard" bindinput="inputZjhm" value="{{sfzhm}}"></input>
     </view>
+</modal>
+
+<!-- 续住弹出层 -->
+<modal hidden="{{hideContinue}}" cancel-text='' confirm-text=''>
+  <button class="common-btn" style="margin-bottom: 20px;" bindtap="brrz">本人认证</button>
+  <button class="common-btn" style="margin-bottom: 20px;" bindtap="cyrzrrz">常用入住人认证</button>
 </modal>

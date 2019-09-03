@@ -1,0 +1,11 @@
+<!--pages/personal/sfrz/camera/camera.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="page">
+  <view class="{{cameraClass}}">
+    <camera device-position="back" flash="off" binderror="error" style="width: 98%; height: {{cameraHeight}}px;" device-position="{{device_position}}"></camera>
+  </view>
+
+  <view class="take-photo">
+    <image src="/resources/images/user/photo.png" mode="cover" bindtap="takePhoto"></image>
+  </view>
+</view>

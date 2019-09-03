@@ -1,0 +1,43 @@
+/* pages/personal/sfrz/camera/camera.wxss */
+.page {
+  background-color: #393D49;
+  position: fixed;
+  height: 100%;
+  width: 100%;
+  display:flex;
+  flex-direction:column;
+  align-items:center;/*垂直居中*/
+}
+.camera-box-sfz {
+  margin-top: 20%;
+  width: 90%;
+  height: 190px;
+  padding: 5px;
+  border: 1px solid #ea9518;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.camera-box-zpz {
+  margin-top: 10%;
+  width: 90%;
+  height: 360px;
+  padding: 5px;
+  border: 1px solid #ea9518;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.take-photo {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: absolute;
+  bottom: 80px;
+}
+.take-photo image {
+  width: 50px;
+  height: 50px;
+}

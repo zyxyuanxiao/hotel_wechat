@@ -102,7 +102,7 @@ Page({
   tjsmrz: function() {
     // 未进行实名认证，则先进行实名认证
     if (this.data.sfrz == '0') {
-      util.navigateTo('pages/personal/sfrz/sfrz', true);
+      util.navigateTo('/pages/personal/sfrz/sfrz', true);
     }
   },
 
@@ -126,10 +126,9 @@ Page({
     }
     // 更新订单状态
     var params = {
-      url: app.globalData.serverUrl + 'saveAccount',
+      url: app.globalData.serverUrl + 'checkIn',
       body: {
-        id: this.data.orderid,
-        ddzt: '3' 
+        id: this.data.orderid
       }
     }
     request.doRequest(

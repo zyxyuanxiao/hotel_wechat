@@ -15,6 +15,11 @@ Page({
       title: '身份认证', //导航栏 中间的标题
       back: true
     },
+    sfzzmPhoto: false,
+    sfzfmPhoto: false,
+    zpzPhoto: false,
+    hideContinue: false,
+    rzlx: '1'
   },
 
   /**
@@ -29,10 +34,42 @@ Page({
         that.setData({
           vipid: res.data.id
         });
-        // 加载实名认证信息
-        that.loadSmrzxx();
       },
     });
+  },
+
+  /**
+   * 本人认证
+   */
+  brrz: function() {
+    this.setData({
+      rzlx: '1'
+    })
+    this.loadSmrzxx("1");
+  },
+
+  /**
+   * 常用入住人认证
+   */
+  cyrzrrz: function() {
+    this.setData({
+      rzlx: '2'
+    })
+    wx.navigateTo({
+      url: '/pages/personal/cyrzr/cyrzr?showSelect=true&maxNum=1',
+    })
+  },
+
+  takePhoto(e) { 
+    if (this.data.rzjg == '2') {
+      return;
+    }
+    this.setData({
+      imageType: e.currentTarget.dataset.type
+    })
+    wx.navigateTo({
+      url: '/pages/personal/sfrz/camera/camera?imageType=' + e.currentTarget.dataset.type,
+    })
   },
 
   /**
@@ -44,6 +81,7 @@ Page({
     }
     let imageType = e.currentTarget.dataset.type;
     var that = this;
+
     wx.chooseImage({
       count: 1,
       sizeType: ['original', 'compressed'],
@@ -58,7 +96,7 @@ Page({
   /**
    * 上传图片
    */
-  uploadImage: function(type, imagePath) {
+  uploadImage: function(imagePath) {
     var that = this;
     wx.uploadFile({
       url: app.globalData.uploadUrl,
@@ -70,15 +108,15 @@ Page({
       success(res) {
         var response = JSON.parse(res.data);
         if (response.code == '0') {
-          if (type == '1') {
+          if (that.data.imageType == '1') {
             that.setData({
               sfzzmImage: response.data[0]
             })
-          } else if (type == '2') {
+          } else if (that.data.imageType == '2') {
             that.setData({
               sfzfmImage: response.data[0]
             })
-          } else if (type == '3') {
+          } else if (that.data.imageType == '3') {
             that.setData({
               zpzImage: response.data[0]
             })
@@ -128,10 +166,10 @@ Page({
         sfz_2: this.data.sfzfmImage,
         zpz: this.data.zpzImage,
         rzjg: '1',
-        rzrid: this.data.vipid,
-        rzrlx: '1',
         xm: this.data.xm,
-        sfzhm: this.data.sfzhm
+        sfzhm: this.data.sfzhm,
+        vipid: this.data.rzlx == '1' ? this.data.vipid : '',
+        cyrzrid: this.data.rzlx == '2' ? this.data.cyrzrid : ''
       }
     }
     let that = this;
@@ -163,14 +201,22 @@ Page({
   },
 
   // 加载实名认证信息
-  loadSmrzxx: function() {
+  loadSmrzxx: function(type, cyrzrid) {
+    this.setData({
+      hideContinue: true,
+      cyrzrid: cyrzrid
+    })
+    var body = {
+      sfyx: '1'
+    }
+    if (type == '1') {
+      body['vipid'] = this.data.vipid;
+    } else {
+      body['cyrzrid'] = cyrzrid;
+    }
     let params = {
       url: app.globalData.serverUrl + 'selectSmrz',
-      body: {
-        sfyx: '1',
-        rzrid: this.data.vipid,
-        rzrlx: '1'
-      }
+      body: body
     }
     let that = this;
     request.doRequest(

@@ -220,8 +220,7 @@ Page({
         that.setData({
           rzrxm1: res.data.xm,
           rzrsjhm1: res.data.sjhm,
-          rzrlx: '1',
-          rzrid: res.data.id
+          rzrlx: '1'
         });
       },
     })
@@ -232,7 +231,7 @@ Page({
    */
   selectRzr: function() {
     wx.navigateTo({
-      url: '/pages/personal/cyrzr/cyrzr?showSelect=true',
+      url: '/pages/personal/cyrzr/cyrzr?showSelect=true&maxNum=2',
     })
   },
 
@@ -401,8 +400,10 @@ Page({
         xdrid: this.data.vipid,
         rzrxm1: this.data.rzrxm1,
         rzrsjhm1: this.data.rzrsjhm1,
+        rzrid1: this.data.rzrid1,
         rzrxm2: this.data.rzrxm2,
         rzrsjhm2: this.data.rzrsjhm2,
+        rzrid2: this.data.rzrid2,
         zffs: this.data.zffs,
         fjs: this.data.fjs,
         memo: this.data.memo == undefined ? '' : this.data.memo,

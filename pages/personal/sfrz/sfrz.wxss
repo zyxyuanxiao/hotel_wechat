@@ -2,9 +2,20 @@
 Page {
   background-color: #f5f5f5;
 }
-.zjsc-box {
+.zjsc-box-sfz {
   width: 90%;
   height: 180px;
+  border: 1px solid #ea9518;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 10px;
+  margin-bottom: 10px;
+}
+
+.zjsc-box-zpz {
+  width: 90%;
+  height: 350px;
   border: 1px solid #ea9518;
   display: flex;
   justify-content: center;

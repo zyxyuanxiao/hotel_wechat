@@ -26,7 +26,7 @@
     </view>
     <view class="input-list-item">
       <text class="input-title">离店时间:</text>
-      <input class="input-box" placeholder="选择离店日期" value="{{ldrq}}" bindfocus="selectLdrq"></input>
+      <input class="input-box" adjust-position="false" placeholder="选择离店日期" value="{{ldrq}}" bindtap="selectLdrq" disabled="true"></input>
     </view>
     <view class="input-list-item">
       <text class="input-title">房间价格:</text>

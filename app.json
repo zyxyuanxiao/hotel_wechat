@@ -22,7 +22,8 @@
     "pages/service/zzfw/zzfw",
     "pages/service/blrz/blrz",
     "pages/order/comment/comment",
-    "pages/home/selectcity/selectcity"
+    "pages/home/selectcity/selectcity",
+    "pages/personal/sfrz/camera/camera"
   ],
   "window": {
     "backgroundTextStyle": "light",

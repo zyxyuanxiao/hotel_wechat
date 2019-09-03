@@ -26,7 +26,8 @@ Page({
   onLoad: function(options) {
     if (options.showSelect != undefined) {
       this.setData({
-        showSelect: true
+        showSelect: true,
+        maxNum: options.maxNum
       })
     }
   },
@@ -73,6 +74,9 @@ Page({
     request.doRequest(
       params,
       function(data) {
+        for (var i = 0; i < data.length; i++) {
+          data[i]['selected'] = false;
+        }
         that.setData({
           cyrzrList: data
         })
@@ -90,9 +94,25 @@ Page({
    * 选择常用入住人
    */
   selectCyrzr: function() {
-    if (this.data.selectCyrzrIndex == -1) {
+    var tempCyrzrList = this.data.cyrzrList;
+    var cnt = 0;
+    var cyrzrIndex = [];
+    for (var i = 0; i < tempCyrzrList.length; i++) {
+      if (tempCyrzrList[i].selected) {
+        cyrzrIndex[cnt] = i;
+        cnt++;
+      }
+    }
+
+    if (cnt == 0) {
       wx.showToast({
         title: '请选择入住人',
+        icon: 'none'
+      })
+      return;
+    } else if (cnt > this.data.maxNum) {
+      wx.showToast({
+        title: '最多选择' + this.data.maxNum + '个入住人',
         icon: 'none'
       })
       return;
@@ -101,12 +121,31 @@ Page({
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2];  //上一个页面
 
-    prevPage.setData({
-      rzrxm: this.data.cyrzrList[this.data.selectCyrzrIndex].rzrxm,
-      rzrsjhm: this.data.cyrzrList[this.data.selectCyrzrIndex].sjhm,
-      rzrlx: '2',
-      rzrid: this.data.cyrzrList[this.data.selectCyrzrIndex].id
-    })
+    if (this.data.maxNum == 2) {
+      if (cnt == 1) {
+        prevPage.setData({
+          rzrxm1: this.data.cyrzrList[cyrzrIndex[0]].rzrxm,
+          rzrsjhm1: this.data.cyrzrList[cyrzrIndex[0]].sjhm,
+          rzrid1: this.data.cyrzrList[cyrzrIndex[0]].id,
+          rzrlx: '2'
+        })
+      } else {
+        prevPage.setData({
+          rzrxm1: this.data.cyrzrList[cyrzrIndex[0]].rzrxm,
+          rzrsjhm1: this.data.cyrzrList[cyrzrIndex[0]].sjhm,
+          rzrid1: this.data.cyrzrList[cyrzrIndex[0]].id,
+          rzrxm2: this.data.cyrzrList[cyrzrIndex[1]].rzrxm,
+          rzrsjhm2: this.data.cyrzrList[cyrzrIndex[1]].sjhm,
+          rzrid2: this.data.cyrzrList[cyrzrIndex[1]].id,
+          rzrlx: '2'
+        })
+      }
+    } else if (this.data.maxNum == 1) {
+      // 实名认证加载实名认证信息
+      prevPage.loadSmrzxx("2", this.data.cyrzrList[cyrzrIndex[0]].id)
+    }
+    
+    
     
     wx.navigateBack({
       url: '/pages/home/fjyd/fjyd'
@@ -117,8 +156,10 @@ Page({
    * 选择
    */
   select: function(e) {
+    var tempCyrzrList = this.data.cyrzrList;
+    tempCyrzrList[e.currentTarget.dataset.index].selected = !tempCyrzrList[e.currentTarget.dataset.index].selected;
     this.setData({
-      selectCyrzrIndex: e.currentTarget.dataset.index
+      cyrzrList: tempCyrzrList
     })
   }
 })
