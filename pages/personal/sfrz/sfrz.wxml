@@ -51,7 +51,7 @@
     </view>
 </modal>
 
-<!-- 续住弹出层 -->
+<!-- 续住身份认证人选择框 -->
 <modal hidden="{{hideContinue}}" cancel-text='' confirm-text=''>
   <button class="common-btn" style="margin-bottom: 20px;" bindtap="brrz">本人认证</button>
   <button class="common-btn" style="margin-bottom: 20px;" bindtap="cyrzrrz">常用入住人认证</button>

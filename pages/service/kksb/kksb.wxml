@@ -1,26 +1,40 @@
 <!--pages/service/czmm/czmm.wxml-->
 <nav-bar navbar-data='{{nvabarData}}'></nav-bar>
-<tab tabList="{{tabList}}" bindswichNav="swichNav"></tab>
-<!-- 开关 -->
-<view class="tab-container" hidden="{{currentTab != 1}}">
+<!-- 天气展示 -->
+<!-- <view class="weather-box">
+  <view class="weather-desc-title">
+    <view class="weather-desc-local">
+      <view class="weather-desc-local-area">{{weather.basic.location}}区</view>
+      <view class="weather-desc-local-city">{{weather.basic.parent_city}},{{weather.basic.admin_area}}</view>
+    </view>
+    <view class="weather-air">
+      <image src="/resources/images/weather/{{weather.now.cond_code}}.png"></image>
+      <view class="weather-air-desc">{{weather.now.tmp}}℃</view>
+    </view>
+  </view>
+  <view class="weather-detail">
+    <view class="weather-detail-box">
+      <view>{{weather.now.cond_txt}}  | </view>
+      <view class="wether-detail-item"> 湿度{{weather.now.hum}}  | </view>
+      <view class="wether-detail-item"> {{weather.now.wind_dir}}{{weather.now.wind_sc}}级</view>
+    </view>
+    <view class="wether-detail-item">{{weather.update.loc}}</view>
+  </view>
+</view> -->
+
+<view class="device-box">
+  <view class="device-item" wx:for="{{deviceList}}" wx:key="unique" bindtap="showCommad" data-index="{{index}}">
+    <image src="https://images.tuyacn.com/{{item.icon}}" class="device-image"></image>
+    <view class="device-name">{{item.name}}</view>
+  </view>
 </view>
 
-<!-- 电视 -->
-<view class="tab-container" hidden="{{currentTab != 2}}">
-电视
-</view>
+<!-- 弹出硬件控制框 -->
+<modal hidden="{{hideDeviceCommand}}" bindcancel="cancelCommand"   bindconfirm="cancelCommand">
+  <view class="commands-box">
+    <view class="command-item" wx:for="{{commands}}" wx:key="unique" bindtap="commad" data-index="{{index}}">
+      <view class="command-box"></view>
+    </view>
+  </view>
+</modal>
 
-<!-- 空调 -->
-<view class="tab-container" hidden="{{currentTab != 3}}">
-空调
-</view>
-
-<!-- 窗帘 -->
-<view class="tab-container" hidden="{{currentTab != 4}}">
-窗帘
-</view>
-
-<!-- 情景模式 -->
-<view class="tab-container" hidden="{{currentTab != 5}}">
-情景模式
-</view>

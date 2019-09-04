@@ -23,7 +23,7 @@ Page({
       index: '2'
     }, {
       name: '其他设备',
-      icon: '/resources/images/service/sfz.png',
+      icon: '/resources/images/service/qtsb.png',
       index: '3'
     },],
     zzfwRouters: [{
@@ -455,6 +455,35 @@ Page({
    * 退房
    */
   checkOut: function() {
-    
+    let params = {
+      url: app.globalData.serverUrl + 'checkOut',
+      body: {
+        id: this.data.orderid
+      }
+    }
+    let that = this;
+    request.doRequest(
+      params,
+      function (data) {
+        wx.showModal({
+          title: '温馨提示',
+          content: '退房成功',
+          confirmText: "确定", //默认是“确定”
+          showCancel: false,//是否显示取消按钮
+          confirmColor: 'skyblue',//确定文字的颜色
+          success: function (res) {
+            wx.navigateBack({
+              url: '/pages/service/service'
+            })
+          }
+        })
+      },
+      function (data) {
+        wx.showToast({
+          title: '请求错误',
+          icon: 'none'
+        })
+      }
+    )
   }
 })

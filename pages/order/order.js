@@ -27,7 +27,7 @@ Page({
         ddzt: '2'
       }, {
         index: 4,
-        name: '入驻中',
+        name: '入住中',
         ddzt: '3'
       }, {
         index: 5,

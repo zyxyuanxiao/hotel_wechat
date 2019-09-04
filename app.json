@@ -1,5 +1,6 @@
 {
   "pages": [
+    "pages/service/kksb/kksb",
     "pages/home/home",
     "pages/personal/personal",
     "pages/order/order",
@@ -16,7 +17,6 @@
     "pages/home/fjyd/fjyd",
     "pages/order/orderinfo/orderinfo",
     "pages/service/sqqj/sqqj",
-    "pages/service/kksb/kksb",
     "pages/home/webview/webview",
     "pages/personal/login/login",
     "pages/service/zzfw/zzfw",

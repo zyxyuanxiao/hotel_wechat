@@ -14,38 +14,136 @@ Page({
       title: '智能设备', //导航栏 中间的标题
       back: true
     },
-    currentTab: 1,
-    tabList: [
-      {
-        index: 1,
-        name: '开关'
-      }, {
-        index: 2,
-        name: '电视'
-      }, {
-        index: 3,
-        name: '空调'
-      }, {
-        index: 4,
-        name: '窗帘'
-      }, {
-        index: 5,
-        name: '情景模式'
-      }
-    ],
+    hideDeviceCommand: true
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.loadDevices();
+  }, 
 
+  /**
+   * 加载天气信息
+   */
+  loadWeather: function() {
+    let params = {
+      url: app.globalData.serverUrl + 'getWeather',
+      body: {
+        orderid: '83'
+      }
+    }
+    let that = this;
+    request.doRequest(
+      params,
+      function (data) {
+        console.log(data);
+        if (data.code == '1') {
+          that.setData({
+            weather: data
+          })
+        } else {
+          wx.showToast({
+            title: data.message,
+            icon: 'none'
+          })
+        }
+      },
+      function (data) {
+        wx.showToast({
+          title: '请求错误',
+          icon: 'none'
+        })
+      }
+    )
   },
 
-  swichNav: function (e) {
-    let index = e.detail.currentTab;
+  /**
+   * 加载智能设备信息
+   */
+  loadDevices: function() {
+    let params = {
+      url: app.globalData.serverUrl + 'getDevices',
+      body: {
+        orderid: '83'
+      }
+    }
+    let that = this;
+    request.doRequest(
+      params,
+      function (data) {
+        console.log(data);
+        that.setData({
+          deviceList: data
+        });
+      },
+      function (data) {
+        wx.showToast({
+          title: '请求错误',
+          icon: 'none'
+        })
+      }
+    )
+  },
+
+  /**
+   * 显示设备指令窗口
+   */
+  showCommad: function(e) {
+    let index = e.currentTarget.dataset.index;
+    let commands = this.data.deviceList[index].commands;
+    let selectDeviceId = this.data.deviceList[index].id;
+    if (commands.length > 0) {
+      this.setData({
+        commands: commands,
+        hideDeviceCommand: false,
+        selectDeviceId: selectDeviceId
+      })
+    }
+  },
+
+  /**
+   * 取消
+   */
+  cancelCommand: function() {
     this.setData({
-      currentTab: index
-    });
-  }, 
+      hideDeviceCommand: true
+    })
+  },
+
+  /**
+   * 下达指令
+   */
+  commad: function(e) {
+    let index = e.currentTarget.dataset.index;
+    let params = {
+      url: app.globalData.serverUrl + 'commadDevice',
+      body: {
+        device_id: this.data.commands[index].deviceid,
+        code: this.data.commands[index].command_code,
+        type: this.data.commands[index].command_type
+      }
+    }
+    let that = this;
+    request.doRequest(
+      params,
+      function (data) {
+        if (data.success) {
+          that.cancelCommand();
+        } else {
+          wx.showToast({
+            title: data.msg,
+            icon: 'none'
+          })
+        }
+      },
+      function (data) {
+        wx.showToast({
+          title: '请求错误',
+          icon: 'none'
+        })
+      }
+    )
+  }
 })
