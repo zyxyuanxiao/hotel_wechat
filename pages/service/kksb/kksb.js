@@ -21,6 +21,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    this.loadWeather();
     this.loadDevices();
   }, 
 
@@ -122,7 +123,8 @@ Page({
       body: {
         device_id: this.data.commands[index].deviceid,
         code: this.data.commands[index].command_code,
-        type: this.data.commands[index].command_type
+        type: this.data.commands[index].command_type,
+        value: this.data.commands[index].command_type == 'Enum' ? this.data.commands[index].command_values : ''
       }
     }
     let that = this;

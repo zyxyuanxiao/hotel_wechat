@@ -455,6 +455,19 @@ Page({
    * 退房
    */
   checkOut: function() {
+    var that = this;
+    wx.showModal({
+      title: '提示',
+      content: '是否确定退房？',
+      success(res) {
+        if (res.confirm) {
+          that.doCheckOut();
+        }
+      }
+    })
+  },
+
+  doCheckOut: function() {
     let params = {
       url: app.globalData.serverUrl + 'checkOut',
       body: {
