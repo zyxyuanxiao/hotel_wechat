@@ -33,5 +33,5 @@
       <star bindPf="aqg"></star>
     </view>
   </view>
-  <button class="common-btn" style="position: absolute; bottom: 20px;" bindtap="fbpj">发布评价</button>
+  <button class="common-btn" bindtap="fbpj">发布评价</button>
 </view>

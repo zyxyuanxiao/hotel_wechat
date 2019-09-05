@@ -112,10 +112,12 @@ Page({
             that.setData({
               sfzzmImage: response.data[0]
             })
+            that.analysisIdCard(response.data[0], 'FRONT');
           } else if (that.data.imageType == '2') {
             that.setData({
               sfzfmImage: response.data[0]
             })
+            that.analysisIdCard(response.data[0], 'BACK');
           } else if (that.data.imageType == '3') {
             that.setData({
               zpzImage: response.data[0]
@@ -129,6 +131,42 @@ Page({
         }
       }
     })
+  },
+
+  /**
+   * 识别身份证信息
+   */
+  analysisIdCard: function(image, type) {
+    let params = {
+      url: app.globalData.serverUrl + 'idcardAnalysis',
+      body: {
+        imageUrl: image,
+        imageType: type,
+      }
+    }
+    let that = this;
+    request.doRequest(
+      params,
+      function (data) {
+        if (type == 'FRONT') {
+          that.setData({
+            xm: data.Response.Name,
+            xb: data.Response.Sex,
+            mz: data.Response.Nation,
+            csrq: data.Response.Birth,
+            zz: data.Response.Address,
+            sfzhm: data.Response.IdNum
+          })
+        } else {
+          var ValidDate = data.Response.ValidDate
+          that.setData({
+            zjyxqq: ValidDate.substring(0, 10),
+            zjyxqz: ValidDate.substring(11, 21)
+          })
+        }
+      },
+      function (data) {}
+    )
   },
 
   /**
@@ -169,7 +207,13 @@ Page({
         xm: this.data.xm,
         sfzhm: this.data.sfzhm,
         vipid: this.data.rzlx == '1' ? this.data.vipid : '',
-        cyrzrid: this.data.rzlx == '2' ? this.data.cyrzrid : ''
+        cyrzrid: this.data.rzlx == '2' ? this.data.cyrzrid : '',
+        xb: this.data.xb,
+        mz: this.data.mz,
+        csrq: this.data.csrq,
+        zz: this.data.zz,
+        zjyxqq: this.data.zjyxqq,
+        zjyxqz: this.data.zjyxqz
       }
     }
     let that = this;

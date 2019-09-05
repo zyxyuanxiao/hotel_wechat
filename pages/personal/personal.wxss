@@ -42,9 +42,10 @@ page {
 }
 
 .userinfo-nickname {
-  color: #aaa;
+  color: #E62A41;
   font-size: 30rpx;
   text-align: center;
+  font-weight: bold;
 }
 
 .user-center {

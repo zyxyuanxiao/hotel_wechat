@@ -33,7 +33,7 @@ Page({
    */
   makePhoneCall: function() {
     wx.makePhoneCall({
-      phoneNumber: '0719-8885855',
+      phoneNumber: app.globalData.servicePhone,
     })
   },
 

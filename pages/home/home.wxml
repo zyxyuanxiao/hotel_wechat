@@ -15,10 +15,10 @@
       <image src="{{currentRzlx == 1 ? qrImage + '_1.png' : qrImage + '.png'}}" class="search-item-icon" />全日
     </view>
     <view class="search-rzlx-item {{currentRzlx == 2 ? 'on' : ''}}" bindtap="selectRzlx" data-rzlx="2">
-      <image src="{{currentRzlx == 2 ? dyImage + '_1.png' : dyImage + '.png'}}" class="search-item-icon" />渡夜
+      <image src="{{currentRzlx == 2 ? dyImage + '_1.png' : dyImage + '.png'}}" class="search-item-icon" />凌晨房
     </view>
     <view class="search-rzlx-item {{currentRzlx == 3 ? 'on' : ''}}" bindtap="selectRzlx" data-rzlx="3">
-      <image src="{{currentRzlx == 3 ? zdImage + '_1.png' : zdImage + '.png'}}" class="search-item-icon" />小憩
+      <image src="{{currentRzlx == 3 ? zdImage + '_1.png' : zdImage + '.png'}}" class="search-item-icon" />钟点房
     </view>
   </view>
 

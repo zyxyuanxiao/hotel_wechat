@@ -57,18 +57,6 @@ Page({
         name: '洗漱用品'
       }
     ],
-    pfList: [
-      {
-        name: '设施评分',
-        score: '4.0'
-      }, {
-        name: '卫生评分',
-        score: '5.0'
-      }, {
-        name: '安全感',
-        score: '5.0'
-      }
-    ],
     yhpjList: [],
     fjfyList: [],
     fxList: [],
@@ -286,10 +274,10 @@ Page({
         aqg += yhpjList[i].aqg;
       }
       this.setData({
-        zhpf: parseInt(zhpf / yhpjList.length),
-        sspf: parseInt(sspf / yhpjList.length),
-        wspf: parseInt(wspf / yhpjList.length),
-        aqg: parseInt(aqg / yhpjList.length),
+        zhpf: (zhpf / yhpjList.length).toFixed(1),
+        sspf: (sspf / yhpjList.length).toFixed(1),
+        wspf: (wspf / yhpjList.length).toFixed(1),
+        aqg: (aqg / yhpjList.length).toFixed(1),
         yhpjList: yhpjList
       })
     }
