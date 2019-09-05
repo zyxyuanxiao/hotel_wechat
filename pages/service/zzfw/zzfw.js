@@ -154,7 +154,11 @@ Page({
     } else if (index == 1) {
       console.log('密码开门');
     } else if (index == 3) {
-      util.navigateTo('/pages/service/kksb/kksb', true);
+      // util.navigateTo('/pages/service/kksb/kksb', true);
+      wx.showToast({
+        title: '暂未开通',
+        icon: 'none'
+      })
     } else {
       wx.showToast({
         title: '暂未开通',

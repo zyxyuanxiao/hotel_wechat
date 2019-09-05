@@ -73,7 +73,7 @@
 
 <!-- 400电话 -->
 <view class='kfrx' bindtap="makePhoneCall">
-  客服热线：0719-8885855
+  客服热线：4000719828
 </view>
 <!-- 在线客服 -->
 <view class="zxkf-box">

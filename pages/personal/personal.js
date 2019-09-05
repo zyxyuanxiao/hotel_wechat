@@ -15,54 +15,6 @@ Page({
     couponImg: '/resources/images/user/score.png',
     rightArrowImage: '/resources/images/right-arr.png',
     userInfo: {},
-    routers: [{
-        name: '发票',
-        icon: '/resources/images/user/fp.png',
-        index: '0'
-      },
-      {
-        name: '押金',
-        icon: '/resources/images/user/yj.png',
-        index: '1'
-      },
-      {
-        name: '身份认证',
-        url: '/pages/personal/sfrz/sfrz',
-        icon: '/resources/images/user/sfrz.png',
-        index: '2'
-      },
-      {
-        name: '常用入住人',
-        url: '/pages/personal/cyrzr/cyrzr',
-        icon: '/resources/images/user/cyrzr.png',
-        index: '3'
-      },
-      {
-        name: '长租申请',
-        icon: '/resources/images/user/czsq.png',
-        index: '4'
-      },
-      {
-        name: '加盟申请',
-        icon: '/resources/images/user/jmsq.png',
-        index: '5'
-      },
-      {
-        name: '联系客服',
-        icon: '/resources/images/user/lxkf.png',
-        index: '6'
-      },
-      {
-        name: '加入我们',
-        icon: '/resources/images/user/jrwm.png',
-        index: '7'
-      },
-      {
-        name: '设置',
-        icon: '/resources/images/user/settings.png',
-        index: '8'
-      }
-    ],
     nvabarData: {
       showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
       title: '我的', //导航栏 中间的标题
@@ -91,7 +43,57 @@ Page({
             key: 'vipInfo',
             success: function (res) {
               that.setData({
-                vipInfo: res.data
+                vipInfo: res.data,
+                routers: [{
+                  name: '发票',
+                  icon: '/resources/images/user/fp.png',
+                  index: '0'
+                },
+                {
+                  name: '押金',
+                  icon: '/resources/images/user/yj.png',
+                  index: '1',
+                  isWarn: true
+                },
+                {
+                  name: '身份认证',
+                  url: '/pages/personal/sfrz/sfrz',
+                  icon: '/resources/images/user/sfrz.png',
+                  index: '2',
+                  isWarn: res.data.sfrz == '0' ? true : false
+                },
+                {
+                  name: '常用入住人',
+                  url: '/pages/personal/cyrzr/cyrzr',
+                  icon: '/resources/images/user/cyrzr.png',
+                  index: '3'
+                },
+                {
+                  name: '长租申请',
+                  icon: '/resources/images/user/czsq.png',
+                  index: '4'
+                },
+                {
+                  name: '加盟申请',
+                  icon: '/resources/images/user/jmsq.png',
+                  index: '5'
+                },
+                {
+                  name: '联系客服',
+                  icon: '/resources/images/user/lxkf.png',
+                  index: '6'
+                },
+                {
+                  name: '加入我们',
+                  icon: '/resources/images/user/jrwm.png',
+                  index: '7'
+                },
+                {
+                  name: '设置',
+                  icon: '/resources/images/user/settings.png',
+                  index: '8'
+                }
+                ],
               })
               that.loadUserInfo();
             },

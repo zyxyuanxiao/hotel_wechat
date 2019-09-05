@@ -32,7 +32,7 @@ App({
    * 全局变量
    */
   globalData: {
-    serverUrl: 'https://www.eywang.com/miniprogram/',
+    serverUrl: 'https://localhost/miniprogram/',
     uploadUrl: 'https://www.eywang.com/common/miniUpload',
     imageUrl: 'https://www.eywang.com/file/miniprogram/',
     user: {

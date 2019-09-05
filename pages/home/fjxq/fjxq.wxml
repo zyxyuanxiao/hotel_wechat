@@ -32,7 +32,6 @@
       <image src="{{item.imageUrl}}" class="fxxz-item-image"></image>
       <view class="fxxz-desc">
         <view class="fxxz-fjlx">{{item.fjlx}}</view>
-        <view class="fxxz-fjxx">共 {{item.fjsl}} 间</view>
         <view class="fxxz-fjjg"><money num="{{item.fjjg}}"></money></view>
         <view class="fxxz-activity">
           <view class="fxxz-activity-items" wx:for="{{item.activities}}" wx:for-item="activity" wx:key="index">

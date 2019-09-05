@@ -109,3 +109,13 @@
   text-overflow: ellipsis;
   overflow: hidden;
 }
+.warn-image {
+  width: 15px;
+  height: 15px;
+  margin-top: -15px;
+  margin-left: 51%;
+}
+.warn-image image {
+  width: 15px;
+  height: 15px;
+}

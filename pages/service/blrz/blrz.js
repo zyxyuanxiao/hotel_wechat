@@ -101,7 +101,7 @@ Page({
    */
   tjsmrz: function() {
     // 未进行实名认证，则先进行实名认证
-    if (this.data.sfrz == '0') {
+    if (this.data.smrz == '0') {
       util.navigateTo('/pages/personal/sfrz/sfrz', true);
     }
   },

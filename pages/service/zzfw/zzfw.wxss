@@ -52,7 +52,7 @@
   padding-left: 10px;
   margin-bottom: 10px;
   border-bottom: 1px solid #d9d9d9;
-  font-size: 30rpx;
+  font-size: 25rpx;
   align-items: center;
 }
 .time-title {

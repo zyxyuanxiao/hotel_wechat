@@ -18,15 +18,18 @@
       <view>
         <image src="{{vipImg}}" class="vip-info-item-image" />
       </view>
-      <view class="vip-info-item-title">智慧会员</view>
+      <view class="vip-info-item-title">名巢会员</view>
       <view class="vip-info-item-desc">（9折）</view>
     </view>
     <view class="vip-info-item">
       <view>
         <image src="{{cardImg}}" class="vip-info-item-image" />
       </view>
-      <view class="vip-info-item-title">领取品智卡</view>
-      <view class="vip-info-item-desc">联盟数0个</view>
+      <view class="vip-info-item-title">最新优惠券</view>
+      <view class="vip-info-item-desc">
+        <text wx:if="{{vipInfo != undefined}}">{{vipInfo.coupons}}</text>
+        <text wx:if="{{vipInfo == undefined}}">0</text>张
+      </view>
     </view>
     <view class="vip-info-item">
       <view>
