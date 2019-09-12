@@ -44,18 +44,29 @@ Page({
           })
         }
       },
-    })
+    });
+    this.loadDeposit();
   },
 
   /**
    * 提交押金
    */
   payYj: function() {
+    if (this.data.sftjyj == '1') {
+      wx.showModal({
+        title: '温馨提示',
+        content: '您已提交押金' + this.data.yjxx.yjje + '原',
+        confirmText: "确定", //默认是“确定”
+        showCancel: false,//是否显示取消按钮
+        confirmColor: 'skyblue',//确定文字的颜色
+      })
+      return;
+    }
     var that = this;
     // 发起微信支付
     var params = {};
     params['data'] = {
-      total_fee: 200 * 100,
+      total_fee: 0.01 * 100,
       paytype: '1',
       desc: '锦恒科技-押金',
       vipid: this.data.userid
@@ -65,18 +76,16 @@ Page({
       url: app.globalData.serverUrl + 'saveAccount',
       body: {
         ddid: this.data.orderid,
-        je: 200
+        je: 0.01
       }
     }
     // 支付成功回调函数
-    params['successFun'] = function () {
-      requestParam.body['wxpayid'] = wechatpayid;
+    params['successFun'] = function (wechatpayid) {
       request.doRequest(
         requestParam,
         function (data) {
-          that.setData({
-            sftjyj: '1'
-          })
+          // 添加押金缴纳记录
+          that.addDeposit(wechatpayid);
         },
         function (data) {
           wx.showToast({
@@ -110,7 +119,7 @@ Page({
    * 办理入住
    */
   blrz: function() {
-    if (this.data.smrz != '1') {
+    if (this.data.smrz != '2') {
       wx.showToast({
         title: '请先进行实名认证',
         icon: 'none'
@@ -124,6 +133,7 @@ Page({
       })
       return;
     }
+    var that = this;
     // 更新订单状态
     var params = {
       url: app.globalData.serverUrl + 'checkIn',
@@ -134,8 +144,78 @@ Page({
     request.doRequest(
       params,
       function (data) {
+        wx.showToast({
+          title: '入住成功',
+          icon: 'none',
+          success: function() {
+            util.navigateTo('/pages/service/service', true);
+          }
+        })
+      },
+      function (data) {
+        wx.showToast({
+          title: '服务器异常',
+          icon: 'none'
+        })
+      }
+    )
+  },
+
+  /**
+   * 加载押金信息
+   */
+  loadDeposit: function() {
+    var that = this;
+    // 更新订单状态
+    var params = {
+      url: app.globalData.serverUrl + 'getDeposit',
+      body: {
+        orderid: this.data.orderid,
+        yjzt: '1'
+      }
+    }
+    request.doRequest(
+      params,
+      function (data) {
+        if (data.length > 0) {
+          that.setData({
+            sftjyj: '1',
+            tjyjClass: 'rzts-btn-yb',
+            yjxx: data[0]
+          })
+        }
+      },
+      function (data) {
+        wx.showToast({
+          title: '服务器异常',
+          icon: 'none'
+        })
+      }
+    )
+  },
+
+  /**
+   * 保存押金支付记录
+   */
+  addDeposit: function (wechatpayid) {
+    var that = this;
+    // 更新订单状态
+    var params = {
+      url: app.globalData.serverUrl + 'addDeposit',
+      body: {
+        orderid: this.data.orderid,
+        vipid: this.data.vipid,
+        yjje: 0.01,
+        yjzt: 1,
+        wxpayid: wechatpayid
+      }
+    }
+    request.doRequest(
+      params,
+      function (data) {
         that.setData({
-          sftjyj: '1'
+          sftjyj: '1',
+          tjyjClass: 'rzts-btn-yb'
         })
       },
       function (data) {

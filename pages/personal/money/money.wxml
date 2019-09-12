@@ -46,7 +46,7 @@
       </view>
     </view>
     <view class="czje czje-input">
-      <input placeholder="输入自定义金额(元)" type="digit" ></input>
+      <input placeholder="输入自定义金额(元)" type="digit" bindinput="inputMoney"></input>
     </view>
   </view>
 

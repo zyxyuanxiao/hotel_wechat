@@ -228,7 +228,8 @@ Page({
         status: '1',
         city: app.globalData.user.address.city,
         pricetype: this.data.hydj == '1' ? 'A' : 'B',
-        rzlx: this.data.ydsj == undefined ? '1' : this.data.ydsj.rzlx
+        rzlx: this.data.ydsj == undefined ? '1' : this.data.ydsj.rzlx,
+        sfnm: '0'
       }
     }
     let that = this;

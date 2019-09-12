@@ -52,6 +52,15 @@ Page({
   },
 
   /**
+   * 输入自定义金额
+   */
+  inputMoney: function (e) {
+    this.setData({
+      currentJe: e.detail.value
+    })
+  },
+
+  /**
    * 钱包充值
    */
   qbcz: function() {
