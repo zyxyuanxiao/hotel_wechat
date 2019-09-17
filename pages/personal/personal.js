@@ -46,6 +46,7 @@ Page({
                 vipInfo: res.data,
                 routers: [{
                   name: '发票',
+                  url: '/pages/personal/fptx/fptx',
                   icon: '/resources/images/user/fp.png',
                   index: '0'
                 },
@@ -70,11 +71,13 @@ Page({
                 },
                 {
                   name: '长租申请',
+                  url: '/pages/personal/czsq/czsq',
                   icon: '/resources/images/user/czsq.png',
                   index: '4'
                 },
                 {
                   name: '加盟申请',
+                  url: '/pages/personal/jmsq/jmsq',
                   icon: '/resources/images/user/jmsq.png',
                   index: '5'
                 },

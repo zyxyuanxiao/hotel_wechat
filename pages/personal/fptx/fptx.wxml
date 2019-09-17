@@ -1,0 +1,28 @@
+<!--pages/personal/fptx/fptx.wxml-->
+<nav-bar navbar-data='{{nvabarData}}'></nav-bar>
+<view class="container" style="background-color: #fff;">
+  <view class="input-list">
+    <view class="input-list-item">
+      <text class="input-title">公司名称</text>
+      <input class="input-box" placeholder="填写公司名称" type="text" bindinput="inputCyrzrxm"></input>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">税号</text>
+      <input class="input-box" placeholder="填写税号" type="number" bindinput="inputCyrzrSjhm"></input>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">纳税人识别号</text>
+      <input class="input-box" placeholder="填写纳税人识别号" type="text" bindinput="inputCyrzrSjhm"></input>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">开户行及账号</text>
+      <input class="input-box" placeholder="填写开户行及账号" type="text" bindinput="inputCyrzrSjhm"></input>
+    </view>
+    <view class="input-list-item">
+      <text class="input-title">备注</text>
+      <input class="input-box" placeholder="填写备注" type="text" bindinput="inputCyrzrSjhm"></input>
+    </view>
+  </view>
+
+  <button class="common-btn" bindtap="addCyrzr">确认</button>
+</view>

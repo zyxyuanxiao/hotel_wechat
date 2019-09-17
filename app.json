@@ -23,7 +23,10 @@
     "pages/service/blrz/blrz",
     "pages/order/comment/comment",
     "pages/home/selectcity/selectcity",
-    "pages/personal/sfrz/camera/camera"
+    "pages/personal/sfrz/camera/camera",
+    "pages/personal/jmsq/jmsq",
+    "pages/personal/czsq/czsq",
+    "pages/personal/fptx/fptx"
   ],
   "window": {
     "backgroundTextStyle": "light",

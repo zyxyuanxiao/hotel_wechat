@@ -49,7 +49,7 @@
     </view>
     <!-- 操作 -->
     <view class="order-item-oper" wx:if="{{item.ddzt == 2}}">
-      <button class="order-item-oper-btn" bindtap="navigateToOrder" data-orderid="{{item.orderid}}">再次预定</button>
+      <!-- <button class="order-item-oper-btn" bindtap="navigateToOrder" data-orderid="{{item.orderid}}">再次预定</button> -->
       <button class="order-item-oper-btn" bindtap="navigateToBlrz" data-orderid="{{item.orderid}}">办理入住</button>
     </view>
     <!-- 操作 -->

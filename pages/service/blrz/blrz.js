@@ -66,7 +66,7 @@ Page({
     // 发起微信支付
     var params = {};
     params['data'] = {
-      total_fee: 0.01 * 100,
+      total_fee: 300 * 100,
       paytype: '1',
       desc: '锦恒科技-押金',
       vipid: this.data.userid
@@ -76,7 +76,7 @@ Page({
       url: app.globalData.serverUrl + 'saveAccount',
       body: {
         ddid: this.data.orderid,
-        je: 0.01
+        je: 300
       }
     }
     // 支付成功回调函数
@@ -205,7 +205,7 @@ Page({
       body: {
         orderid: this.data.orderid,
         vipid: this.data.vipid,
-        yjje: 0.01,
+        yjje: 300,
         yjzt: 1,
         wxpayid: wechatpayid
       }

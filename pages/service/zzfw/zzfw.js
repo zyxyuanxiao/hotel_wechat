@@ -9,7 +9,7 @@ Page({
    * 页面的初始数据
    */
   data: { 
-    znsbRoutes: [{
+    znsbRoutes: [{ 
       name: '智能开门',
       icon: '/resources/images/service/click.png',
       index: '0'
@@ -111,6 +111,14 @@ Page({
     this.loadOrder();
   },
 
+  onShareAppMessage: function() {
+    return {
+      title: '名巢未来酒店',
+      desc: '名巢未来酒店',
+      path: '/pages/service/zzfw/zzfw?orderid=' + this.data.orderid
+    }
+  },
+
   /**
    * 点击在住服务项
    */
@@ -150,9 +158,57 @@ Page({
   clcikZnkm: function(e) {
     let index = e.detail.index;
     if (index == 0) {
-      console.log('智能开门');
+      let params = {
+        url: app.globalData.serverUrl + 'openDoor',
+        body: {
+          fjid: this.data.orderInfo.fjid,
+          rzsj: this.data.orderInfo.rzsj,
+          ldsj: this.data.orderInfo.ldsj
+        }
+      }
+      let that = this;
+      request.doRequest(
+        params,
+        function (data) {
+          wx.showToast({
+            title: '开门成功',
+            icon: 'none'
+          })
+        },
+        function (data) {
+          wx.showToast({
+            title: '请求错误',
+            icon: 'none'
+          })
+        }
+      )
     } else if (index == 1) {
-      console.log('密码开门');
+      let params = {
+        url: app.globalData.serverUrl + 'getDoorPassword',
+        body: {
+          fjid: this.data.orderInfo.fjid,
+          rzsj: this.data.orderInfo.rzsj,
+          ldsj: this.data.orderInfo.ldsj
+        }
+      }
+      let that = this;
+      request.doRequest(
+        params,
+        function (data) {
+          wx.showModal({
+            title: '' + data.password,
+            confirmText: "确定",  // 默认是“确定”
+            showCancel: false,  // 是否显示取消按钮
+            confirmColor: 'skyblue',  // 确定文字的颜色
+          })
+        },
+        function (data) {
+          wx.showToast({
+            title: '请求错误',
+            icon: 'none'
+          })
+        }
+      )
     } else if (index == 3) {
       // util.navigateTo('/pages/service/kksb/kksb', true);
       wx.showToast({
