@@ -52,6 +52,7 @@ Page({
                 },
                 {
                   name: '押金',
+                  url: '/pages/personal/yj/yj',
                   icon: '/resources/images/user/yj.png',
                   index: '1',
                   isWarn: true

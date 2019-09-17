@@ -1,4 +1,9 @@
 // pages/personal/yj/yj.js
+const util = require('../../../utils/util.js')
+const request = require('../../../utils/request.js')
+const payUtil = require('../../../utils/wxpay.js')
+var app = getApp();
+
 Page({
 
   /**
@@ -7,7 +12,12 @@ Page({
   data: {
     yjje: 0,
     yjImage: '/resources/images/user/yj_w.png',
-    helpImage: '/resources/images/help.png'
+    helpImage: '/resources/images/help.png',
+    nvabarData: {
+      showCapsule: 1, //是否显示左上角图标   1表示显示    0表示不显示
+      title: '押金', //导航栏 中间的标题
+      back: true
+    },
   },
 
   /**
@@ -42,17 +52,17 @@ Page({
     // 发起微信支付
     var params = {};
     params['data'] = {
-      total_fee: 0.01 * 100,
+      total_fee: 300 * 100,
       paytype: '1',
       desc: '锦恒科技-押金',
-      vipid: this.data.userid
+      vipid: this.data.vipid
     }
     // 支付成功后保存账项信息
     let requestParam = {
       url: app.globalData.serverUrl + 'addDeposit',
       body: {
         vipid: this.data.vipid,
-        yjje: 0.01,
+        yjje: 300,
         yjzt: 0
       }
     }
